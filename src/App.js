@@ -7,7 +7,7 @@ import React, { Component } from "react";
 // import firebase from "./firebase";
 
 // import axios
-// import axios from 'axios';
+import axios from 'axios';
 
 // import sweet alerts
 
@@ -15,6 +15,31 @@ import React, { Component } from "react";
 import "./App.scss";
 
 class App extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      veganArray: [],
+    }
+  }
+
+
+  componentDidMount() {
+    axios({
+      url: 'http://makeup-api.herokuapp.com/api/v1/products.json',
+      method: 'GET',
+      responseType: 'json',
+      params: {
+        product_tags: 'vegan',
+      }
+    }).then((response) => {
+      console.log(response.data);
+      this.setState({
+        veganArray: response.data
+      })
+    })
+  }
+
 
   render() {
 
