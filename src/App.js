@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 
 // import components
+import Helmet from './Components/Helmet.js';
 
 // import firebase
 import firebase from "./firebase";
@@ -76,6 +77,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        <Helmet />
         <h1>testing to see if this works</h1>
       </div>
     );

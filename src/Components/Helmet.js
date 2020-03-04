@@ -1,20 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+// a couple of functions from the React library
+import React from "react";
+import { Helmet } from "react-helmet";
 
-const Helmet = (
-    <HelmetProvider>
-        <App>
-        <Helmet>
-            <title>Hello World</title>
-            <link rel="canonical" href="https://www.tacobell.com/" />
-        </Helmet>
-        <h1>Hello World</h1>
-        </App>
-    </HelmetProvider>
-    );
+class Application extends React.Component {
+    render() {
+        return (
+        <div className="application">
+            <Helmet>
+            <title>• Ethical Make Up •</title>
+            {/* insert fontawesome kit */}
+            <script
+                src="https://kit.fontawesome.com/dfdc9c622d.js"
+                crossorigin="anonymous"
+            ></script>
 
-    ReactDOM.hydrate(
-    app,
-    document.getElementById(‘Helmet’)
-);
+            <link
+                href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+                rel="stylesheet"
+            />
+            </Helmet>
+            ...
+        </div>
+        );
+    }
+}
+
+export default Application;
