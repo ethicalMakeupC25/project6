@@ -1,0 +1,181 @@
+ /****** GENERAL STYLING ******/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background: $lightBlueGrey;
+    height:100vh;
+}
+
+main {
+    height: 100vh;
+    width: 100vw;
+}
+
+.wrapper {
+    width: 100vw;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+/* FONT STYLING */
+
+h1, h2, h3, h4, p, a, li, ul {
+    line-height: 26px;
+}
+
+h1, h2, h3, h4, h5, a {
+    font-family: 'Poppins';
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    color:white;
+}
+
+h1 {
+    @include fluid-type (2.5rem, 4rem, 360px, 1280px);
+    margin: 0;
+    line-height: 4.5rem;
+    
+}
+
+h2 {
+    @include fluid-type (2rem, 3rem, 360px, 1280px);
+    margin: 0;
+    line-height: 4.5rem;
+    display: inline;
+}
+
+h3 {
+    @include fluid-type (1.8rem, 2.5rem, 360px, 1280px);
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    line-height: 2.5rem;
+    color: white;
+    text-shadow: 2px 2px 2px $blackColor;
+}
+
+h4 {
+    @include fluid-type (1.8rem, 3rem, 360px, 1280px);
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 100%;
+    line-height: 4rem;
+    color: black;
+}
+
+h5 {
+    @include fluid-type (1.5rem, 2rem, 360px, 1280px);
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 100%;
+    line-height: 4rem;
+    color: black;
+}
+
+p { 
+    font-family: 'Poppins';
+    @include fluid-type (1.5rem, 2.5rem, 360px, 1280px);
+    margin: 0;
+    line-height: 2.5rem;
+}
+
+
+
+li, 
+ul {
+    text-decoration: none;
+    line-height: 2.5rem;
+    font-family: 'Poppins';
+    margin-left: 10%;
+    @include fluid-type (1.5rem, 2rem, 360px, 1280px);
+}
+
+button {
+    background: none;
+    border: none;
+}
+
+
+i {
+    color: $whiteShadeColor;
+    font-size: 5rem;
+    text-shadow: 3px 3px 3px $blackColor;
+}
+
+i:hover {
+    text-shadow: 5px 5px 5px $blackColor;
+}
+
+i:active, i:focus {
+    text-shadow: 1px 1px 1px $blackColor;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+.buttonStyle {
+    font-family: 'Poppins';
+    @include box (10vh, 5vh); //width x height
+    min-width: 8rem;
+    min-height: 4rem;
+    background: rgb(142, 183, 245);
+    @include fluid-type (2rem, 3rem, 360px, 1280px);
+    font-weight: bold;
+    color: $whiteShadeColor;
+    text-transform: uppercase;
+    margin: 10px 5px 5px;
+    border-radius: 25px;
+    box-shadow: 2px 2px 10px 0px rgba(255, 255, 255, 0.92),
+    -2px -2px 10px 0px rgba(255, 255, 255, 0.92);
+    box-shadow: inset 2px 2px 10px 0px rgba(255, 255, 255, 0.92),
+    inset -2px -2px 10px 0px rgba(255, 255, 255, 0.92);
+}
+
+.buttonStyle:active, .buttonStyle:focus {
+    box-shadow: inset 2px 2px 10px 0px rgba(255, 255, 255, 0.92), inset -2px -2px 10px 0px rgba(255, 255, 255, 0.92);
+}
+
+
+
+.pBreak {
+    display: block;
+    margin-bottom: 2%;
+    word-wrap: break-word;
+}
+
+.particles-js {
+    position: absolute;
+    z-index:-1;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+}
+
+// Accessibility classes
+.visually-hidden:not(:focus):not(:active) {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+    /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+    /* added line */
+}
