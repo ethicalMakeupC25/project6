@@ -4,7 +4,7 @@ import Search from './Search';
 class Main extends Component {
     render() {
         return (
-            <main className="wrapper">
+            <main>
                 <Search veganProducts={this.props.veganProducts} />
             </main>
         )
