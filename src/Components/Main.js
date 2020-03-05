@@ -7,19 +7,27 @@ class Main extends Component {
         super();
 
         this.state = {
-            isSearched: false
+            isSearched: false,
+            searchInput: ''
         }
     }
 
     setSearched = () => {
-        this.setState({isSearched: true})
+        this.setState({isSearched: true})            
+        }
+    }
+
+    handleSearchInput = (input) => {
+        this.setState({
+            searchInput: input
+        })
     }
 
     render() {
         return (
             <main className="wrapper">
-                <Search veganProducts={this.props.veganProducts} />
-                <Results veganProducts={this.props.veganProducts} />
+                <Search veganProducts={this.props.veganProducts} handleSearchInput={this.handleSearchInput} />
+                
             </main>
         )
     }
