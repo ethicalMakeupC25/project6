@@ -19,7 +19,6 @@ class Application extends React.Component {
                 rel="stylesheet"
             />
             </Helmet>
-            ...
         </div>
         );
     }
