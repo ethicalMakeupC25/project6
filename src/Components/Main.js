@@ -5,7 +5,7 @@ class Main extends Component {
     render() {
         return (
             <main className="wrapper">
-                <Search />
+                <Search veganProducts={this.props.veganProducts} />
             </main>
         )
     }

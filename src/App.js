@@ -49,7 +49,7 @@ class App extends Component {
           :
             <Fragment>
               <Header />
-              <Main />
+              <Main veganProducts={this.state.veganArray} />
               <Footer />
             </Fragment>
         }
