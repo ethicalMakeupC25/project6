@@ -73,6 +73,15 @@ class Search extends Component {
         });
     };
 
+    //locally resolve submit and then pass to parent component
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.handleSearchInput(this.state.value);
+        this.setState({
+            value: ''
+        })
+    }
+
     render() {
         const { value, suggestions } = this.state;
 
@@ -86,7 +95,7 @@ class Search extends Component {
 
         return (
             <section className="searchBar">
-                <form onSubmit={() => console.log('we are submitting!')}>
+                <form onSubmit={(e) => {this.handleSubmit(e)}}>
                     <label htmlFor="productSearch">Search for vegan makeup by type, name or brand.</label>
                     <Autosuggest 
                         suggestions={suggestions.slice(0, 5)}
