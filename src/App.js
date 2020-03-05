@@ -7,6 +7,8 @@ import Main from './Components/Main';
 import Footer from './Components/Footer';
 // import axios
 import axios from 'axios';
+// import react-router
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 // CSS for the `App` component
 import "./App.scss";
 
@@ -38,7 +40,7 @@ class App extends Component {
 
   render() {
     return (
-      <Fragment>
+      <Router>
         <Helmet />
         {
           this.state.isLoading
@@ -53,7 +55,7 @@ class App extends Component {
               <Footer />
             </Fragment>
         }
-      </Fragment>
+      </Router>
     );
   }
 }
