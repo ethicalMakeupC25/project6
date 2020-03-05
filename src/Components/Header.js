@@ -3,7 +3,7 @@ import React from 'react';
 const Header = () => {
     return (
         <header className="wrapper">
-            <h1>ethical makeup</h1>
+            <h1><span className="highlight">Ethical Makeup</span></h1>
         </header>
     )
 }

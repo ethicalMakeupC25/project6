@@ -18,8 +18,20 @@ body {
     color: $blackColor;
 }
 
+a {
+    color: $blackColor;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        background: linear-gradient(180deg,rgba(255,255,255,0) 60%, $accent1 40%);
+    }
+}
+
 header {
     height: 10vh;
+    display: flex;
+    align-items: center;
 }
 
 main {
@@ -27,17 +39,16 @@ main {
 }
 
 footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 10vh;
+    font-size: 1.6rem;
+    text-align: center;
 }
 
 h1,h2,h3,h4,h5,h6 {
     font-family: $headingFont;
-}
-
-h1 {
-    text-decoration: underline;
-    text-decoration-color: $grayColor;
-    text-decoration-thickness: 10px;
 }
 
 .wrapper {
@@ -48,4 +59,8 @@ h1 {
 img {
     width: 100%;
     display: block;
+}
+
+.highlight {
+    background: linear-gradient(180deg,rgba(255,255,255,0) 60%, $accent1 40%);
 }
