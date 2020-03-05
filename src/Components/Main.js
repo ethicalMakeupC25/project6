@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Search from './Search';
-import Results from './Results'
+import Results from './Results';
 
 class Main extends Component {
     constructor() {
@@ -8,26 +8,39 @@ class Main extends Component {
 
         this.state = {
             isSearched: false,
-            searchInput: ''
-        }
-    }
+            searchInput: '',
 
-    setSearched = () => {
-        this.setState({isSearched: true})            
+            filteredResults: []
         }
     }
 
     handleSearchInput = (input) => {
         this.setState({
-            searchInput: input
-        })
+            searchInput: input,
+            isSearched: true
+        }, this.filterResults)
+    }
+
+    componentDidUpdate() {
+        
+    }
+
+    filterResults = () => {
+        const filteredArray = this.props.veganProducts.filter(product => {
+            return product.product_type === this.state.searchInput
+        });
+
+        this.setState({
+            filteredResults: filteredArray
+        });
     }
 
     render() {
         return (
             <main className="wrapper">
                 <Search veganProducts={this.props.veganProducts} handleSearchInput={this.handleSearchInput} />
-                
+                {this.state.isSearched ? <Results filteredResults={this.state.filteredResults} /> : null}
+
             </main>
         )
     }

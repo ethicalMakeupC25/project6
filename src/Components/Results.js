@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 
 class Results extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      
+    }
+  }
   render() {
       return (
           <section className="results">
-            {this.props.veganProducts.map(product => {
+            {this.props.filteredResults.map(product => {
               return(
                 <div key={product.id}>
                   <div className="productImage">
