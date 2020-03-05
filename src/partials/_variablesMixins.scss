@@ -1,11 +1,13 @@
-// ○○○ Variables
-$duskGreen: #227284;
-$lightBlueGrey: rgb(185, 209, 231);
-$greyBlue: #68B0C1;
-$accentColor: #F38D8D;
-$blackColor: #171717;
-$whiteShadeColor: #F6F6F6;
+// FONT IMPORTS
+@import url('https://fonts.googleapis.com/css?family=Maitree|Montserrat&display=swap');
 
+// ○○○ Variables
+$accent1: #7BE0AD;
+$accent2: #AEE5D8;
+$grayColor: #E7E5E5;
+$blackColor: #000;
+$headingFont: 'Maitree';
+$bodyFont: 'Montserrat';
 
 // ○○○ mixins
 

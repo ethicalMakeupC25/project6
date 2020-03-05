@@ -1,17 +1,12 @@
 // a couple of functions from the React library
-import React, { Component } from "react";
-
+import React, { Component, Fragment } from "react";
 // import components
 import Helmet from './Components/Helmet.js';
-
-// import firebase
-import firebase from "./firebase";
-
+import Header from './Components/Header';
+import Main from './Components/Main';
+import Footer from './Components/Footer';
 // import axios
 import axios from 'axios';
-
-// import sweet alerts
-
 // CSS for the `App` component
 import "./App.scss";
 
@@ -21,9 +16,9 @@ class App extends Component {
 
     this.state = {
       veganArray: [],
+      isLoading: true
     }
   }
-
 
   componentDidMount() {
     axios({
@@ -34,52 +29,31 @@ class App extends Component {
         product_tags: 'vegan',
       }
     }).then((response) => {
-      console.log(response.data);
       this.setState({
-        veganArray: response.data
+        veganArray: response.data,
+        isLoading: false,
       })
     })
-
-     // create a variable that holds a reference to  database
-    const dbRef = firebase.database().ref();
- 
-    // create variable that holds reference to the search results
-    let searchResults;
-    // 🧠 event listener that takes a callback function used to get data from the database and call it response.
-    dbRef.on("value", response => {
-      const dataFromDb = response.val();
-      console.log('dataFromDb', dataFromDb)
-      // see the information and parse the way we want it.
- 
-      // create a variable to store the new state.
-      const newState = [];
- 
-      // loop over each value in the array and push them to a new array (newState).
-      for (let key in dataFromDb) {
-        const results = {
-          key: key,
-          value: dataFromDb[key]
-        };
-        newState.push(results);
-      }
-      // call this.setState to update the component state using the local array newState.
-      this.setState({
-        searchResults: newState,
-      });
-    });
 }
 
-
-  
-
-
   render() {
-
     return (
-      <div className="App">
+      <Fragment>
         <Helmet />
-        <h1>testing to see if this works</h1>
-      </div>
+        {
+          this.state.isLoading
+          ?
+            <div className="preloader">
+              <p>loading</p>
+            </div>
+          :
+            <Fragment>
+              <Header />
+              <Main />
+              <Footer />
+            </Fragment>
+        }
+      </Fragment>
     );
   }
 }
