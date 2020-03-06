@@ -13,7 +13,6 @@ html {
 
 body {
     font-size: 2rem;
-    background: $accent2;
     font-family: $bodyFont;
     color: $blackColor;
 }
@@ -35,15 +34,15 @@ header {
 }
 
 main {
-    min-height: 80vh;
+    min-height: 85vh;
 }
 
 footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10vh;
-    font-size: 1.6rem;
+    height: 5vh;
+    @include fluid-type (1.25rem, 1.6rem, 360px, 1280px);
     text-align: center;
 }
 
@@ -52,8 +51,13 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .wrapper {
+<<<<<<< HEAD
     max-width: 1120px;
     width: 95%;
+=======
+    max-width: 1280px;
+    width: 100vw;
+>>>>>>> master
     margin: 0 auto;
 }
 
@@ -64,4 +68,17 @@ img {
 
 .highlight {
     background: linear-gradient(180deg,rgba(255,255,255,0) 60%, $accent1 40%);
+}
+
+// Accessibility classes
+.visually-hidden:not(:focus):not(:active) {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+    /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+    /* added line */
 }

@@ -39,7 +39,7 @@ class Main extends Component {
 
     render() {
         return (
-            <main className="wrapper">
+            <main>
                 <Search veganProducts={this.props.veganProducts} handleSearchInput={this.handleSearchInput} />
                 <Route path="/products/:productID" render={() => <ResultDetails filteredResults={this.props.filteredResults} />} />
                 {this.state.isSearched ? <Results filteredResults={this.state.filteredResults} /> : null}
