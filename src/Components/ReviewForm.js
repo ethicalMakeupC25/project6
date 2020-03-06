@@ -27,23 +27,27 @@ const ReviewForm = props => (
             {/* radio input for purchase or won't repurchase. */}
                 <p>Would You Repurchase This Item?</p>
                 <div>
-                    <input 
-                        type="radio" 
-                        id="Yes" 
-                        value="yes"
-                        name="reviewForm"
-                        onChange={props.radioChange}
-                        />
-                    <label htmlFor="Yes">Yes</label>
+                    <div className="yesInput">
+                        <input 
+                            type="radio" 
+                            id="Yes" 
+                            value="yes"
+                            name="reviewForm"
+                            onChange={props.radioChange}
+                            />
+                        <label htmlFor="Yes">Yes</label>
+                    </div>
 
-                    <input
-                        type="radio" 
-                        id="No" 
-                        value="no"
-                        name="reviewForm"
-                        onChange={props.radioChange}
-                        />
-                    <label htmlFor="No">No</label>
+                    <div className="noInput">
+                        <input
+                            type="radio" 
+                            id="No" 
+                            value="no"
+                            name="reviewForm"
+                            onChange={props.radioChange}
+                            />
+                        <label htmlFor="No">No</label>
+                    </div>
                 </div>
             </section>
 
