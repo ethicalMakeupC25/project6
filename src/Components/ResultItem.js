@@ -27,6 +27,13 @@ class ResultItem extends Component {
           </div>
           <Link to={`/products/${this.props.product.id}`}>Reviews</Link>
         </div>
+        {this.props.activeID === this.props.product.id && 
+          <div className="productInfo">
+            <h3>{this.props.product.name}</h3>
+            <p>{this.props.product.description}</p>
+          </div>
+        }
+        
       </div>
     );
   }
