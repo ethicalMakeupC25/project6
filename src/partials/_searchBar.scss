@@ -82,5 +82,5 @@
 }
 
 .react-autosuggest__suggestion--highlighted {
-    background-color: $accent1;
+    background: linear-gradient(90deg, rgba(123, 224, 173, 1) 0%, rgba(174, 229, 216, 1) 35%, rgba(231, 229, 229, 1) 100%);
 }

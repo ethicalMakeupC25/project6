@@ -4,7 +4,7 @@ import ReviewSubmitButton from './ReviewSubmitButton';
 
 const ReviewForm = props => (
     <div className="reviewInput wrapper">
-        <form action="submit" onSubmit={e => props.handleFormSubmit(e)}>
+        <form className="reviewForm" action="submit" onSubmit={e => props.handleFormSubmit(e)}>
             <label className="visually-hidden" htmlFor="reviewForm">
                 Please Enter Your Review!
             </label>

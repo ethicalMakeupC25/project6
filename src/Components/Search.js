@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Autosuggest from 'react-autosuggest';
+import Swal from 'sweetalert2';
 // all functions below related to suggestions has been adapted from https://www.npmjs.com/package/react-autosuggest and https://codepen.io/moroshko/pen/PZWbzK
 
 class Search extends Component {
@@ -76,10 +77,18 @@ class Search extends Component {
     //locally resolve submit and then pass to parent component
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.handleSearchInput(this.state.value);
-        this.setState({
-            value: ''
-        })
+        if (this.state.value) {
+            this.props.handleSearchInput(this.state.value);
+            this.setState({
+                value: ''
+            })
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'You may want to search for something first!'
+            })
+        }
     }
 
     render() {
