@@ -20,7 +20,7 @@ class ProductInfo extends Component {
           </Fragment>
           : <Fragment>
             {this.props.product.description}
-            <span className="infoLink"><a href={this.props.product.product_link}>Product Page</a></span>
+            <span className="infoLink"><a href={this.props.product.product_link} target="_blank">Product Page</a></span>
           </Fragment>}</p>
         <h3>Colors:</h3>
         <div className="productColors">
