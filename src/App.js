@@ -50,9 +50,11 @@ class App extends Component {
             </div>
           :
             <Fragment>
-              <Header />
-              <Main veganProducts={this.state.veganArray} />
-              <Footer />
+              <div className="wrapper">
+                <Header />
+                <Main veganProducts={this.state.veganArray} />
+                <Footer />
+              </div>
             </Fragment>
         }
       </Router>
