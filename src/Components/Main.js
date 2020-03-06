@@ -21,8 +21,8 @@ class Main extends Component {
         }, this.filterResults)
     }
 
-    componentDidUpdate() {
-        
+    componentDidMount() {
+        console.log(this.props.veganProducts)
     }
 
     filterResults = () => {

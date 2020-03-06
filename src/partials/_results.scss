@@ -1,0 +1,29 @@
+.results {
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 5%;
+
+  & > div {
+    position: relative;
+  }
+}
+
+.productTextContainer {
+  position: absolute;
+  bottom: 0;
+}
+
+.productImage {
+  box-shadow: 20px 15px 0px 0px $grayColor;
+  border: 2px $darkerGray solid;
+  height: 100%;
+
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
