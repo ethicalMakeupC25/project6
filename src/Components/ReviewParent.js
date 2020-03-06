@@ -5,7 +5,6 @@ import firebase from "./../firebase";
 import EachReview from "./EachReview";
 
 
-
 class ReviewParent extends Component {
     constructor() {
         super();
@@ -15,7 +14,7 @@ class ReviewParent extends Component {
         userInput: "",
         userReview: "",
         userId: "000",
-        userRepurchase: ''
+        userRepurchase: '',
         };
     }
 
@@ -80,21 +79,19 @@ class ReviewParent extends Component {
             userInput: "",
             userReview: ""
         })
+
     };
 
     render(){
         return (
             <Fragment>
-                <div className="mainGrid wrapper">
-                {this.state.reviews.map(reviews => (
-                    // Div containers for each message.
-                    <EachReview revProp={reviews} />
-                    ))}
-                    
-                <div className="reviewDisplay" id="reviewDisplay">
-                    {/* <EachReview /> */}
+                <div className="wrapper">
+                <div className="readReview">
+                    {this.state.reviews.map(reviews => (
+                        // Div containers for each message.
+                        <EachReview revProp={reviews} />
+                        ))}
                 </div>
-                
 
                 <ReviewForm
                     handleFormSubmit={this.handleFormSubmit}

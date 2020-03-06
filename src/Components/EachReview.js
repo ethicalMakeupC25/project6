@@ -11,7 +11,7 @@ const EachReview = ({ revProp }) => {
     console.log(revProp)
     return (
         <div key={revProp.key}>
-
+            
         </div>
     );
 };

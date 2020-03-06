@@ -1,5 +1,6 @@
 // a couple of functions from the React library
 import React from "react";
+import ReviewSubmitButton from './ReviewSubmitButton';
 
 const ReviewForm = props => (
     <div className="reviewInput wrapper">
@@ -51,9 +52,7 @@ const ReviewForm = props => (
                 </div>
             </section>
 
-            <button className="submitButton" type="submit">
-                Submit
-            </button>
+            <ReviewSubmitButton />
         </form>
     </div>
 );
