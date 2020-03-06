@@ -523,8 +523,7 @@ footer a {
   display: grid;
   -ms-grid-columns: (minmax(200px, 1fr))[auto-fit];
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  -webkit-column-gap: 5rem;
-          column-gap: 5rem;
+  gap: 5rem;
 }
 
 .selected h3 {
@@ -559,6 +558,25 @@ footer a {
   margin: 1%;
   border: 1px #000 solid;
   border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .results > div {
+    padding-right: 20px;
+  }
+  .selected {
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+    gap: 5rem 0;
+  }
+  .selected .productImage {
+    -ms-grid-column: 2;
+        grid-column-start: 2;
+    min-width: 270px;
+  }
+  .selected .productInfo {
+    grid-column: 1 / -1;
+  }
 }
 
 form {

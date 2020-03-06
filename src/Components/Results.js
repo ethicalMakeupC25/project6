@@ -20,7 +20,7 @@ class Results extends Component {
       <section className="results">
         {this.props.filteredResults.map(product => {
           return (
-            <ResultItem setActiveID={this.setActiveID} activeID={this.state.activeID} product={product} />
+            <ResultItem key={product.id} setActiveID={this.setActiveID} activeID={this.state.activeID} product={product} />
           );
         })}
       </section>
