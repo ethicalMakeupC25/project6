@@ -241,7 +241,6 @@ html {
 
 body {
   font-size: 2rem;
-  background: #AEE5D8;
   font-family: "Montserrat";
   color: #000;
 }
@@ -267,7 +266,7 @@ header {
 }
 
 main {
-  min-height: 80vh;
+  min-height: 85vh;
 }
 
 footer {
@@ -280,9 +279,21 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 10vh;
-  font-size: 1.6rem;
+  height: 5vh;
+  font-size: calc(1.25rem + 0.35 * ((100vw - 360px) / 920));
   text-align: center;
+}
+
+@media screen and (max-width: 360px) {
+  footer {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  footer {
+    font-size: 1.6rem;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -303,6 +314,48 @@ img {
 .highlight {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(60%, rgba(255, 255, 255, 0)), color-stop(40%, #7BE0AD));
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 60%, #7BE0AD 40%);
+}
+
+.visually-hidden:not(:focus):not(:active) {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+  /* added line */
+}
+
+header {
+  width: 100%;
+  background: #7be0ad;
+  background: -webkit-gradient(linear, left top, right top, from(#7be0ad), color-stop(35%, #aee5d8), to(#e7e5e5));
+  background: linear-gradient(90deg, #7be0ad 0%, #aee5d8 35%, #e7e5e5 100%);
+}
+
+header h1 {
+  color: white;
+  margin-left: 5%;
+  letter-spacing: 5px;
+}
+
+footer {
+  width: 100%;
+  background: #7be0ad;
+  background: -webkit-gradient(linear, left top, right top, from(#7be0ad), color-stop(35%, #aee5d8), to(#e7e5e5));
+  background: linear-gradient(90deg, #7be0ad 0%, #aee5d8 35%, #e7e5e5 100%);
+}
+
+footer p {
+  color: #000;
+  margin-left: 5%;
+  letter-spacing: 5px;
+}
+
+footer a {
+  color: #000;
 }
 
 .searchBar form {
@@ -460,4 +513,41 @@ img {
 
 .productDetails {
   width: 500px;
+}
+
+form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+form input {
+  width: 60%;
+  height: 5vh;
+  margin: 1%;
+  border-radius: 25px;
+}
+
+form input[type=text] {
+  padding-left: 1%;
+}
+
+form textarea {
+  width: 60%;
+  margin: 1%;
+  border-radius: 25px;
+  padding: 1%;
+}
+
+form button {
+  border-radius: 25px;
+  width: 150px;
+  margin-bottom: 5rem;
 }
