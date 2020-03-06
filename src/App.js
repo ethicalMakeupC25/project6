@@ -4,6 +4,7 @@ import React, { Component, Fragment } from "react";
 import Helmet from './Components/Helmet.js';
 import Header from './Components/Header';
 import Main from './Components/Main';
+import ReviewPanel from './Components/ReviewPanel';
 import Footer from './Components/Footer';
 // import axios
 import axios from 'axios';
@@ -11,7 +12,6 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 // CSS for the `App` component
 import "./App.scss";
-import ReviewPanel from "./Components/ReviewPanel.js";
 
 class App extends Component {
   constructor() {
