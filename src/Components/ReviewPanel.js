@@ -1,7 +1,6 @@
 // a couple of functions from the React library
 import React, { Component, Fragment } from "react";
 import ReviewForm from "./ReviewForm";
-import { render, findAllByDisplayValue } from "@testing-library/react";
 import firebase from "./../firebase";
 import EachReview from "./EachReview";
 
@@ -66,6 +65,7 @@ class ReviewPanel extends Component {
         });
     }
 
+
     // 🧠 on submit, push user input into firebase
     handleFormSubmit = e => {
         e.preventDefault();
@@ -87,7 +87,6 @@ class ReviewPanel extends Component {
         return (
             <Fragment>
                 <div className="mainGrid wrapper">
-
                 {this.state.reviews.map(reviews => (
                     // Div containers for each message.
                     <EachReview revProp={reviews} />

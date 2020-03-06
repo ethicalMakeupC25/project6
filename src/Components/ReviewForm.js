@@ -22,7 +22,8 @@ const ReviewForm = props => (
                 placeholder="Your Review:"
                 onChange={props.handleChangeTxtArea}
                 value={props.userReviewProp}
-                ></textarea>
+                >
+            </textarea>
             <section className="radioSection">
             {/* radio input for purchase or won't repurchase. */}
                 <p>Would You Repurchase This Item?</p>

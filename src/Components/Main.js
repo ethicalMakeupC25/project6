@@ -18,7 +18,7 @@ class Main extends Component {
 
     render() {
         return (
-            <main className="wrapper">
+            <main>
                 <Search veganProducts={this.props.veganProducts} handleSearchInput={this.handleSearchInput} />
             </main>
         )
