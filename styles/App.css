@@ -515,6 +515,13 @@ footer a {
   width: 500px;
 }
 
+.selected {
+  -webkit-box-ordinal-group: 0;
+      -ms-flex-order: -1;
+          order: -1;
+  grid-column: 1 / -1;
+}
+
 form {
   display: -webkit-box;
   display: -ms-flexbox;

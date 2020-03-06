@@ -49,3 +49,8 @@
 .productDetails {
   width: 500px;
 }
+
+.selected {
+  order: -1;
+  grid-column: 1 / -1;
+}
