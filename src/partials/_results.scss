@@ -1,8 +1,8 @@
 .results {
   margin-top: 100px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 5%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 5rem;
   font-size: 1.6rem;
 
   a {
@@ -44,4 +44,8 @@
 .productText {
   width: 80%;
   background: rgba($grayColor, 0.6);
+}
+
+.productDetails {
+  width: 500px;
 }

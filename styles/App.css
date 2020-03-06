@@ -291,6 +291,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .wrapper {
   max-width: 1120px;
+  width: 95%;
   margin: 0 auto;
 }
 
@@ -411,9 +412,9 @@ img {
   margin-top: 100px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(320px, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 5%;
+  -ms-grid-columns: (minmax(200px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 5rem;
   font-size: 1.6rem;
 }
 
@@ -455,4 +456,8 @@ img {
 .productText {
   width: 80%;
   background: rgba(231, 229, 229, 0.6);
+}
+
+.productDetails {
+  width: 500px;
 }
