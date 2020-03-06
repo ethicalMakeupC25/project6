@@ -17,16 +17,16 @@ class Results extends Component {
                 <div key={product.id}>
                   <div className="productImage">
                     <img src={product.api_featured_image} alt={product.name}/>
-                  </div>
-                  <div className="productTextContainer">
-                    <div className="productText">
-                      <h3>{product.name}</h3>
-                      <p>Brand: {product.brand}</p>
-                      <p>Price: {parseInt(product.price).toFixed(2)}</p>
-                      <p>Rating: {!product.rating ? "Not rated" : `${product.rating}/5`}</p>
+                    <div className="productTextContainer">
+                      <div className="productText">
+                        <h3>{product.name}</h3>
+                        <p>Brand: {product.brand}</p>
+                        <p>Price: {parseInt(product.price).toFixed(2)}</p>
+                        <p>Rating: {!product.rating ? "Not rated" : `${product.rating}/5`}</p>
+                      </div>
                     </div>
+                    <Link to={`/products/${product.id}`}>Reviews</Link>
                   </div>
-                  <Link to={`/products/${product.id}`}>Review</Link>
                 </div>
               );
             })}

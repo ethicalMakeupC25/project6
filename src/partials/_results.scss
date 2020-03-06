@@ -3,22 +3,26 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 5%;
+  font-size: 1.6rem;
 
-  & > div {
-    position: relative;
+  a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    @include shift(10px, -50%);
+
+    padding: 5px 15px;
+
+    background: rgba($accent2, 0.95);
+    color: $whiteColor;
   }
-}
-
-.productTextContainer {
-  position: absolute;
-  bottom: 0;
 }
 
 .productImage {
   box-shadow: 20px 15px 0px 0px $grayColor;
   border: 2px $darkerGray solid;
   height: 100%;
-
+  position: relative;
 
   img {
     display: block;
@@ -26,4 +30,18 @@
     height: 100%;
     object-fit: cover;
   }
+}
+
+.productTextContainer {
+  background: rgba($accent2, 0.5);
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+  padding: 10px;
+}
+
+.productText {
+  width: 80%;
+  background: rgba($grayColor, 0.6);
 }

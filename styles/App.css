@@ -414,15 +414,18 @@ img {
   -ms-grid-columns: (minmax(320px, 1fr))[auto-fit];
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 5%;
+  font-size: 1.6rem;
 }
 
-.results > div {
-  position: relative;
-}
-
-.productTextContainer {
+.results a {
   position: absolute;
-  bottom: 0;
+  top: 0;
+  right: 0;
+  -webkit-transform: translate(10px, -50%);
+          transform: translate(10px, -50%);
+  padding: 5px 15px;
+  background: rgba(174, 229, 216, 0.95);
+  color: #F8F8F8;
 }
 
 .productImage {
@@ -430,6 +433,7 @@ img {
           box-shadow: 20px 15px 0px 0px #E7E5E5;
   border: 2px #6b6262 solid;
   height: 100%;
+  position: relative;
 }
 
 .productImage img {
@@ -438,4 +442,17 @@ img {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.productTextContainer {
+  background: rgba(174, 229, 216, 0.5);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+}
+
+.productText {
+  width: 80%;
+  background: rgba(231, 229, 229, 0.6);
 }
