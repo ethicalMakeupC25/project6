@@ -5,7 +5,7 @@
   gap: 5rem;
   font-size: 1.6rem;
 
-  a {
+  .reviewLink {
     position: absolute;
     top: 0;
     right: 0;
@@ -14,7 +14,7 @@
     padding: 5px 15px;
 
     background: rgba($accent2, 0.95);
-    color: $whiteColor;
+    // color: $whiteColor;
   }
 }
 
@@ -61,4 +61,15 @@
   .productInfo {
     grid-column: 2 / -1;
   }
+}
+
+.infoLink {
+  margin-top: 5%;
+  display: block;
+
+  a {
+    background-color: $accent1;
+    border-radius: 25px;
+    padding: 1%;
+  } 
 }

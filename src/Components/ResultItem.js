@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class ResultItem extends Component {
@@ -6,6 +6,7 @@ class ResultItem extends Component {
     super();
 
     this.state = {
+      maxLength: 250
     }
   }
 
@@ -17,7 +18,7 @@ class ResultItem extends Component {
           <img onClick={(e) => this.props.setActiveID(e, this.props.product.id)} src={this.props.product.api_featured_image} alt={this.props.product.name} />
           <div className="productTextContainer">
             <div className="productText">
-              <h3 className="visuallyHidden">{this.props.product.name}</h3>
+              <h2 className="visuallyHidden">{this.props.product.name}</h2>
               <p>Brand: {this.props.product.brand}</p>
               <p>Price: {
                 this.props.product.price === "0.0" ? "Not Available" : parseInt(this.props.product.price).toFixed(2)
@@ -25,15 +26,25 @@ class ResultItem extends Component {
               <p>Rating: {!this.props.product.rating ? "Not Rated" : `${this.props.product.rating}/5`}</p>
             </div>
           </div>
-          <Link to={`/products/${this.props.product.id}`}>Reviews</Link>
+          <Link className="reviewLink" to={`/products/${this.props.product.id}`}>Reviews</Link>
         </div>
         {this.props.activeID === this.props.product.id && 
           <div className="productInfo">
-            <h3>{this.props.product.name}</h3>
-            <p>{this.props.product.description}</p>
+            <h2>{this.props.product.name}</h2>
+            <p>{this.props.product.description.length > this.state.maxLength ?
+            <Fragment>
+              {`${this.props.product.description.substring(0, this.state.maxLength)}... `}
+              <span className="infoLink"><a href={this.props.product.product_link}>Read More</a></span>
+            </Fragment>
+            : <Fragment>
+              {this.props.product.description}
+              <span className="infoLink"><a href={this.props.product.product_link}>Product Page</a></span>
+            </Fragment>}</p>
+            <div className="productColors">
+              
+            </div>
           </div>
         }
-        
       </div>
     );
   }

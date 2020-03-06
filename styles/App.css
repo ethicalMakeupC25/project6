@@ -471,7 +471,7 @@ footer a {
   font-size: 1.6rem;
 }
 
-.results a {
+.results .reviewLink {
   position: absolute;
   top: 0;
   right: 0;
@@ -479,7 +479,6 @@ footer a {
           transform: translate(10px, -50%);
   padding: 5px 15px;
   background: rgba(174, 229, 216, 0.95);
-  color: #F8F8F8;
 }
 
 .productImage {
@@ -530,6 +529,17 @@ footer a {
 
 .selected .productInfo {
   grid-column: 2 / -1;
+}
+
+.infoLink {
+  margin-top: 5%;
+  display: block;
+}
+
+.infoLink a {
+  background-color: #7BE0AD;
+  border-radius: 25px;
+  padding: 1%;
 }
 
 form {
