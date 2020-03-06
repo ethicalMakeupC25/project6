@@ -6,20 +6,18 @@ class ResultItem extends Component {
     super();
 
     this.state = {
-      selected: false
     }
   }
 
-  selectItem = () => { this.setState({selected: !this.state.selected})}
 
   render() {
     return (
-      <div className={this.state.selected ? "result selected" : "result"} key={this.props.product.id}>
+      <div className={`result ${this.props.activeID === this.props.product.id && "selected"}`} key={this.props.product.id}>
         <div className="productImage">
-          <img onClick={this.selectItem} src={this.props.product.api_featured_image} alt={this.props.product.name} />
+          <img onClick={(e) => this.props.setActiveID(e, this.props.product.id)} src={this.props.product.api_featured_image} alt={this.props.product.name} />
           <div className="productTextContainer">
             <div className="productText">
-              <h3>{this.props.product.name}</h3>
+              <h3 className="visuallyHidden">{this.props.product.name}</h3>
               <p>Brand: {this.props.product.brand}</p>
               <p>Price: {
                 this.props.product.price === "0.0" ? "Not Available" : parseInt(this.props.product.price).toFixed(2)

@@ -7,15 +7,20 @@ class Results extends Component {
     super();
 
     this.state = {
-
+      activeID: null
     }
   }
+
+  setActiveID = (e, id) => {
+    this.setState({activeID: id});
+  }
+
   render() {
     return (
       <section className="results">
         {this.props.filteredResults.map(product => {
           return (
-            <ResultItem product={product} />
+            <ResultItem setActiveID={this.setActiveID} activeID={this.state.activeID} product={product} />
           );
         })}
       </section>

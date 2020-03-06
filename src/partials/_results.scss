@@ -53,4 +53,7 @@
 .selected {
   order: -1;
   grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) 3fr;
+  column-gap: 5rem;
 }
