@@ -14,6 +14,7 @@ class ReviewPanel extends Component {
         reviews: [],
         userImg: "", //need to figure out how to keep an image url in the database. and find image storage
         userInput: "",
+        userReview: "",
         userId: "000"
         };
     }
@@ -52,6 +53,11 @@ class ReviewPanel extends Component {
         userInput: e.target.value
         });
     };
+    handleChangeTxtArea = e => {
+        this.setState({
+        userReview: e.target.value
+        });
+    };
 
     // 🧠 on submit, push user input into firebase
     handleFormSubmit = e => {
@@ -64,22 +70,32 @@ class ReviewPanel extends Component {
         // return input to empty.
         // eslint-disable-next-line
         this.state.userInput = "";
+        // eslint-disable-next-line
+        this.state.userReview = "";
     };
 
     render(){
         return (
             <Fragment>
-                <div className="mainGrid">
-                    <div className="reviewDisplay" id="reviewDisplay"></div>
-                    {this.state.reviews.map(message => (
+                <div className="mainGrid wrapper">
+
+                {this.state.reviews.map(reviews => (
                     // Div containers for each message.
-                    <EachReview msgProp={review} />
+                    <EachReview revProp={reviews} />
                     ))}
-                    <ReviewForm
-                        handleFormSubmit={this.handleFormSubmit}
-                        handleChange={this.handleChange}
-                        userInputProp={this.state.userInput}
-                    />
+                    
+                <div className="reviewDisplay" id="reviewDisplay">
+                    {/* <EachReview /> */}
+                </div>
+                
+
+                <ReviewForm
+                    handleFormSubmit={this.handleFormSubmit}
+                    handleChangeTxtArea={this.handleChangeTxtArea}
+                    handleChange={this.handleChange}
+                    userInputProp={this.state.userInput}
+                    userReviewProp={this.state.userReview}
+                />
                 </div>
             </Fragment>
         );

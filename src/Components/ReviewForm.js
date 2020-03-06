@@ -2,10 +2,10 @@
 import React from "react";
 
 const ReviewForm = props => (
-    <div className="reviewInput">
+    <div className="reviewInput wrapper">
         <form action="submit" onSubmit={e => props.handleFormSubmit(e)}>
             <label className="visually-hidden" htmlFor="reviewForm">
-                Please type your message!
+                Please Enter Your Review!
             </label>
             <input
                 placeholder= "What is your name?"
@@ -20,6 +20,8 @@ const ReviewForm = props => (
                 rows="10" 
                 cols="80" 
                 placeholder="Your Review:"
+                onChange={props.handleChangeTxtArea}
+                value={props.userReview}
                 ></textarea>
 
             <button className="submitButton" type="submit">
