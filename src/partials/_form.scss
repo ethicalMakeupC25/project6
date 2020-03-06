@@ -6,27 +6,50 @@ form {
     align-items: center;
     
     input {
-        width: 60%;
+        width: 80%;
         height: 5vh;
         margin: 1%;
         border-radius: 25px;
-
     }
     
     input[type=text] {
-        padding-left: 1%;
+        padding: 1%;
     }
 
     textarea {
-        width: 60%;
+        width: 80%;
         margin: 1%;
         border-radius: 25px;
-        padding: 1%;
+        padding: 2%;
+    }
+
+    .radioSection {
+        margin: 1%;
+        margin: 0 auto;
+        text-align: center;
+    
+        p {
+            margin: 2%;
+        }
+
+        div {
+            margin: 2%;
+        }
+    }
+
+    input[type=radio] {
+        height: fit-content;
+        width: 5%;
+        margin-left: 5%;
+        margin-right: 5%;
     }
     
     button {
         border-radius: 25px;
-        width: 150px;
+        width: 70%;
         margin-bottom: 5rem;
+        margin-top: 2%;
+        background: rgb(123, 224, 173);
+        background: linear-gradient(90deg, rgba(123, 224, 173, 1) 0%, rgba(174, 229, 216, 1) 35%, rgba(231, 229, 229, 1) 100%);
     }
 }

@@ -1,7 +1,7 @@
 // a couple of functions from the React library
 import React, { Component, Fragment } from "react";
 import ReviewForm from "./ReviewForm";
-import { render } from "@testing-library/react";
+import { render, findAllByDisplayValue } from "@testing-library/react";
 import firebase from "./../firebase";
 import EachReview from "./EachReview";
 
@@ -15,7 +15,8 @@ class ReviewPanel extends Component {
         userImg: "", //need to figure out how to keep an image url in the database. and find image storage
         userInput: "",
         userReview: "",
-        userId: "000"
+        userId: "000",
+        userRepurchase: ''
         };
     }
 
@@ -51,13 +52,19 @@ class ReviewPanel extends Component {
     handleChange = e => {
         this.setState({
         userInput: e.target.value
-        });
+        })
     };
     handleChangeTxtArea = e => {
         this.setState({
         userReview: e.target.value
-        });
+        })
     };
+
+    radioChange = (changeEvent) => {
+        this.setState({
+            userRepurchase: changeEvent.target.value
+        });
+    }
 
     // 🧠 on submit, push user input into firebase
     handleFormSubmit = e => {
@@ -65,13 +72,15 @@ class ReviewPanel extends Component {
         const dbRef = firebase.database().ref();
         dbRef.push({
         userInput: this.state.userInput,
-        userReview: this.state.userReview
+        userReview: this.state.userReview,
+        userRepurchase: this.state.userRepurchase
         });
         // return input to empty.
         // eslint-disable-next-line
-        this.state.userInput = "";
-        // eslint-disable-next-line
-        this.state.userReview = "";
+        this.setState({
+            userInput: "",
+            userReview: ""
+        })
     };
 
     render(){
@@ -93,6 +102,7 @@ class ReviewPanel extends Component {
                     handleFormSubmit={this.handleFormSubmit}
                     handleChangeTxtArea={this.handleChangeTxtArea}
                     handleChange={this.handleChange}
+                    radioChange={this.radioChange}
                     userInputProp={this.state.userInput}
                     userReviewProp={this.state.userReview}
                 />

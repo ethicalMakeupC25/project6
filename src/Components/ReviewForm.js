@@ -21,8 +21,31 @@ const ReviewForm = props => (
                 cols="80" 
                 placeholder="Your Review:"
                 onChange={props.handleChangeTxtArea}
-                value={props.userReview}
+                value={props.userReviewProp}
                 ></textarea>
+            <section className="radioSection">
+            {/* radio input for purchase or won't repurchase. */}
+                <p>Would You Repurchase This Item?</p>
+                <div>
+                    <input 
+                        type="radio" 
+                        id="Yes" 
+                        value="yes"
+                        name="reviewForm"
+                        onChange={props.radioChange}
+                        />
+                    <label htmlFor="Yes">Yes</label>
+
+                    <input
+                        type="radio" 
+                        id="No" 
+                        value="no"
+                        name="reviewForm"
+                        onChange={props.radioChange}
+                        />
+                    <label htmlFor="No">No</label>
+                </div>
+            </section>
 
             <button className="submitButton" type="submit">
                 Submit
