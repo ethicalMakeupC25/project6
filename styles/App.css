@@ -527,6 +527,10 @@ footer a {
           column-gap: 5rem;
 }
 
+.selected h3 {
+  margin-top: 5%;
+}
+
 .selected .productInfo {
   grid-column: 2 / -1;
 }
@@ -540,6 +544,21 @@ footer a {
   background-color: #7BE0AD;
   border-radius: 25px;
   padding: 1%;
+}
+
+.productColors {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.productColors span {
+  padding: 20px;
+  margin: 1%;
+  border: 1px #000 solid;
+  border-radius: 50%;
 }
 
 form {

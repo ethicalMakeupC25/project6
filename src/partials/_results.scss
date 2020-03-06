@@ -58,6 +58,10 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   column-gap: 5rem;
 
+  h3 {
+    margin-top: 5%;
+  }
+
   .productInfo {
     grid-column: 2 / -1;
   }
@@ -72,4 +76,18 @@
     border-radius: 25px;
     padding: 1%;
   } 
+}
+
+.productColors {
+
+  display: flex;
+  flex-wrap: wrap;
+
+  span {
+    padding: 20px;
+    margin: 1%;
+
+    border: 1px $blackColor solid;
+    border-radius: 50%;
+  }
 }
