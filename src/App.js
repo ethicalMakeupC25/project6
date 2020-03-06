@@ -11,6 +11,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 // CSS for the `App` component
 import "./App.scss";
+import ReviewPanel from "./Components/ReviewPanel.js";
 
 class App extends Component {
   constructor() {
@@ -53,6 +54,7 @@ class App extends Component {
               <div className="wrapper">
                 <Header />
                 <Main veganProducts={this.state.veganArray} />
+                <ReviewPanel />
                 <Footer />
               </div>
             </Fragment>
