@@ -6,7 +6,7 @@ import EachReview from "./EachReview";
 
 
 
-class ReviewPanel extends Component {
+class ReviewParent extends Component {
     constructor() {
         super();
         this.state = {
@@ -112,4 +112,4 @@ class ReviewPanel extends Component {
 
 
 
-export default ReviewPanel;
+export default ReviewParent;
