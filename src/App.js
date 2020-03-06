@@ -4,7 +4,7 @@ import React, { Component, Fragment } from "react";
 import Helmet from './Components/Helmet.js';
 import Header from './Components/Header';
 import Main from './Components/Main';
-import ReviewPanel from './Components/ReviewPanel';
+import ReviewParent from './Components/ReviewParent';
 import Footer from './Components/Footer';
 // import axios
 import axios from 'axios';
@@ -37,7 +37,7 @@ class App extends Component {
         isLoading: false,
       })
     })
-}
+  }
 
   render() {
     return (
@@ -45,16 +45,16 @@ class App extends Component {
         <Helmet />
         {
           this.state.isLoading
-          ?
+            ?
             <div className="preloader">
               <p>loading</p>
             </div>
-          :
+            :
             <Fragment>
               <div className="wrapper">
                 <Header />
                 <Main veganProducts={this.state.veganArray} />
-                <ReviewPanel />
+                <ReviewParent />
                 <Footer />
               </div>
             </Fragment>

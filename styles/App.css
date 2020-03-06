@@ -358,6 +358,66 @@ footer a {
   color: #000;
 }
 
+form.reviewForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+form.reviewForm input {
+  width: 60%;
+  height: 5vh;
+  margin: 1%;
+  border-radius: 25px;
+}
+
+form.reviewForm input[type=text] {
+  padding-left: 1%;
+}
+
+form.reviewForm textarea {
+  width: 60%;
+  margin: 1%;
+  border-radius: 25px;
+  padding: 1%;
+}
+
+form.reviewForm .radioSection {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+}
+
+form.reviewForm .radioSection input {
+  width: 5%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+form.reviewForm button {
+  border-radius: 25px;
+  width: 50%;
+  height: 5rem;
+  margin-bottom: 5rem;
+  background: #7be0ad;
+  background: -webkit-gradient(linear, left top, right top, from(#7be0ad), color-stop(35%, #aee5d8), to(#e7e5e5));
+  background: linear-gradient(90deg, #7be0ad 0%, #aee5d8 35%, #e7e5e5 100%);
+}
+
 .searchBar form {
   margin: 0 auto;
   display: -webkit-box;
@@ -458,7 +518,8 @@ footer a {
 }
 
 .react-autosuggest__suggestion--highlighted {
-  background-color: #7BE0AD;
+  background: -webkit-gradient(linear, left top, right top, from(#7be0ad), color-stop(35%, #aee5d8), to(#e7e5e5));
+  background: linear-gradient(90deg, #7be0ad 0%, #aee5d8 35%, #e7e5e5 100%);
 }
 
 .results {
@@ -577,41 +638,4 @@ footer a {
   .selected .productInfo {
     grid-column: 1 / -1;
   }
-}
-
-form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-form input {
-  width: 60%;
-  height: 5vh;
-  margin: 1%;
-  border-radius: 25px;
-}
-
-form input[type=text] {
-  padding-left: 1%;
-}
-
-form textarea {
-  width: 60%;
-  margin: 1%;
-  border-radius: 25px;
-  padding: 1%;
-}
-
-form button {
-  border-radius: 25px;
-  width: 150px;
-  margin-bottom: 5rem;
 }
