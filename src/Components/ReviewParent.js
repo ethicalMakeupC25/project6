@@ -2,7 +2,8 @@
 import React, { Component, Fragment } from "react";
 import ReviewForm from "./ReviewForm";
 import firebase from "./../firebase";
-import EachReview from "./EachReview";
+import ReviewReadPanel from "./ReviewReadPanel";
+
 
 
 class ReviewParent extends Component {
@@ -14,7 +15,7 @@ class ReviewParent extends Component {
         userInput: "",
         userReview: "",
         userId: "000",
-        userRepurchase: '',
+        userRepurchase: ''
         };
     }
 
@@ -41,7 +42,7 @@ class ReviewParent extends Component {
             }
             // call this.setState to update the component state using the local array newState.
             this.setState({
-                review: newState
+                    reviews: newState
             });
         }
         )}
@@ -69,38 +70,43 @@ class ReviewParent extends Component {
         e.preventDefault();
         const dbRef = firebase.database().ref();
         dbRef.push({
-        userInput: this.state.userInput,
-        userReview: this.state.userReview,
-        userRepurchase: this.state.userRepurchase
-        });
+            userInput: this.state.userInput,
+            userReview: this.state.userReview,
+            userRepurchase: this.state.userRepurchase,
+            userId: "000"
+        },
+        console.log('dbRef',dbRef));
         // return input to empty.
         // eslint-disable-next-line
         this.setState({
             userInput: "",
-            userReview: ""
-        })
-
+            userReview: "",
+            userRepurchase: ''
+        }
+        )
     };
 
+    
     render(){
+        if(this.state.reviews.length === 0 ) return <p> Loading...</p> 
+        console.log('this.state.reviews', this.state.reviews)
         return (
             <Fragment>
-                <div className="wrapper">
-                <div className="readReview">
-                    {this.state.reviews.map(reviews => (
-                        // Div containers for each message.
-                        <EachReview revProp={reviews} />
+                <div className="mainGrid wrapper">
+                    {this.state.reviews.map(reviewList =>(
+                        console.log('reviewList',reviewList),
+                        <ReviewReadPanel reviewListProp={reviewList}/>
                         ))}
-                </div>
-
-                <ReviewForm
-                    handleFormSubmit={this.handleFormSubmit}
-                    handleChangeTxtArea={this.handleChangeTxtArea}
-                    handleChange={this.handleChange}
-                    radioChange={this.radioChange}
-                    userInputProp={this.state.userInput}
-                    userReviewProp={this.state.userReview}
-                />
+                        
+                    {/* <ReviewReadPanel />     */}
+                    <ReviewForm
+                        handleFormSubmit={this.handleFormSubmit}
+                        handleChangeTxtArea={this.handleChangeTxtArea}
+                        handleChange={this.handleChange}
+                        radioChange={this.radioChange}
+                        userInputProp={this.state.userInput}
+                        userReviewProp={this.state.userReview}
+                    />
                 </div>
             </Fragment>
         );
