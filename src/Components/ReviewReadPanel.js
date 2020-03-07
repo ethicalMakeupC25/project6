@@ -1,12 +1,16 @@
 // a couple of functions from the React library
 import React from "react";
+import EachReview from './EachReview';
 
-
-const ReviewReadPanel = () => {
-
+const ReviewReadPanel = ({reviewListProp}) => {
     return (
-        <div>
-            {this.state.GoToReviews && <ReviewReadPanel />}
+        console.log('reviewListProp',reviewListProp.review),
+        <div className="reviewPanel">
+            <ul>
+                {reviewListProp.review.map(reviewProps => (
+                <EachReview reviewList={reviewProps} />
+                ))}
+            </ul>
         </div>
     );
 };
