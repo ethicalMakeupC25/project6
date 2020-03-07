@@ -2,7 +2,6 @@
 import React, { Component, Fragment } from "react";
 import ReviewForm from "./ReviewForm";
 import firebase from "./../firebase";
-import EachReview from './EachReview';
 import ReviewReadPanel from "./ReviewReadPanel";
 
 

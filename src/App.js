@@ -37,7 +37,7 @@ class App extends Component {
         isLoading: false,
       })
     })
-}
+  }
 
   render() {
     return (
@@ -45,11 +45,11 @@ class App extends Component {
         <Helmet />
         {
           this.state.isLoading
-          ?
+            ?
             <div className="preloader">
               <p>loading</p>
             </div>
-          :
+            :
             <Fragment>
               <div className="wrapper">
                 <Header />
