@@ -94,7 +94,6 @@ class ReviewParent extends Component {
             <Fragment>
                 <div className="mainGrid wrapper">
                     {this.state.reviews.map(reviewList =>(
-                        console.log('reviewList.review',reviewList.review),
                         <ReviewReadPanel review={reviewList.review}/>
                         ))}
                         
