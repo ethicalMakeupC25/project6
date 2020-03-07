@@ -2,6 +2,7 @@
 import React, { Component, Fragment } from "react";
 import ReviewForm from "./ReviewForm";
 import firebase from "./../firebase";
+import EachReview from './EachReview';
 import ReviewReadPanel from "./ReviewReadPanel";
 
 
@@ -94,11 +95,10 @@ class ReviewParent extends Component {
             <Fragment>
                 <div className="mainGrid wrapper">
                     {this.state.reviews.map(reviewList =>(
-                        console.log('reviewList',reviewList),
-                        <ReviewReadPanel reviewListProp={reviewList}/>
+                        console.log('reviewList.review',reviewList.review),
+                        <ReviewReadPanel review={reviewList.review}/>
                         ))}
                         
-                    {/* <ReviewReadPanel />     */}
                     <ReviewForm
                         handleFormSubmit={this.handleFormSubmit}
                         handleChangeTxtArea={this.handleChangeTxtArea}

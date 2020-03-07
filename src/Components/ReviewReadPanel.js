@@ -2,14 +2,11 @@
 import React from "react";
 import EachReview from './EachReview';
 
-const ReviewReadPanel = ({reviewListProp}) => {
+const ReviewReadPanel = (review) => {
     return (
-        console.log('reviewListProp',reviewListProp.review),
-        <div className="reviewPanel">
+        <div className="reviewPanel" >
             <ul>
-                {reviewListProp.review.map(reviewProps => (
-                <EachReview reviewList={reviewProps} />
-                ))}
+                <EachReview review={review} />
             </ul>
         </div>
     );
