@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import firebase from 'firebase';
 import ReviewSubmitButton from './ReviewSubmitButton';
 
 
@@ -16,30 +15,6 @@ class StarRating extends Component {
     componentDidMount() {
         this.setRating();
 
-        // create a variable that holds a reference to  database
-        const dbRef = firebase.database().ref();
-    
-        // 🧠 event listener that takes a callback function used to get data from the database and call it response.
-        dbRef.on("value", response => {
-            const dataFromDb = response.val();
-            // see the information and parse the way we want it.
-            console.log('dataFromDb2', dataFromDb);
-
-            const newState = [];
-
-            for (let key in dataFromDb) {
-                const reviewInfo = {
-                key: key,
-                review: dataFromDb[key]
-                };
-                newState.push(reviewInfo);
-
-                // this.setState({
-                //     currentRating: 
-                // })
-                // console.log('reviewInfo', reviewInfo);
-            }
-        })
     }
 
     hoverHandler = ev => {
