@@ -27,7 +27,7 @@ class ReviewParent extends Component {
         dbRef.on("value", response => {
             const dataFromDb = response.val();
             // see the information and parse the way we want it.
-            console.log('dataFromDb', dataFromDb);
+            // console.log('dataFromDb', dataFromDb);
     
             // create a variable to store the new state.
             const newState = [];
@@ -39,9 +39,6 @@ class ReviewParent extends Component {
                 review: dataFromDb[key]
                 };
                 newState.push(reviewInfo);
-
-                console.log('reviewInfo.key',
-                reviewInfo.key);
 
                 this.setState({
                     uniqueKey: reviewInfo.key
@@ -73,12 +70,6 @@ class ReviewParent extends Component {
         });
     }
 
-    ratingChange = (e) => {
-        this.setState({
-            // userRating: e.target.data-value
-        })
-    }
-
     // 🧠 on submit, push user input into firebase
     handleFormSubmit = e => {
         e.preventDefault();
@@ -89,8 +80,8 @@ class ReviewParent extends Component {
             userRepurchase: this.state.userRepurchase,
             userId: "000",
             uniqueKey: this.state.uniqueKey
-        },
-        console.log('dbRef',dbRef));
+        })
+        // console.log('dbRef',dbRef));
 
         // return input to empty.
         // eslint-disable-next-line
@@ -105,7 +96,7 @@ class ReviewParent extends Component {
     
     render(){
         if(this.state.reviews.length === 0 ) return <p> Loading...</p> 
-        console.log('this.state.reviews', this.state.reviews)
+        // console.log('this.state.reviews', this.state.reviews)
         return (
             <Fragment>
                 <div className="mainGrid wrapper">
@@ -121,7 +112,6 @@ class ReviewParent extends Component {
                         userInputProp={this.state.userInput}
                         userReviewProp={this.state.userReview}
                         userStarProp={this.onStarClick}
-                        userStarPropTwo={this.state.userRating}
                     />
                 </div>
             </Fragment>

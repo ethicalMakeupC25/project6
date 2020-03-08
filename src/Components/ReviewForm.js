@@ -1,8 +1,6 @@
 // a couple of functions from the React library
 import React from "react";
-import ReviewSubmitButton from './ReviewSubmitButton';
 import StarRating from './StarRating';
-
 
 
 const ReviewForm = props => (
@@ -61,10 +59,9 @@ const ReviewForm = props => (
                         numberOfStars="5"
                         currentRating="0"
                         onClick={props.setRating}
-                    />
+                        />
                 </div>
             </section>
-            <ReviewSubmitButton />
         </form>
     </div>
 );

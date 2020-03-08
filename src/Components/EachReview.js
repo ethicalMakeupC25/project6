@@ -3,12 +3,8 @@ import React from "react";
 
 const EachReview = ({ review }) => {
 
-  console.log(review);
-  console.log(review.review.userInput);
-  console.log(review.review.userReview);
-  console.log(review.review.userRepurchase);
   return (
-    <div className="reviewDisplay" id="reviewDisplay">
+    <div className="reviewDisplay" id="reviewDisplay" key={review.review.uniqueKey}>
       <p>
         <span className="userSpan">{review.review.userInput}</span>
         {review.review.userReview}

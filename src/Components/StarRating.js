@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import firebase from 'firebase';
+import ReviewSubmitButton from './ReviewSubmitButton';
+
+
 // star rating component from https://scotch.io/tutorials/build-a-star-rating-component-for-react
 
 class StarRating extends Component {
@@ -21,6 +24,21 @@ class StarRating extends Component {
             const dataFromDb = response.val();
             // see the information and parse the way we want it.
             console.log('dataFromDb2', dataFromDb);
+
+            const newState = [];
+
+            for (let key in dataFromDb) {
+                const reviewInfo = {
+                key: key,
+                review: dataFromDb[key]
+                };
+                newState.push(reviewInfo);
+
+                // this.setState({
+                //     currentRating: 
+                // })
+                // console.log('reviewInfo', reviewInfo);
+            }
         })
     }
 
@@ -42,18 +60,23 @@ class StarRating extends Component {
 
     starClickHandler = ev => {
         let rating = ev.target.dataset.value;
-        this.setState({ currentRating: rating }); // set state so the rating stays highlighted
+        this.setState({ 
+            currentRating: rating 
+        }); // set state so the rating stays highlighted
         if (this.props.onClick) {
         this.props.onClick(rating); // emit the event up to the parent
         }
-        const dbRef = firebase.database().ref();
-        dbRef.push({
-            userRating: this.state.userRating,
-        },
-        console.log('dbRef',dbRef));
-    };
 
+        console.log(rating)
+        // console.log('dbRef2',dbRef));
+    };
+    // const dbRef = firebase.database().ref();
+    // dbRef.push({
+    //     userRating: this.state.currentRating,
+    // })
+    
     render() {
+        console.log("userRating", this.state.currentRating);
         return (
         <div
             className="rating"
@@ -67,6 +90,7 @@ class StarRating extends Component {
                 className="star"
                 key={n + 1}
                 data-value={n + 1}
+                value={n + 1}
                 onMouseOver={this.hoverHandler}
                 onClick={this.starClickHandler}
                 >
@@ -74,6 +98,7 @@ class StarRating extends Component {
                 </span>
             );
             })}
+            <ReviewSubmitButton ratingProps={this.state.currentRating} />
         </div>
         );
     }
