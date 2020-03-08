@@ -1,0 +1,18 @@
+.filterOptions {
+  border: 1px solid grey;
+  fieldset {
+    border: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 10rem;
+    div {
+      width: calc((100% - 2rem) / 5);
+      margin: 1rem;
+      font-size: 1rem;
+    }
+  }
+}
