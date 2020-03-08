@@ -5,10 +5,9 @@ import firebase from "./../firebase";
 import ReviewReadPanel from "./ReviewReadPanel";
 
 
-
 class ReviewParent extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
         reviews: [],
         userImg: "", //need to figure out how to keep an image url in the database. and find image storage
@@ -16,7 +15,7 @@ class ReviewParent extends Component {
         userReview: "",
         userId: "000",
         userRepurchase: '',
-        userRating: 0
+        uniqueKey: ''
         };
     }
 
@@ -40,7 +39,13 @@ class ReviewParent extends Component {
                 review: dataFromDb[key]
                 };
                 newState.push(reviewInfo);
-                console.log('reviewInfo.key',reviewInfo.key);
+
+                console.log('reviewInfo.key',
+                reviewInfo.key);
+
+                this.setState({
+                    uniqueKey: reviewInfo.key
+                })
             }
             // call this.setState to update the component state using the local array newState.
             this.setState({
@@ -49,12 +54,13 @@ class ReviewParent extends Component {
         }
         )}
 
-    // function to handle input for review form:
+    // 🧮 function to handle inputs for review form:
     handleChange = e => {
         this.setState({
         userInput: e.target.value
         })
     };
+
     handleChangeTxtArea = e => {
         this.setState({
         userReview: e.target.value
@@ -67,6 +73,12 @@ class ReviewParent extends Component {
         });
     }
 
+    ratingChange = (e) => {
+        this.setState({
+            // userRating: e.target.data-value
+        })
+    }
+
     // 🧠 on submit, push user input into firebase
     handleFormSubmit = e => {
         e.preventDefault();
@@ -75,9 +87,11 @@ class ReviewParent extends Component {
             userInput: this.state.userInput,
             userReview: this.state.userReview,
             userRepurchase: this.state.userRepurchase,
-            userId: "000"
+            userId: "000",
+            uniqueKey: this.state.uniqueKey
         },
         console.log('dbRef',dbRef));
+
         // return input to empty.
         // eslint-disable-next-line
         this.setState({
@@ -106,6 +120,8 @@ class ReviewParent extends Component {
                         radioChange={this.radioChange}
                         userInputProp={this.state.userInput}
                         userReviewProp={this.state.userReview}
+                        userStarProp={this.onStarClick}
+                        userStarPropTwo={this.state.userRating}
                     />
                 </div>
             </Fragment>

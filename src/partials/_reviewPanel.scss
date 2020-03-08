@@ -20,3 +20,12 @@
     width: 90%;
     padding: 1%;
 }
+
+.userStarRating {
+    text-align: center;
+    margin: 1%;
+
+    .starsOnly {
+        font-size: 5rem;
+    }
+}
