@@ -15,7 +15,8 @@ class ReviewParent extends Component {
         userInput: "",
         userReview: "",
         userId: "000",
-        userRepurchase: ''
+        userRepurchase: '',
+        userRating: 0
         };
     }
 
@@ -27,7 +28,7 @@ class ReviewParent extends Component {
         dbRef.on("value", response => {
             const dataFromDb = response.val();
             // see the information and parse the way we want it.
-            console.log(dataFromDb);
+            console.log('dataFromDb', dataFromDb);
     
             // create a variable to store the new state.
             const newState = [];
@@ -39,6 +40,7 @@ class ReviewParent extends Component {
                 review: dataFromDb[key]
                 };
                 newState.push(reviewInfo);
+                console.log('reviewInfo.key',reviewInfo.key);
             }
             // call this.setState to update the component state using the local array newState.
             this.setState({

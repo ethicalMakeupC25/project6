@@ -8,14 +8,14 @@ const EachReview = ({ review }) => {
   console.log(review.review.userReview);
   console.log(review.review.userRepurchase);
   return (
-    <li className="reviewDisplay" id="reviewDisplay">
+    <div className="reviewDisplay" id="reviewDisplay">
       <p>
         <span className="userSpan">{review.review.userInput}</span>
         {review.review.userReview}
         <span className="userSpan">Would you buy this again:</span>
         {review.review.userRepurchase}
       </p>
-    </li>
+    </div>
   );
 };
 

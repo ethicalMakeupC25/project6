@@ -5,9 +5,7 @@ import EachReview from './EachReview';
 const ReviewReadPanel = (review) => {
     return (
         <div className="reviewPanel" >
-            <ul>
                 <EachReview review={review} />
-            </ul>
         </div>
     );
 };
