@@ -15,11 +15,25 @@ class ReviewParent extends Component {
         userReview: "",
         userId: "00000",
         userRepurchase: '',
-        uniqueKey: ''
+        uniqueKey: '',
+        uID: '',
+        isReviewing: false
         };
     }
 
     componentDidMount() {
+
+        // error handling for guest / anonymous users
+        if (this.props.user) {
+            this.setState({
+                uID: this.props.user.uid
+            })
+        } else {
+            this.setState({
+                uID: '00000'
+            })
+        }
+
         // create a variable that holds a reference to  database
         const dbRef = firebase.database().ref();
     
@@ -74,12 +88,13 @@ class ReviewParent extends Component {
     // 🧠 on submit, push user input into firebase
     handleFormSubmit = e => {
         e.preventDefault();
-        const dbRef = firebase.database().ref();
+        const dbRef = firebase.database().ref(`products/${this.props.productID}/`);
+        const dbRefUser = firebase.database().ref(`users/${this.state.uID}/`);
         dbRef.push({
             userInput: this.state.userInput,
             userReview: this.state.userReview,
             userRepurchase: this.state.userRepurchase,
-            userId: "000",
+            userId: "00000",
             uniqueKey: this.state.uniqueKey
         })
         // console.log('dbRef',dbRef));
@@ -105,15 +120,19 @@ class ReviewParent extends Component {
                         <ReviewReadPanel review={reviewList.review}/>
                         ))}
                         
-                    <ReviewForm
-                        handleFormSubmit={this.handleFormSubmit}
-                        handleChangeTxtArea={this.handleChangeTxtArea}
-                        handleChange={this.handleChange}
-                        radioChange={this.radioChange}
-                        userInputProp={this.state.userInput}
-                        userReviewProp={this.state.userReview}
-                        userStarProp={this.onStarClick}
-                    />
+                        {
+                            this.state.isReviewing && 
+                            <ReviewForm
+                                handleFormSubmit={this.handleFormSubmit}
+                                handleChangeTxtArea={this.handleChangeTxtArea}
+                                handleChange={this.handleChange}
+                                radioChange={this.radioChange}
+                                userInputProp={this.state.userInput}
+                                userReviewProp={this.state.userReview}
+                                userStarProp={this.onStarClick}
+                            />
+                        }
+
                 </div>
             </Fragment>
         );
