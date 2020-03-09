@@ -12,42 +12,23 @@ html {
 }
 
 body {
-    font-size: 2rem;
+    @include fluid-type (1.75rem, 2rem, 360px, 1280px);
     font-family: $bodyFont;
     color: $blackColor;
-}
-
-a {
-    color: $blackColor;
-    text-decoration: none;
-
-    &:hover,
-    &:focus {
-        background: linear-gradient(180deg,rgba(255,255,255,0) 60%, $accent1 40%);
-    }
-}
-
-header {
-    height: 10vh;
-    display: flex;
-    align-items: center;
+    background: $whiteColor;
 }
 
 main {
-    min-height: 85vh;
-}
-
-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 5vh;
-    @include fluid-type (1.25rem, 1.6rem, 360px, 1280px);
-    text-align: center;
+    min-height: 80vh;
 }
 
 h1,h2,h3,h4,h5,h6 {
     font-family: $headingFont;
+}
+
+.outerWrapper {
+    max-width: 2000px;
+    margin: 0 auto;
 }
 
 .wrapper {
@@ -59,21 +40,4 @@ h1,h2,h3,h4,h5,h6 {
 img {
     width: 100%;
     display: block;
-}
-
-.highlight {
-    background: linear-gradient(180deg,rgba(255,255,255,0) 60%, $accent1 40%);
-}
-
-// Accessibility classes
-.visually-hidden:not(:focus):not(:active) {
-    position: absolute !important;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
-    clip: rect(1px 1px 1px 1px);
-    /* IE6, IE7 */
-    clip: rect(1px, 1px, 1px, 1px);
-    white-space: nowrap;
-    /* added line */
 }

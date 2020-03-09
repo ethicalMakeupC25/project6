@@ -11,7 +11,6 @@ class Main extends Component {
         this.state = {
             isSearched: false,
             searchInput: '',
-
             filteredResults: []
         }
     }
@@ -39,7 +38,7 @@ class Main extends Component {
 
     render() {
         return (
-            <main>
+            <main className="wrapper">
                 <Search veganProducts={this.props.veganProducts} handleSearchInput={this.handleSearchInput} />
                 <Route path="/products/:productID" render={() => <ResultDetails filteredResults={this.props.filteredResults} />} />
                 {this.state.isSearched ? <Results filteredResults={this.state.filteredResults} /> : null}
