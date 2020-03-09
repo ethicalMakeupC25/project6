@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faListAlt } from '@fortawesome/free-regular-svg-icons';
+import { faChevronCircleDown } from '@fortawesome/free-solid-svg-icons';
 
 class Header extends Component {
     constructor() {
@@ -8,6 +9,12 @@ class Header extends Component {
         this.state = {
             isUp: false,
         }
+    }
+
+    handleClick = () => {
+        this.setState({
+            isUp: !this.state.isUp
+        })
     }
 
     render() {
@@ -35,19 +42,26 @@ class Header extends Component {
                                         <div className="display">
                                             {/* if no displayname exists, show email */}
                                             <p>Hi {this.props.user.displayName || this.props.user.email}!</p>
-                                            <FontAwesomeIcon icon={faChevronUp} />
-                                            {/* change this icon to something more like a list */}
+                                            <FontAwesomeIcon icon={this.state.isUp ? faChevronCircleDown : faListAlt} className="toggleMenu" tabIndex="0" aria-label="open and close user menu" onClick={this.handleClick} />
                                         </div>
-                                        <div className="buttonContainer">
-                                            <button>wishlist</button>
-                                            <button>your reviews</button>
-                                            <button onClick={this.props.logout}>log out</button>
-                                        </div>
+                                        {
+                                            this.state.isUp
+                                                ?
+                                                <div className="buttonContainer">
+                                                    <button>wishlist</button>
+                                                    <button>your reviews</button>
+                                                    <button onClick={this.props.logout}>log out</button>
+                                                </div>
+                                                :
+                                                null
+                                        }
                                     </div>
                                 </div>
                             </Fragment>
                         :
-                            <button onClick={this.props.login}>log in to save to wishlist</button>
+                            <button 
+                                onClick={this.props.login}
+                                className="logInButton">log in to save to wishlist</button>
                     }
                 </nav>
             </header>

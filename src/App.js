@@ -7,7 +7,6 @@ import Helmet from './Components/Helmet.js';
 import Preloader from './Components/Preloader';
 import Header from './Components/Header';
 import Main from './Components/Main';
-import ReviewParent from './Components/ReviewParent';
 import Footer from './Components/Footer';
 // import axios
 import axios from 'axios';
