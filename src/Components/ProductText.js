@@ -12,7 +12,7 @@ class ProductText extends Component {
       <div className="productTextContainer">
         <div className="productText">
           <h2 className="visuallyHidden">{this.props.product.name}</h2>
-          <p>Brand: {this.props.product.brand}</p>
+          <p>Brand: {!this.props.product.brand ? "Not Available" : this.props.product.brand}</p>
           <p>Price: {
             this.props.product.price === "0.0" ? "Not Available" : parseInt(this.props.product.price).toFixed(2)
           }</p>
