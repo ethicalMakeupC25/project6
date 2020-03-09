@@ -4,10 +4,8 @@ import EachReview from './EachReview';
 
 const ReviewReadPanel = (review) => {
     return (
-        <div className="reviewPanel" >
-            <ul>
+        <div className="reviewPanel" key={review.uniqueKey}>
                 <EachReview review={review} />
-            </ul>
         </div>
     );
 };

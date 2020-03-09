@@ -2,25 +2,25 @@
 import React, { Component, Fragment } from "react";
 import ReviewForm from "./ReviewForm";
 import firebase from "./../firebase";
-import EachReview from './EachReview';
 import ReviewReadPanel from "./ReviewReadPanel";
 
 
-
 class ReviewParent extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
         reviews: [],
         userImg: "", //need to figure out how to keep an image url in the database. and find image storage
         userInput: "",
         userReview: "",
         userId: "000",
-        userRepurchase: ''
+        userRepurchase: '',
+        uniqueKey: ''
         };
     }
 
     componentDidMount() {
+        console.log(this.props);
         // create a variable that holds a reference to  database
         const dbRef = firebase.database().ref();
     
@@ -28,7 +28,7 @@ class ReviewParent extends Component {
         dbRef.on("value", response => {
             const dataFromDb = response.val();
             // see the information and parse the way we want it.
-            console.log(dataFromDb);
+            // console.log('dataFromDb', dataFromDb);
     
             // create a variable to store the new state.
             const newState = [];
@@ -40,6 +40,10 @@ class ReviewParent extends Component {
                 review: dataFromDb[key]
                 };
                 newState.push(reviewInfo);
+
+                this.setState({
+                    uniqueKey: reviewInfo.key
+                })
             }
             // call this.setState to update the component state using the local array newState.
             this.setState({
@@ -48,12 +52,13 @@ class ReviewParent extends Component {
         }
         )}
 
-    // function to handle input for review form:
+    // 🧮 function to handle inputs for review form:
     handleChange = e => {
         this.setState({
         userInput: e.target.value
         })
     };
+
     handleChangeTxtArea = e => {
         this.setState({
         userReview: e.target.value
@@ -74,9 +79,11 @@ class ReviewParent extends Component {
             userInput: this.state.userInput,
             userReview: this.state.userReview,
             userRepurchase: this.state.userRepurchase,
-            userId: "000"
-        },
-        console.log('dbRef',dbRef));
+            userId: "000",
+            uniqueKey: this.state.uniqueKey
+        })
+        // console.log('dbRef',dbRef));
+
         // return input to empty.
         // eslint-disable-next-line
         this.setState({
@@ -90,11 +97,14 @@ class ReviewParent extends Component {
     
     render(){
         if(this.state.reviews.length === 0 ) return <p> Loading...</p> 
-        console.log('this.state.reviews', this.state.reviews)
+        // console.log('this.state.reviews', this.state.reviews)
         return (
             <Fragment>
                 <div className="mainGrid wrapper">
-                    {this.props.isWriteReview ? 
+                    {this.state.reviews.map(reviewList =>(
+                        <ReviewReadPanel review={reviewList.review}/>
+                        ))}
+                        
                     <ReviewForm
                         handleFormSubmit={this.handleFormSubmit}
                         handleChangeTxtArea={this.handleChangeTxtArea}
@@ -102,14 +112,8 @@ class ReviewParent extends Component {
                         radioChange={this.radioChange}
                         userInputProp={this.state.userInput}
                         userReviewProp={this.state.userReview}
-                    /> : 
-                    <Fragment>
-                        {this.state.reviews.map(reviewList =>(
-                        console.log('reviewList.review',reviewList.review),
-                        <ReviewReadPanel review={reviewList.review}/>
-                        ))}
-                    </Fragment>
-                    }
+                        userStarProp={this.onStarClick}
+                    />
                 </div>
             </Fragment>
         );

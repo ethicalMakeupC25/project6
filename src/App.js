@@ -1,7 +1,10 @@
 // a couple of functions from the React library
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
+//import firebase
+import firebase, { auth, provider } from './firebase';
 // import components
 import Helmet from './Components/Helmet.js';
+import Preloader from './Components/Preloader';
 import Header from './Components/Header';
 import Main from './Components/Main';
 import ReviewParent from './Components/ReviewParent';
@@ -18,12 +21,18 @@ class App extends Component {
     super()
 
     this.state = {
+      //set initial state for api data
       veganArray: [],
-      isLoading: true
+      //set initial state for preloader
+      isLoading: true,
+      //set initial state for user login (auth details and historical)
+      user: null
     }
   }
 
   componentDidMount() {
+    //api call for data, stored in state veganArray
+    //state isLoading set to false to unmount preloader and mount webpage components
     axios({
       url: 'http://makeup-api.herokuapp.com/api/v1/products.json',
       method: 'GET',
@@ -37,27 +46,55 @@ class App extends Component {
         isLoading: false,
       })
     })
+    //authetication history checked for user to allow persisted login status which triggers loggedin components
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      }
+    })
+  }
+
+  //this function initializes the popup from google to sign in and sets the user state to user's details
+  login = () => {
+    auth.signInWithPopup(provider) 
+      .then((result) => {
+        this.setState({
+          user: result.user
+        });
+      });
+  }
+
+  //this function initializes sign out and sets the user state back to null, returning enduser to guest/anonymous view components
+  logout = () => {
+    auth.signOut()
+      .then(() => {
+        this.setState({
+          user: null
+        });
+      });
   }
 
   render() {
     return (
       <Router>
+        {/* helmet allows for injected title, meta tags */}
         <Helmet />
+        {/* determine component view based on isLoading state */}
         {
           this.state.isLoading
             ?
-            <div className="preloader">
-              <p>loading</p>
-            </div>
+            <Preloader />
             :
-            <Fragment>
-              <div className="wrapper">
-                <Header />
-                <Main veganProducts={this.state.veganArray} />
-                {/* <ReviewParent /> */}
-                <Footer />
-              </div>
-            </Fragment>
+            <div className="outerWrapper">
+              <Header
+                login={this.login}
+                logout={this.logout}
+                user={auth.currentUser} />
+              <Main
+                veganProducts={this.state.veganArray}
+                user={auth.currentUser} />
+              <Footer />
+            </div>
         }
       </Router>
     );

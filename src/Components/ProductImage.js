@@ -13,9 +13,11 @@ class ProductImage extends Component {
   render() {
     return (
       <div className="productImage">
-        <img onClick={(e) => this.props.setActiveID(e, this.props.product.id)} src={this.props.product.api_featured_image} alt={this.props.product.name} />
+        <Link to={`/products/${this.props.product.id}`}>
+          <img onClick={(e) => this.props.setActiveID(e, this.props.product.id)} src={this.props.product.api_featured_image} alt={this.props.product.name} />
+        </Link>
         <ProductText product={this.props.product} />
-        <Link className="reviewLink" onClick={(e) => this.props.setActiveID(e, this.props.product.id)} to={`/products/${this.props.product.id}`}>Reviews</Link>
+        <Link className="reviewLink" onClick={(e) => this.props.setActiveID(e, this.props.product.id)} to={`/products/${this.props.product.id}/review`}>Reviews</Link>
       </div>
     );
   }

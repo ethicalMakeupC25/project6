@@ -13,7 +13,6 @@ class ProductInfo extends Component {
 
   render() {
     return (
-      <Fragment>
       <div className="productInfo">
         <h2>{this.props.product.name}</h2>
         <p>{this.props.product.description.length > this.state.maxLength ?
@@ -34,10 +33,8 @@ class ProductInfo extends Component {
               )
             })}
         </div>
+      <Route path="/products/:productID/review" exact render={() => <ReviewParent isWriteReview={this.state.isWriteReview} />} />
       </div>
-      {this.props.activeID === this.props.product.id && <Route path="/products/:productID" render={() => <ReviewParent isWriteReview={this.state.isWriteReview} />} /> }
-      
-      </Fragment>
     );
   }
 }

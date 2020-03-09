@@ -5,6 +5,13 @@
   gap: 5rem;
   font-size: 1.6rem;
 
+  a {
+    background: rgba($accent2, 0.95);
+    color: $blackColor;
+
+    text-decoration: none;
+  }
+
   .reviewLink {
     position: absolute;
     top: 0;
@@ -12,9 +19,6 @@
     @include shift(10px, -50%);
 
     padding: 5px 15px;
-
-    background: rgba($accent2, 0.95);
-    // color: $whiteColor;
   }
 }
 

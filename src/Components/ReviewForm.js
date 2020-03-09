@@ -1,6 +1,7 @@
 // a couple of functions from the React library
 import React from "react";
-import ReviewSubmitButton from './ReviewSubmitButton';
+import StarRating from './StarRating';
+
 
 const ReviewForm = props => (
     <div className="reviewInput wrapper">
@@ -51,8 +52,16 @@ const ReviewForm = props => (
                     </div>
                 </div>
             </section>
-
-            <ReviewSubmitButton />
+            <section className="userStarRating">
+                <span className="userSpan">How Would You Rate This Product:</span>
+                <div className="starsOnly">
+                    <StarRating
+                        numberOfStars="5"
+                        currentRating="0"
+                        onClick={props.setRating}
+                        />
+                </div>
+            </section>
         </form>
     </div>
 );
