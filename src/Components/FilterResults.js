@@ -24,7 +24,7 @@ class FilterResults extends Component {
         return (
             <div className='filterOptions'>
                 <h4>Filter results</h4>
-                <fieldset>
+                <div className='filterContainer'>
                     <div>
                         <input type="checkbox" id="Canadian" name='Canadian' onChange={this.filterSelection} />
                         <label htmlFor="Canadian"> Canadian</label>
@@ -97,7 +97,7 @@ class FilterResults extends Component {
                         <input type="checkbox" id="waterFree" name='water free' onChange={this.filterSelection} />
                         <label htmlFor="waterFree"> Water Free</label>
                     </div>
-                </fieldset>
+                </div>
             </div>
         )
     }
