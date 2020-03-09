@@ -90,7 +90,7 @@ class ReviewParent extends Component {
         const dbRef = firebase.database().ref(`products/${this.props.productID}/`);
         const dbRefUser = firebase.database().ref(`users/${this.state.uID}/`);
         dbRef.push({
-            userName: this.state.userInput,
+            userName: this.state.userName,
             userReview: this.state.userReview,
             userRepurchase: this.state.userRepurchase,
             userID: "00000",
@@ -101,7 +101,7 @@ class ReviewParent extends Component {
         // return input to empty.
         // eslint-disable-next-line
         this.setState({
-            userInput: "",
+            userName: "",
             userReview: "",
             userRepurchase: ''
         }
@@ -130,7 +130,7 @@ class ReviewParent extends Component {
                                     handleChangeTxtArea={this.handleChangeTxtArea}
                                     handleChange={this.handleChange}
                                     radioChange={this.radioChange}
-                                    userNameProp={this.state.userInput}
+                                    userNameProp={this.state.userName}
                                     userReviewProp={this.state.userReview}
                                     userStarProp={this.onStarClick}
                                 />
