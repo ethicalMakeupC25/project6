@@ -99,8 +99,11 @@
 
 .mainGrid {
   grid-column: 1 / -1;
-  max-height: 300px;
+}
+
+.scrollOn {
   overflow-y: auto;
+  max-height: 300px;
 }
 
 .reviewButtons {

@@ -129,7 +129,7 @@ class ReviewParent extends Component {
                     <button onClick={this.setWrite}>write review</button>
                     <button onClick={this.setRead}>reviews</button>
                 </div>
-                <div className="mainGrid wrapper" >
+                <div className={`mainGrid wrapper ${!this.props.isWriting && "scrollOn"}`} >
                     {!this.props.isWriting ? 
                     <div className="reviews">
                         {this.state.reviews.map(reviewList =>(
