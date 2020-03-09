@@ -28,7 +28,6 @@
   height: 100%;
   position: relative;
   max-width: 25rem;
-  margin: auto;
 
   img {
     display: block;
@@ -125,6 +124,10 @@
       grid-column-start: 2;
       min-width: 270px;
     }
+  }
+
+  .productImage {
+    margin: auto;
   }
 
   .selected .productInfo {
