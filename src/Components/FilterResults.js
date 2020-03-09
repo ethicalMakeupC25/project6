@@ -23,7 +23,7 @@ class FilterResults extends Component {
     render() {
         return (
             <div className='filterOptions'>
-                <p>Filter results</p>
+                <h4>Filter results</h4>
                 <fieldset>
                     <div>
                         <input type="checkbox" id="Canadian" name='Canadian' onChange={this.filterSelection} />

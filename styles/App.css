@@ -489,6 +489,70 @@ footer a:hover, footer a:focus {
   }
 }
 
+header h1 {
+  color: white;
+  margin-left: 5%;
+  letter-spacing: 5%;
+  font-size: calc(4rem + 6 * ((100vw - 360px) / 920));
+}
+
+@media screen and (max-width: 360px) {
+  header h1 {
+    font-size: 4rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  header h1 {
+    font-size: 10rem;
+  }
+}
+
+.userSpan {
+  display: block;
+  font-weight: bold;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 1%;
+}
+
+footer p {
+  color: #000;
+  margin-left: 5%;
+  letter-spacing: 5px;
+  font-size: calc(1.25rem + 1 * ((100vw - 360px) / 920));
+}
+
+@media screen and (max-width: 360px) {
+  footer p {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  footer p {
+    font-size: 2.25rem;
+  }
+}
+
+footer a {
+  color: #000;
+  font-size: calc(1.25rem + 1 * ((100vw - 360px) / 920));
+}
+
+@media screen and (max-width: 360px) {
+  footer a {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  footer a {
+    font-size: 2.25rem;
+  }
+}
+
 .star {
   color: gray;
 }
@@ -748,6 +812,7 @@ form.reviewForm button {
   border: 2px #6b6262 solid;
   height: 100%;
   position: relative;
+  max-width: 20rem;
 }
 
 .productImage img {
@@ -861,6 +926,15 @@ form.reviewForm button {
 
 .filterOptions {
   border: 1px solid grey;
+  border-radius: 10px;
+  margin: 2% auto;
+  -webkit-box-shadow: 4px 4px 4px #6b6262;
+          box-shadow: 4px 4px 4px #6b6262;
+  max-width: 70%;
+}
+
+.filterOptions h4 {
+  text-align: center;
 }
 
 .filterOptions fieldset {
@@ -874,9 +948,9 @@ form.reviewForm button {
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: left;
-      -ms-flex-pack: left;
-          justify-content: left;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   overflow-y: auto;
   overflow-x: hidden;
   height: 10rem;
@@ -885,5 +959,31 @@ form.reviewForm button {
 .filterOptions fieldset div {
   width: calc((100% - 2rem) / 5);
   margin: 1rem;
-  font-size: 1rem;
+  font-size: calc(1rem + 0.5vw);
+  color: #6b6262;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.filterOptions fieldset div input, .filterOptions fieldset div label {
+  margin: 2%;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+}
+
+.filterOptions fieldset div input:hover, .filterOptions fieldset div input :focus, .filterOptions fieldset div label:hover, .filterOptions fieldset div label :focus {
+  -webkit-box-shadow: 4px 4px 4px #AEE5D8;
+          box-shadow: 4px 4px 4px #AEE5D8;
+  border-radius: 5px;
+}
+
+.filterOptions fieldset div input:checked, .filterOptions fieldset div label:checked {
+  -webkit-box-shadow: 4px 4px 4px #7BE0AD;
+          box-shadow: 4px 4px 4px #7BE0AD;
 }

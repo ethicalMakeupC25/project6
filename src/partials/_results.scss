@@ -27,6 +27,8 @@
   border: 2px $darkerGray solid;
   height: 100%;
   position: relative;
+  max-width: 25rem;
+  margin: auto;
 
   img {
     display: block;
