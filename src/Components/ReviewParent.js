@@ -13,7 +13,7 @@ class ReviewParent extends Component {
         userImg: "", //need to figure out how to keep an image url in the database. and find image storage
         userInput: "",
         userReview: "",
-        userId: "000",
+        userId: "00000",
         userRepurchase: '',
         uniqueKey: ''
         };
@@ -43,6 +43,7 @@ class ReviewParent extends Component {
                 this.setState({
                     uniqueKey: reviewInfo.key
                 })
+                console.log('reviewInfo', reviewInfo)
             }
             // call this.setState to update the component state using the local array newState.
             this.setState({
@@ -99,7 +100,7 @@ class ReviewParent extends Component {
         // console.log('this.state.reviews', this.state.reviews)
         return (
             <Fragment>
-                <div className="mainGrid wrapper">
+            <div className="mainGrid wrapper" key={this.state.uniqueKey}>
                     {this.state.reviews.map(reviewList =>(
                         <ReviewReadPanel review={reviewList.review}/>
                         ))}

@@ -30,7 +30,7 @@ class ReviewSubmitButton extends Component{
         dbRef.on("value", response => {
         const dataFromDb = response.val();
         // see the information and parse the way we want it.
-        console.log("dataFromDb3", dataFromDb);
+        // console.log("dataFromDb3", dataFromDb);
 
         const newState = [];
 
@@ -44,7 +44,7 @@ class ReviewSubmitButton extends Component{
             // this.setState({
             //     currentRating:
             // })
-            console.log("reviewInfo", reviewInfo);
+            // console.log("reviewInfo(from button)", reviewInfo);
         }
         // dbRef = firebase.database().ref().key(`${reviewInfo.key}`);
         });
