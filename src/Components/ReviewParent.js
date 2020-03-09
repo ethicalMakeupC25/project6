@@ -13,10 +13,9 @@ class ReviewParent extends Component {
         userImg: "", //need to figure out how to keep an image url in the database. and find image storage
         userName: "",
         userReview: "",
-        userID: "00000",
+        userID: "",
         userRepurchase: '',
         uniqueKey: '',
-        uID: '',
         isReviewing: false
         };
     }
@@ -25,43 +24,29 @@ class ReviewParent extends Component {
         // error handling for guest / anonymous users
         if (this.props.user) {
             this.setState({
-                uID: this.props.user.uid
+                userID: this.props.user.uid
             })
         } else {
             this.setState({
-                uID: '00000'
+                userID: '00000'
             })
         }
 
         // create a variable that holds a reference to  database
-        const dbRef = firebase.database().ref();
+        const dbRef = firebase.database().ref(`products/${this.props.activeID}/`);
     
         // 🧠 event listener that takes a callback function used to get data from the database and call it response.
         dbRef.on("value", response => {
             const dataFromDb = response.val();
-            // see the information and parse the way we want it.
-            // console.log('dataFromDb', dataFromDb);
-    
-            // create a variable to store the new state.
             const newState = [];
-    
-            // loop over each value in the array and push them to a new array (newState).
             for (let key in dataFromDb) {
-                const reviewInfo = {
-                key: key,
-                review: dataFromDb[key]
-                };
-                newState.push(reviewInfo);
-
-                this.setState({
-                    uniqueKey: reviewInfo.key
-                })
-                console.log('reviewInfo', reviewInfo)
+                newState.push(dataFromDb[key])
             }
+            // see the information and parse the way we want it.
             // call this.setState to update the component state using the local array newState.
             this.setState({
                     reviews: newState
-            });
+            }, () => {console.log(this.state.reviews)});
         }
         )}
 
@@ -110,17 +95,15 @@ class ReviewParent extends Component {
 
     
     render(){
-        if(this.state.reviews.length === 0 ) return <p> Loading...</p> 
-        // console.log('this.state.reviews', this.state.reviews)
         return (
             <Fragment>
                 <div className="reviewButtons">
                     <button>write review</button>
                     <button>reviews</button>
                 </div>
-                <div className="mainGrid wrapper" >
+                <div className="mainGrid wrapper">
                         {this.state.reviews.map(reviewList =>(
-                            <ReviewReadPanel review={reviewList.review}/>
+                            <ReviewReadPanel review={reviewList}/>
                             ))}
                             
                             {
