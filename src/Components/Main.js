@@ -13,7 +13,7 @@ class Main extends Component {
             isSearched: false,
             searchInput: '',
             filteredResults: [],
-            refinedItems: [],
+            originalResults: []
         }
     }
 
@@ -34,31 +34,44 @@ class Main extends Component {
         });
         // console.log(filteredArray);
         this.setState({
-            filteredResults: filteredArray
+            filteredResults: filteredArray,
+            originalResults: filteredArray
         });
     }
 
 
-    newResults = () => {
-        this.state.filteredResults.filter(eachItem => {
-            // console.log(eachItem.tag_list) 
-            console.log (eachItem.tag_list.includes(this.state.refinedItems.toString()))
-        });
-        console.log(this.state.refinedItems.toString());
-        
+    newResults = (e, refinedCategory) => {
+        let filterRefinedArray = [];
+        if (refinedCategory.length !== 0) {
+            this.state.originalResults.map((eachProduct) => {
+                return eachProduct.tag_list.forEach((eachTag) => {
+                    refinedCategory.forEach((choice) => {
+                        if (choice === eachTag) {
+                            if (!filterRefinedArray.includes(eachProduct)){
+                                filterRefinedArray.push(eachProduct)
+                            }
+                        };
+                    })
+                })
+            })
+            console.log(filterRefinedArray);
+            this.setState({
+                filteredResults: filterRefinedArray
+            })
+        } else {
+            this.setState({
+                filteredResults: this.state.originalResults
+            })
+        }
+
     }
 
-    updateItems = (e, refinedCategory) => {
-        this.setState({
-            refinedItems: refinedCategory,
-        }, this.newResults)
-    }
 
     render() {
         return (
             <main>
                 <Search veganProducts={this.props.veganProducts} handleSearchInput={this.handleSearchInput} />
-                <FilterResults updaterefinedItems={this.updateItems} />
+                <FilterResults updaterefinedItems={this.newResults} />
                 <Route path="/products/:productID" render={() => <ResultDetails filteredResults={this.props.filteredResults} />} />
                 {this.state.isSearched ? <Results filteredResults={this.state.filteredResults} /> : null}
             </main>

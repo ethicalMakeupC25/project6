@@ -17,6 +17,7 @@ class FilterResults extends Component {
     }
 
     updateRefinedItemsMain = (e) => {
+        // console.log(this.state.refineArray)
         this.props.updaterefinedItems(e, this.state.refineArray)
     }
 
