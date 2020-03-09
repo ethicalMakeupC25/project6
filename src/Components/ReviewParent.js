@@ -13,14 +13,27 @@ class ReviewParent extends Component {
         userImg: "", //need to figure out how to keep an image url in the database. and find image storage
         userInput: "",
         userReview: "",
-        userId: "000",
+        userId: "00000",
         userRepurchase: '',
-        uniqueKey: ''
+        uniqueKey: '',
+        uID: '',
+        isReviewing: false
         };
     }
 
     componentDidMount() {
-        console.log(this.props);
+
+        // error handling for guest / anonymous users
+        if (this.props.user) {
+            this.setState({
+                uID: this.props.user.uid
+            })
+        } else {
+            this.setState({
+                uID: '00000'
+            })
+        }
+
         // create a variable that holds a reference to  database
         const dbRef = firebase.database().ref();
     
@@ -44,6 +57,7 @@ class ReviewParent extends Component {
                 this.setState({
                     uniqueKey: reviewInfo.key
                 })
+                console.log('reviewInfo', reviewInfo)
             }
             // call this.setState to update the component state using the local array newState.
             this.setState({
@@ -74,12 +88,13 @@ class ReviewParent extends Component {
     // 🧠 on submit, push user input into firebase
     handleFormSubmit = e => {
         e.preventDefault();
-        const dbRef = firebase.database().ref();
+        const dbRef = firebase.database().ref(`products/${this.props.productID}/`);
+        const dbRefUser = firebase.database().ref(`users/${this.state.uID}/`);
         dbRef.push({
             userInput: this.state.userInput,
             userReview: this.state.userReview,
             userRepurchase: this.state.userRepurchase,
-            userId: "000",
+            userId: "00000",
             uniqueKey: this.state.uniqueKey
         })
         // console.log('dbRef',dbRef));
@@ -100,20 +115,24 @@ class ReviewParent extends Component {
         // console.log('this.state.reviews', this.state.reviews)
         return (
             <Fragment>
-                <div className="mainGrid wrapper">
+            <div className="mainGrid wrapper" key={this.state.uniqueKey}>
                     {this.state.reviews.map(reviewList =>(
                         <ReviewReadPanel review={reviewList.review}/>
                         ))}
                         
-                    <ReviewForm
-                        handleFormSubmit={this.handleFormSubmit}
-                        handleChangeTxtArea={this.handleChangeTxtArea}
-                        handleChange={this.handleChange}
-                        radioChange={this.radioChange}
-                        userInputProp={this.state.userInput}
-                        userReviewProp={this.state.userReview}
-                        userStarProp={this.onStarClick}
-                    />
+                        {
+                            this.state.isReviewing && 
+                            <ReviewForm
+                                handleFormSubmit={this.handleFormSubmit}
+                                handleChangeTxtArea={this.handleChangeTxtArea}
+                                handleChange={this.handleChange}
+                                radioChange={this.radioChange}
+                                userInputProp={this.state.userInput}
+                                userReviewProp={this.state.userReview}
+                                userStarProp={this.onStarClick}
+                            />
+                        }
+
                 </div>
             </Fragment>
         );
