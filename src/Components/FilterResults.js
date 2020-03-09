@@ -8,16 +8,15 @@ class FilterResults extends Component {
             refineArray: [],
         }
     }
-
+    // function gets triggered onChange of the checkbox and added to the state or remove when unchecked
     filterSelection = (e) => {
         const set = new Set(this.state.refineArray);
         e.target.checked ? set.add(e.target.name) : set.delete(e.target.name);
-        this.setState({ refineArray: [...set] },this.updateRefinedItemsMain);
-        
-    }
+        this.setState({ refineArray: [...set] }, this.updateRefinedItemsMain);
 
+    }
+    // Function to pass on the props to the Main component
     updateRefinedItemsMain = (e) => {
-        // console.log(this.state.refineArray)
         this.props.updaterefinedItems(e, this.state.refineArray)
     }
 

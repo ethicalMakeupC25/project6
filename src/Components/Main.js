@@ -32,14 +32,13 @@ class Main extends Component {
         const filteredArray = this.props.veganProducts.filter(product => {
             return product.product_type === this.state.searchInput
         });
-        // console.log(filteredArray);
         this.setState({
             filteredResults: filteredArray,
             originalResults: filteredArray
         });
     }
 
-
+    //When any choice from the from filtering gets checked it triggers the function and pass on the props to as an arguments and populate the array by checking if something from filter selection gets clicked populate filteredResult array with new array else show the original array.
     newResults = (e, refinedCategory) => {
         let filterRefinedArray = [];
         if (refinedCategory.length !== 0) {
@@ -54,7 +53,6 @@ class Main extends Component {
                     })
                 })
             })
-            console.log(filterRefinedArray);
             this.setState({
                 filteredResults: filterRefinedArray
             })
