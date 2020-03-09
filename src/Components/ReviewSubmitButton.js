@@ -44,7 +44,7 @@ class ReviewSubmitButton extends Component{
             // this.setState({
             //     currentRating:
             // })
-            // console.log("reviewInfo(from button)", reviewInfo);
+            console.log("reviewInfo(from button)", reviewInfo);
         }
         // dbRef = firebase.database().ref().key(`${reviewInfo.key}`);
         });
@@ -54,7 +54,9 @@ class ReviewSubmitButton extends Component{
             <button 
                 className="submitButton" 
                 type="submit" 
-                onClick={()=>{dbRef.push({userRating: this.state.currentRating})}}>
+                onClick={()=>{
+                    dbRef.push({userRating: this.state.currentRating})
+                    }}>
                 Submit
             </button>
         );

@@ -40,15 +40,15 @@ class StarRating extends Component {
         }); // set state so the rating stays highlighted
         if (this.props.onClick) {
         this.props.onClick(rating); // emit the event up to the parent
+        // const dbRef = firebase.database().ref();
+        // dbRef.push.child().setValue({
+        //     userRating: this.state.currentRating,
+        // })
         }
 
         console.log(rating)
         // console.log('dbRef2',dbRef));
     };
-    // const dbRef = firebase.database().ref();
-    // dbRef.push({
-    //     userRating: this.state.currentRating,
-    // })
     
     render() {
         console.log("userRating", this.state.currentRating);

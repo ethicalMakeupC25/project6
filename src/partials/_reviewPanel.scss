@@ -9,8 +9,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 5%;
+    padding: 5%;
     border-bottom: 3px solid $accent1;
+
+    p {
+        width: 90%;
+    }
 }
 
 .reviewDisplay {
