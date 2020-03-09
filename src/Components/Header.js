@@ -1,12 +1,12 @@
 import React, { Fragment, Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 class Header extends Component {
     constructor() {
         super();
         this.state = {
-
+            isUp: false,
         }
     }
 
