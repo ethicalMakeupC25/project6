@@ -87,7 +87,7 @@ class ReviewParent extends Component {
     // 🧠 on submit, push user input into firebase
     handleFormSubmit = e => {
         e.preventDefault();
-        const dbRef = firebase.database().ref(`products/${this.props.productID}/`);
+        const dbRef = firebase.database().ref(`products/${this.props.activeID}/`);
         const dbRefUser = firebase.database().ref(`users/${this.state.uID}/`);
         dbRef.push({
             userInput: this.state.userInput,
