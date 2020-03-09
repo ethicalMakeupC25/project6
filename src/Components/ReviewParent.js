@@ -115,9 +115,14 @@ class ReviewParent extends Component {
                 <div className="mainGrid wrapper" >
                     {!this.props.isWriting ? 
                     <div className="reviews">
-                        {this.state.reviews.map(reviewList =>(
-                            <ReviewReadPanel review={reviewList}/>
-                        ))}
+                        { this.state.reviews
+                            ?
+                            this.state.reviews.map(reviewList => {
+                                return <ReviewReadPanel review={reviewList}/>
+                            })
+                            :
+                            <p>Oops, no reviews exist of this product yet! Why not leave your own review if you've tried this product before?</p>
+                        }
                     </div> : 
                     <ReviewForm
                         handleFormSubmit={this.handleFormSubmit}
