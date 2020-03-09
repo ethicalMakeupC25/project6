@@ -639,3 +639,32 @@ form.reviewForm button {
     grid-column: 1 / -1;
   }
 }
+
+.filterOptions {
+  border: 1px solid grey;
+}
+
+.filterOptions fieldset {
+  border: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 10rem;
+}
+
+.filterOptions fieldset div {
+  width: calc((100% - 2rem) / 5);
+  margin: 1rem;
+  font-size: 1rem;
+}
