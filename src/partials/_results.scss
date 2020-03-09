@@ -5,6 +5,13 @@
   gap: 5rem;
   font-size: 1.6rem;
 
+  a {
+    background: rgba($accent2, 0.95);
+    color: $blackColor;
+
+    text-decoration: none;
+  }
+
   .reviewLink {
     position: absolute;
     top: 0;
@@ -12,9 +19,6 @@
     @include shift(10px, -50%);
 
     padding: 5px 15px;
-
-    background: rgba($accent2, 0.95);
-    // color: $whiteColor;
   }
 }
 
@@ -23,7 +27,8 @@
   border: 2px $darkerGray solid;
   height: 100%;
   position: relative;
-  max-width: 20rem;
+  max-width: 25rem;
+  margin: auto;
 
   img {
     display: block;
@@ -93,6 +98,21 @@
   }
 }
 
+.mainGrid {
+  grid-column: 1 / -1;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.reviewButtons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hide {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .results > div {
     padding-right: 20px;
@@ -106,8 +126,6 @@
       min-width: 270px;
     }
   }
-
-  
 
   .selected .productInfo {
     grid-column: 1 / -1;

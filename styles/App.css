@@ -240,64 +240,35 @@ html {
 }
 
 body {
-  font-size: 2rem;
+  font-size: calc(1.75rem + 0.25 * ((100vw - 360px) / 920));
   font-family: "Montserrat";
   color: #000;
-}
-
-a {
-  color: #000;
-  text-decoration: none;
-}
-
-a:hover, a:focus {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(60%, rgba(255, 255, 255, 0)), color-stop(40%, #7BE0AD));
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 60%, #7BE0AD 40%);
-}
-
-header {
-  height: 10vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-main {
-  min-height: 85vh;
-}
-
-footer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 5vh;
-  font-size: calc(1.25rem + 0.35 * ((100vw - 360px) / 920));
-  text-align: center;
+  background: #F8F8F8;
 }
 
 @media screen and (max-width: 360px) {
-  footer {
-    font-size: 1.25rem;
+  body {
+    font-size: 1.75rem;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  footer {
-    font-size: 1.6rem;
+  body {
+    font-size: 2rem;
   }
+}
+
+main {
+  min-height: 80vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Maitree";
+}
+
+.outerWrapper {
+  max-width: 2000px;
+  margin: 0 auto;
 }
 
 .wrapper {
@@ -311,28 +282,211 @@ img {
   display: block;
 }
 
-.highlight {
+header {
+  background: #7be0ad;
+  background: -webkit-gradient(linear, left top, right top, from(#7be0ad), color-stop(35%, #aee5d8), to(#e7e5e5));
+  background: linear-gradient(90deg, #7be0ad 0%, #aee5d8 35%, #e7e5e5 100%);
+}
+
+header nav {
+  height: 15vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header h1 {
+  color: #F8F8F8;
+  font-size: calc(3.5rem + 5 * ((100vw - 320px) / 960));
+}
+
+@media screen and (max-width: 320px) {
+  header h1 {
+    font-size: 3.5rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  header h1 {
+    font-size: 8.5rem;
+  }
+}
+
+header .userDetails {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .userDetails p {
+  margin-bottom: 10px;
+}
+
+header .userDetails button:not(:first-child) {
+  margin-left: 15px;
+}
+
+header .mobileUserDetails {
+  display: none;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  min-height: 5vh;
+  background: #7be0ad;
+  background: -webkit-gradient(linear, left top, right top, from(#7be0ad), color-stop(35%, #aee5d8), to(#e7e5e5));
+  background: linear-gradient(90deg, #7be0ad 0%, #aee5d8 35%, #e7e5e5 100%);
+}
+
+header button {
+  background: #F8F8F8;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 25px;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  font-size: calc(1.25rem + 0.35 * ((100vw - 360px) / 920));
+  letter-spacing: 1px;
+}
+
+@media screen and (max-width: 360px) {
+  header button {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  header button {
+    font-size: 1.6rem;
+  }
+}
+
+header button:focus, header button:hover {
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
+          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
+}
+
+header .toggleMenu {
+  font-size: 2.5rem;
+}
+
+footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  height: 5vh;
+  background: #7be0ad;
+  background: -webkit-gradient(linear, left top, right top, from(#7be0ad), color-stop(35%, #aee5d8), to(#e7e5e5));
+  background: linear-gradient(90deg, #7be0ad 0%, #aee5d8 35%, #e7e5e5 100%);
+}
+
+footer p {
+  letter-spacing: 1px;
+  font-size: calc(1.25rem + 0.35 * ((100vw - 360px) / 920));
+}
+
+@media screen and (max-width: 360px) {
+  footer p {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  footer p {
+    font-size: 1.6rem;
+  }
+}
+
+footer a {
+  color: #000;
+  text-decoration: none;
+}
+
+footer a:hover, footer a:focus {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(60%, rgba(255, 255, 255, 0)), color-stop(40%, #7BE0AD));
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 60%, #7BE0AD 40%);
 }
 
-.visually-hidden:not(:focus):not(:active) {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  clip: rect(1px 1px 1px 1px);
-  /* IE6, IE7 */
-  clip: rect(1px, 1px, 1px, 1px);
-  white-space: nowrap;
-  /* added line */
+@media (max-width: 720px) {
+  header nav {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: 20vh;
+  }
+  header .userDetails p {
+    margin-top: 15px;
+  }
+  main {
+    min-height: 75vh;
+  }
+  .logInButton {
+    margin-top: 10px;
+  }
 }
 
-header {
-  width: 100%;
-  background: #7be0ad;
-  background: -webkit-gradient(linear, left top, right top, from(#7be0ad), color-stop(35%, #aee5d8), to(#e7e5e5));
-  background: linear-gradient(90deg, #7be0ad 0%, #aee5d8 35%, #e7e5e5 100%);
+@media (max-width: 370px) {
+  header nav {
+    height: 15vh;
+  }
+  header .userDetails {
+    display: none;
+  }
+  header .mobileUserDetails {
+    display: block;
+  }
+  header .mobileUserDetails .wrapper {
+    height: 100%;
+    width: 90%;
+  }
+  header .mobileUserDetails .display {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: 5vh;
+  }
+  main {
+    min-height: 80vh;
+  }
+  .logInButton {
+    margin-bottom: 5px;
+  }
+  .buttonContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin: 10px 0;
+  }
 }
 
 header h1 {
@@ -354,11 +508,13 @@ header h1 {
   }
 }
 
-footer {
-  width: 100%;
-  background: #7be0ad;
-  background: -webkit-gradient(linear, left top, right top, from(#7be0ad), color-stop(35%, #aee5d8), to(#e7e5e5));
-  background: linear-gradient(90deg, #7be0ad 0%, #aee5d8 35%, #e7e5e5 100%);
+.userSpan {
+  display: block;
+  font-weight: bold;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 1%;
 }
 
 footer p {
@@ -635,6 +791,12 @@ form.reviewForm button {
   font-size: 1.6rem;
 }
 
+.results a {
+  background: rgba(174, 229, 216, 0.95);
+  color: #000;
+  text-decoration: none;
+}
+
 .results .reviewLink {
   position: absolute;
   top: 0;
@@ -642,7 +804,6 @@ form.reviewForm button {
   -webkit-transform: translate(10px, -50%);
           transform: translate(10px, -50%);
   padding: 5px 15px;
-  background: rgba(174, 229, 216, 0.95);
 }
 
 .productImage {
@@ -723,6 +884,25 @@ form.reviewForm button {
   margin: 1%;
   border: 1px #000 solid;
   border-radius: 50%;
+}
+
+.mainGrid {
+  grid-column: 1 / -1;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.reviewButtons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.hide {
+  display: none;
 }
 
 @media (max-width: 768px) {

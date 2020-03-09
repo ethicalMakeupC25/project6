@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Search from './Search';
 import Results from './Results';
-import ResultDetails from './ResultDetails'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import FilterResults from './FilterResults';
 
@@ -70,7 +69,6 @@ class Main extends Component {
             <main className="wrapper">
                 <Search veganProducts={this.props.veganProducts} handleSearchInput={this.handleSearchInput} />
                 <FilterResults updaterefinedItems={this.newResults} />
-                <Route path="/products/:productID" render={() => <ResultDetails filteredResults={this.props.filteredResults} />} />
                 {this.state.isSearched ? <Results filteredResults={this.state.filteredResults} /> : null}
             </main>
         )
