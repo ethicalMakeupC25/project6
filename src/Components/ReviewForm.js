@@ -6,19 +6,34 @@ import StarRating from './StarRating';
 const ReviewForm = props => (
     <div className="reviewInput wrapper">
         <form className="reviewForm" action="submit" onSubmit={e => props.handleFormSubmit(e)}>
-            <label className="visually-hidden" htmlFor="reviewForm">
-                Please Enter Your Review!
+
+            <label 
+                className="visuallyHidden" 
+                htmlFor="userName"
+                
+                >
+                Please Enter Your Name!
             </label>
             <input
+                name="userName"
                 placeholder= "What is your name?"
                 className="nameInputField"
                 type="text"
-                id="reviewForm"
+                id="userName"
                 onChange={props.handleChange}
-                value={props.userInputProp} // good for accessibility and screen readers, this will track the changes even if they leave and come back
+                value={props.userNameProp} // good for accessibility and screen readers, this will track the changes even if they leave and come back
             />
+
+            <label 
+                className="visuallyHidden" 
+                htmlFor="userReview"
+                
+                >
+                Please Enter Your Name!
+            </label>
             <textarea 
-                id="reviewForm" 
+                id="userReview" 
+                name="userReview"
                 rows="10" 
                 cols="80" 
                 placeholder="Your Review:"
@@ -52,6 +67,7 @@ const ReviewForm = props => (
                     </div>
                 </div>
             </section>
+            
             <section className="userStarRating">
                 <span className="userSpan">How Would You Rate This Product:</span>
                 <div className="starsOnly">
