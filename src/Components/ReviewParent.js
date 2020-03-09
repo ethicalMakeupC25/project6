@@ -94,11 +94,7 @@ class ReviewParent extends Component {
         return (
             <Fragment>
                 <div className="mainGrid wrapper">
-                    {this.state.reviews.map(reviewList =>(
-                        console.log('reviewList.review',reviewList.review),
-                        <ReviewReadPanel review={reviewList.review}/>
-                        ))}
-                        
+                    {this.props.isWriteReview ? 
                     <ReviewForm
                         handleFormSubmit={this.handleFormSubmit}
                         handleChangeTxtArea={this.handleChangeTxtArea}
@@ -106,7 +102,14 @@ class ReviewParent extends Component {
                         radioChange={this.radioChange}
                         userInputProp={this.state.userInput}
                         userReviewProp={this.state.userReview}
-                    />
+                    /> : 
+                    <Fragment>
+                        {this.state.reviews.map(reviewList =>(
+                        console.log('reviewList.review',reviewList.review),
+                        <ReviewReadPanel review={reviewList.review}/>
+                        ))}
+                    </Fragment>
+                    }
                 </div>
             </Fragment>
         );

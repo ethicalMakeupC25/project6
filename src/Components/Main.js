@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Search from './Search';
 import Results from './Results';
-import ResultDetails from './ResultDetails'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class Main extends Component {
@@ -41,7 +40,6 @@ class Main extends Component {
         return (
             <main>
                 <Search veganProducts={this.props.veganProducts} handleSearchInput={this.handleSearchInput} />
-                <Route path="/products/:productID" render={() => <ResultDetails filteredResults={this.props.filteredResults} />} />
                 {this.state.isSearched ? <Results filteredResults={this.state.filteredResults} /> : null}
             </main>
         )

@@ -54,7 +54,7 @@ class App extends Component {
               <div className="wrapper">
                 <Header />
                 <Main veganProducts={this.state.veganArray} />
-                <ReviewParent />
+                {/* <ReviewParent /> */}
                 <Footer />
               </div>
             </Fragment>

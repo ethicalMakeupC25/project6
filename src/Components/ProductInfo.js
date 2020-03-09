@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import ReviewParent from './ReviewParent';
 
 class ProductInfo extends Component {
   constructor() {
@@ -11,6 +13,7 @@ class ProductInfo extends Component {
 
   render() {
     return (
+      <Fragment>
       <div className="productInfo">
         <h2>{this.props.product.name}</h2>
         <p>{this.props.product.description.length > this.state.maxLength ?
@@ -32,6 +35,9 @@ class ProductInfo extends Component {
             })}
         </div>
       </div>
+      {this.props.activeID === this.props.product.id && <Route path="/products/:productID" render={() => <ReviewParent isWriteReview={this.state.isWriteReview} />} /> }
+      
+      </Fragment>
     );
   }
 }
