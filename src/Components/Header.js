@@ -25,8 +25,8 @@ class Header extends Component {
                                     {/* if no displayname exists, show email */}
                                     <p>Hi {this.props.user.displayName || this.props.user.email}!</p>
                                     <div className="buttonContainer">
-                                        <button>saved products</button>
-                                        <button>user reviews</button>
+                                        <button>wishlist</button>
+                                        <button>your reviews</button>
                                         <button onClick={this.props.logout}>log out</button>
                                     </div>
                                 </div>
@@ -36,17 +36,18 @@ class Header extends Component {
                                             {/* if no displayname exists, show email */}
                                             <p>Hi {this.props.user.displayName || this.props.user.email}!</p>
                                             <FontAwesomeIcon icon={faChevronUp} />
+                                            {/* change this icon to something more like a list */}
                                         </div>
                                         <div className="buttonContainer">
-                                            <button>saved products</button>
-                                            <button>user reviews</button>
+                                            <button>wishlist</button>
+                                            <button>your reviews</button>
                                             <button onClick={this.props.logout}>log out</button>
                                         </div>
                                     </div>
                                 </div>
                             </Fragment>
                         :
-                            <button onClick={this.props.login}>log in to save products</button>
+                            <button onClick={this.props.login}>log in to save to wishlist</button>
                     }
                 </nav>
             </header>
