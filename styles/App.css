@@ -303,13 +303,12 @@ header nav {
 
 header h1 {
   color: #F8F8F8;
-  letter-spacing: 5%;
-  font-size: calc(4rem + 4.5 * ((100vw - 360px) / 920));
+  font-size: calc(3.5rem + 5 * ((100vw - 320px) / 960));
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 320px) {
   header h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
   }
 }
 
@@ -346,7 +345,7 @@ header .mobileUserDetails {
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 5vh;
+  min-height: 5vh;
   background: #7be0ad;
   background: -webkit-gradient(linear, left top, right top, from(#7be0ad), color-stop(35%, #aee5d8), to(#e7e5e5));
   background: linear-gradient(90deg, #7be0ad 0%, #aee5d8 35%, #e7e5e5 100%);
@@ -378,6 +377,10 @@ header button {
 header button:focus, header button:hover {
   -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
           box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
+}
+
+header .toggleMenu {
+  font-size: 2.5rem;
 }
 
 footer {
@@ -438,11 +441,14 @@ footer a:hover, footer a:focus {
   main {
     min-height: 75vh;
   }
+  .logInButton {
+    margin-top: 10px;
+  }
 }
 
 @media (max-width: 370px) {
   header nav {
-    height: 10vh;
+    height: 15vh;
   }
   header .userDetails {
     display: none;
@@ -450,11 +456,9 @@ footer a:hover, footer a:focus {
   header .mobileUserDetails {
     display: block;
   }
-  header .mobileUserDetails .buttonContainer {
-    display: none;
-  }
   header .mobileUserDetails .wrapper {
     height: 100%;
+    width: 90%;
   }
   header .mobileUserDetails .display {
     display: -webkit-box;
@@ -466,10 +470,22 @@ footer a:hover, footer a:focus {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    height: 100%;
+    height: 5vh;
   }
   main {
-    min-height: 85vh;
+    min-height: 80vh;
+  }
+  .logInButton {
+    margin-bottom: 5px;
+  }
+  .buttonContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin: 10px 0;
   }
 }
 
@@ -803,6 +819,25 @@ form.reviewForm button {
   margin: 1%;
   border: 1px #000 solid;
   border-radius: 50%;
+}
+
+.mainGrid {
+  grid-column: 1 / -1;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.reviewButtons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.hide {
+  display: none;
 }
 
 @media (max-width: 768px) {

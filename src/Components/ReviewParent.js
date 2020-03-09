@@ -13,7 +13,7 @@ class ReviewParent extends Component {
         userImg: "", //need to figure out how to keep an image url in the database. and find image storage
         userInput: "",
         userReview: "",
-        userId: "00000",
+        userID: "00000",
         userRepurchase: '',
         uniqueKey: '',
         uID: '',
@@ -22,7 +22,6 @@ class ReviewParent extends Component {
     }
 
     componentDidMount() {
-
         // error handling for guest / anonymous users
         if (this.props.user) {
             this.setState({
@@ -94,7 +93,7 @@ class ReviewParent extends Component {
             userInput: this.state.userInput,
             userReview: this.state.userReview,
             userRepurchase: this.state.userRepurchase,
-            userId: "00000",
+            userID: "00000",
             uniqueKey: this.state.uniqueKey
         })
         // console.log('dbRef',dbRef));
@@ -115,23 +114,27 @@ class ReviewParent extends Component {
         // console.log('this.state.reviews', this.state.reviews)
         return (
             <Fragment>
-            <div className="mainGrid wrapper" key={this.state.uniqueKey}>
-                    {this.state.reviews.map(reviewList =>(
-                        <ReviewReadPanel review={reviewList.review}/>
-                        ))}
-                        
-                        {
-                            this.state.isReviewing && 
-                            <ReviewForm
-                                handleFormSubmit={this.handleFormSubmit}
-                                handleChangeTxtArea={this.handleChangeTxtArea}
-                                handleChange={this.handleChange}
-                                radioChange={this.radioChange}
-                                userInputProp={this.state.userInput}
-                                userReviewProp={this.state.userReview}
-                                userStarProp={this.onStarClick}
-                            />
-                        }
+                <div className="reviewButtons">
+                    <button>write review</button>
+                    <button>reviews</button>
+                </div>
+                <div className="mainGrid wrapper" >
+                        {this.state.reviews.map(reviewList =>(
+                            <ReviewReadPanel review={reviewList.review}/>
+                            ))}
+                            
+                            {
+                                this.state.isReviewing && 
+                                <ReviewForm
+                                    handleFormSubmit={this.handleFormSubmit}
+                                    handleChangeTxtArea={this.handleChangeTxtArea}
+                                    handleChange={this.handleChange}
+                                    radioChange={this.radioChange}
+                                    userInputProp={this.state.userInput}
+                                    userReviewProp={this.state.userReview}
+                                    userStarProp={this.onStarClick}
+                                />
+                            }
 
                 </div>
             </Fragment>
