@@ -6,8 +6,8 @@ import ReviewReadPanel from "./ReviewReadPanel";
 
 
 class ReviewParent extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
         reviews: [],
         userImg: "", //need to figure out how to keep an image url in the database. and find image storage
@@ -115,7 +115,7 @@ class ReviewParent extends Component {
                 <div className="mainGrid wrapper" >
                     {!this.props.isWriting ? 
                     <div className="reviews">
-                        { this.state.reviews
+                        { this.state.reviews.length !== 0
                             ?
                             this.state.reviews.map(reviewList => {
                                 return <ReviewReadPanel review={reviewList}/>
