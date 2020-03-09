@@ -11,7 +11,7 @@ class ReviewParent extends Component {
         this.state = {
         reviews: [],
         userImg: "", //need to figure out how to keep an image url in the database. and find image storage
-        userInput: "",
+        userName: "",
         userReview: "",
         userID: "00000",
         userRepurchase: '',
@@ -68,7 +68,7 @@ class ReviewParent extends Component {
     // 🧮 function to handle inputs for review form:
     handleChange = e => {
         this.setState({
-        userInput: e.target.value
+        userName: e.target.value
         })
     };
 
@@ -90,7 +90,7 @@ class ReviewParent extends Component {
         const dbRef = firebase.database().ref(`products/${this.props.productID}/`);
         const dbRefUser = firebase.database().ref(`users/${this.state.uID}/`);
         dbRef.push({
-            userInput: this.state.userInput,
+            userName: this.state.userName,
             userReview: this.state.userReview,
             userRepurchase: this.state.userRepurchase,
             userID: "00000",
@@ -101,7 +101,7 @@ class ReviewParent extends Component {
         // return input to empty.
         // eslint-disable-next-line
         this.setState({
-            userInput: "",
+            userName: "",
             userReview: "",
             userRepurchase: ''
         }
@@ -146,9 +146,6 @@ class ReviewParent extends Component {
                         userStarProp={this.onStarClick}
                     />
                     }
-                    
-                    
-
                 </div>
             </Fragment>
         );
