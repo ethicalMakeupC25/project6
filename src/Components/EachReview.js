@@ -1,19 +1,22 @@
 // a couple of functions from the React library
 import React from "react";
 
-const EachReview = ({ revProp }) => {
-  // 🧠 function to remove messages
-    // let remove = key => {
-    //     const dbRef = firebase.database().ref();
-    //     dbRef.child(msgProp.key).remove();
-    // };
+const EachReview = ({ review }) => {
 
-    console.log(revProp)
-    return (
-        <div key={revProp.key}>
-
-        </div>
-    );
+  console.log(review);
+  console.log(review.review.userInput);
+  console.log(review.review.userReview);
+  console.log(review.review.userRepurchase);
+  return (
+    <li className="reviewDisplay" id="reviewDisplay">
+      <p>
+        <span className="userSpan">{review.review.userInput}</span>
+        {review.review.userReview}
+        <span className="userSpan">Would you buy this again:</span>
+        {review.review.userRepurchase}
+      </p>
+    </li>
+  );
 };
 
 export default EachReview;

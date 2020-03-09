@@ -6,7 +6,8 @@ header {
     h1 {
         color: white;
         margin-left: 5%;
-        letter-spacing: 5px;
+        letter-spacing: 5%;
+        @include fluid-type (4rem, 10rem, 360px, 1280px);
     }
 }
 
@@ -19,9 +20,11 @@ footer {
         color: $blackColor;
         margin-left: 5%;
         letter-spacing: 5px;
+        @include fluid-type (1.25rem, 2.25rem, 360px, 1280px);
     }
 
     a {
         color: $blackColor;
+        @include fluid-type (1.25rem, 2.25rem, 360px, 1280px);
     }
 }
