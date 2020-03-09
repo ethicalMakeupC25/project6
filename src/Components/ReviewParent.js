@@ -108,6 +108,17 @@ class ReviewParent extends Component {
         )
     };
 
+    setRead = () => {
+        if(this.props.isWriting) {
+            this.props.toggleReadReview();
+        }
+    }
+
+    setWrite = () => {
+        if(!this.props.isWriting) {
+            this.props.toggleReadReview();
+        }
+    }
     
     render(){
         if(this.state.reviews.length === 0 ) return <p> Loading...</p> 
@@ -115,27 +126,26 @@ class ReviewParent extends Component {
         return (
             <Fragment>
                 <div className="reviewButtons">
-                    <button>write review</button>
-                    <button>reviews</button>
+                    <button onClick={this.setWrite}>write review</button>
+                    <button onClick={this.setRead}>reviews</button>
                 </div>
                 <div className="mainGrid wrapper" >
+                    {!this.props.isWriting ? 
+                    <div className="reviews">
                         {this.state.reviews.map(reviewList =>(
                             <ReviewReadPanel review={reviewList.review}/>
-                            ))}
-                            
-                            {
-                                this.state.isReviewing && 
-                                <ReviewForm
-                                    handleFormSubmit={this.handleFormSubmit}
-                                    handleChangeTxtArea={this.handleChangeTxtArea}
-                                    handleChange={this.handleChange}
-                                    radioChange={this.radioChange}
-                                    userNameProp={this.state.userName}
-                                    userReviewProp={this.state.userReview}
-                                    userStarProp={this.onStarClick}
-                                />
-                            }
-
+                        ))}
+                    </div> : 
+                    <ReviewForm
+                        handleFormSubmit={this.handleFormSubmit}
+                        handleChangeTxtArea={this.handleChangeTxtArea}
+                        handleChange={this.handleChange}
+                        radioChange={this.radioChange}
+                        userInputProp={this.state.userInput}
+                        userReviewProp={this.state.userReview}
+                        userStarProp={this.onStarClick}
+                    />
+                    }
                 </div>
             </Fragment>
         );
