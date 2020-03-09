@@ -1,18 +1,40 @@
 .filterOptions {
   border: 1px solid grey;
+  border-radius: 10px;
+  margin: 2% auto;
+  box-shadow: 4px 4px 4px $darkerGray;
+  max-width: 70%;
+  h4 {
+    text-align: center;
+  }
   fieldset {
     border: none;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: left;
+    justify-content: center;
     overflow-y: auto;
     overflow-x: hidden;
     height: 10rem;
     div {
       width: calc((100% - 2rem) / 5);
       margin: 1rem;
-      font-size: 1rem;
+      font-size: calc(1rem + 0.5vw);
+      color: $darkerGray;
+      display: flex;
+      flex-direction: column;
+      input, label{
+        margin: 2%;
+        transition: all 0.3s ease-in-out;
+        text-align: center;
+        &:hover, :focus {
+          box-shadow: 4px 4px 4px $accent2;
+          border-radius: 5px;
+        }
+        &:checked {
+          box-shadow: 4px 4px 4px $accent1;
+        }
+      }
     }
   }
 }
