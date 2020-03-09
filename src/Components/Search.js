@@ -74,6 +74,14 @@ class Search extends Component {
         });
     };
 
+    //when searchbar suggestion is clicked on instead of submitted via enter
+    onSuggestionSelected = (e, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) => {
+        e.preventDefault();
+        this.setState({
+            value: suggestionValue
+        }, () => {this.handleSubmit(e)})
+    }
+
     //locally resolve submit and then pass to parent component
     handleSubmit = (e) => {
         e.preventDefault();
@@ -111,6 +119,7 @@ class Search extends Component {
                         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                         getSuggestionValue={this.getSuggestionValue}
+                        onSuggestionSelected={this.onSuggestionSelected}
                         renderSuggestion={this.renderSuggestion}
                         inputProps={inputProps}
                         focusInputOnSuggestionClick={false}

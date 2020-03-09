@@ -30,7 +30,7 @@ class Main extends Component {
 
     filterResults = () => {
         const filteredArray = this.props.veganProducts.filter(product => {
-            return product.product_type === this.state.searchInput
+            return product.product_type === this.state.searchInput || product.name === this.state.searchInput || product.brand === this.state.searchInput;
         });
         this.setState({
             filteredResults: filteredArray,
