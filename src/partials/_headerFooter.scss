@@ -1,30 +1,149 @@
 header {
-    width: 100%;
     background: rgb(123, 224, 173);
     background: linear-gradient(90deg, rgba(123, 224, 173, 1) 0%, rgba(174, 229, 216, 1) 35%, rgba(231, 229, 229, 1) 100%);
 
+    nav {
+        height: 15vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     h1 {
-        color: white;
-        margin-left: 5%;
-        letter-spacing: 5%;
-        @include fluid-type (4rem, 10rem, 360px, 1280px);
+        color: $whiteColor;
+        @include fluid-type (3.5rem, 8.5rem, 320px, 1280px);
+    }
+
+    .userDetails {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        button:not(:first-child) {
+            margin-left: 15px;
+        }
+    }
+
+    .mobileUserDetails {
+        display: none;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        min-height: 5vh;
+        background: rgb(123, 224, 173);
+        background: linear-gradient(90deg, rgba(123, 224, 173, 1) 0%, rgba(174, 229, 216, 1) 35%, rgba(231, 229, 229, 1) 100%);
+    }
+
+    button {
+        background: $whiteColor;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 25px;
+        transition: all .3s;
+        @include fluid-type (1.25rem, 1.6rem, 360px, 1280px);
+        letter-spacing: 1px;
+
+        &:focus,
+        &:hover {
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
+        }
+    }
+
+    .toggleMenu {
+        font-size: 2.5rem;
     }
 }
 
 footer {
-    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: 5vh;
     background: rgb(123, 224, 173);
     background: linear-gradient(90deg, rgba(123, 224, 173, 1) 0%, rgba(174, 229, 216, 1) 35%, rgba(231, 229, 229, 1) 100%);
 
     p {
-        color: $blackColor;
-        margin-left: 5%;
-        letter-spacing: 5px;
-        @include fluid-type (1.25rem, 2.25rem, 360px, 1280px);
+        letter-spacing: 1px;
+        @include fluid-type (1.25rem, 1.6rem, 360px, 1280px);
     }
 
     a {
         color: $blackColor;
-        @include fluid-type (1.25rem, 2.25rem, 360px, 1280px);
+        text-decoration: none;
+        
+        &:hover,
+        &:focus {
+            background: linear-gradient(180deg,rgba(255,255,255,0) 60%, $accent1 40%);
+        }
+    }
+}
+
+@media (max-width: 720px) {
+    header {
+        nav {
+            flex-direction: column;
+            justify-content: center;
+            height: 20vh;
+        }
+
+        .userDetails p {
+            margin-top: 15px;
+        }
+    }
+
+    main {
+        min-height: 75vh;
+    }
+
+    .logInButton {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 370px) {
+    header {
+
+        nav {
+            height: 15vh;
+        }
+
+        .userDetails {
+            display: none;
+        }
+
+        .mobileUserDetails {
+            display: block;
+
+            .wrapper {
+                height: 100%;
+                width: 90%;
+            }
+
+            .display {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 5vh;
+            }
+        }
+    }
+
+    main {
+        min-height: 80vh;
+    }
+
+    .logInButton {
+        margin-bottom: 5px;
+    }
+
+    .buttonContainer {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
     }
 }

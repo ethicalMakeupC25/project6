@@ -67,7 +67,7 @@ class Main extends Component {
 
     render() {
         return (
-            <main>
+            <main className="wrapper">
                 <Search veganProducts={this.props.veganProducts} handleSearchInput={this.handleSearchInput} />
                 <FilterResults updaterefinedItems={this.newResults} />
                 <Route path="/products/:productID" render={() => <ResultDetails filteredResults={this.props.filteredResults} />} />
