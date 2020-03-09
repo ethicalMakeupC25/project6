@@ -7,7 +7,7 @@
   h4 {
     text-align: center;
   }
-  fieldset {
+  .filterContainer {
     border: none;
     display: flex;
     flex-direction: row;
@@ -23,6 +23,7 @@
       color: $darkerGray;
       display: flex;
       flex-direction: column;
+      align-items: center;
       input, label{
         margin: 2%;
         transition: all 0.3s ease-in-out;
