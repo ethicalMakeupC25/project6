@@ -3,7 +3,7 @@ import Search from './Search';
 import Results from './Results';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import FilterResults from './FilterResults';
-
+import Sorting from './Sorting'
 class Main extends Component {
     constructor() {
         super();
@@ -12,7 +12,7 @@ class Main extends Component {
             isSearched: false,
             searchInput: '',
             filteredResults: [],
-            originalResults: []
+            originalResults: [],
         }
     }
 
@@ -23,9 +23,9 @@ class Main extends Component {
         }, this.filterResults)
     }
 
-    componentDidMount() {
-        console.log(this.props.veganProducts)
-    }
+    // componentDidMount() {
+    //     console.log(this.props.veganProducts)
+    // }
 
     filterResults = () => {
         const filteredArray = this.props.veganProducts.filter(product => {
@@ -45,7 +45,7 @@ class Main extends Component {
                 return eachProduct.tag_list.forEach((eachTag) => {
                     refinedCategory.forEach((choice) => {
                         if (choice === eachTag) {
-                            if (!filterRefinedArray.includes(eachProduct)){
+                            if (!filterRefinedArray.includes(eachProduct)) {
                                 filterRefinedArray.push(eachProduct)
                             }
                         };
@@ -60,15 +60,22 @@ class Main extends Component {
                 filteredResults: this.state.originalResults
             })
         }
-
     }
 
+    updateSorting = (sortArray) => {
+        this.setState({
+            filteredResults : sortArray
+        })
+    }
 
     render() {
+        console.log(this.state.filteredResults);
+        
         return (
             <main className="wrapper">
                 <Search veganProducts={this.props.veganProducts} handleSearchInput={this.handleSearchInput} />
-                <FilterResults updaterefinedItems={this.newResults} />
+                <FilterResults updaterefinedItems={this.newResults}  />
+                <Sorting filteredResults={this.state.filteredResults} sortUpdate = {this.updateSorting}/>
                 {this.state.isSearched ? <Results filteredResults={this.state.filteredResults} /> : null}
             </main>
         )
