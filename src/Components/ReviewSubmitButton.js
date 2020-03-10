@@ -46,6 +46,7 @@ class ReviewSubmitButton extends Component{
             // this.setState({
             //     userRating: 
             // })
+            console.log("reviewInfo(from button)", reviewInfo);
         }
     });
 
@@ -56,8 +57,7 @@ class ReviewSubmitButton extends Component{
                 type="submit" 
                 onClick={()=>{
                     // dbRef.push({userRating: this.state.currentRating})
-                    }}
-                >
+                    }}>
                 Submit
             </button>
         );
