@@ -26,7 +26,6 @@ const ReviewForm = props => (
             <label 
                 className="visuallyHidden" 
                 htmlFor="userReview"
-                
                 >
                 Please Enter Your Name!
             </label>
@@ -39,6 +38,7 @@ const ReviewForm = props => (
                 onChange={props.handleChangeTxtArea}
                 value={props.userReviewProp}
                 ></textarea>
+
             <section className="radioSection">
             {/* radio input for purchase or won't repurchase. */}
                 <p>Would You Repurchase This Item?</p>
@@ -60,7 +60,8 @@ const ReviewForm = props => (
                             id="No" 
                             value="no"
                             name="reviewForm"
-                            onChange={props.radioChange}
+                            onChange={props.radioChange
+                            }
                             />
                         <label htmlFor="No">No</label>
                     </div>
