@@ -4,7 +4,7 @@ import Results from './Results';
 import Carousel from './Carousel';
 import { Route, Link, Switch, Redirect } from 'react-router-dom';
 import FilterResults from './FilterResults';
-
+import Sorting from './Sorting'
 class Main extends Component {
     constructor() {
         super();
@@ -47,7 +47,7 @@ class Main extends Component {
                 return eachProduct.tag_list.forEach((eachTag) => {
                     refinedCategory.forEach((choice) => {
                         if (choice === eachTag) {
-                            if (!filterRefinedArray.includes(eachProduct)){
+                            if (!filterRefinedArray.includes(eachProduct)) {
                                 filterRefinedArray.push(eachProduct)
                             }
                         };
@@ -65,8 +65,15 @@ class Main extends Component {
         console.log(this.state.originalResults)
     }
 
+    updateSorting = (sortArray) => {
+        this.setState({
+            filteredResults : sortArray
+        })
+    }
 
     render() {
+        console.log(this.state.filteredResults);
+        
         return (
             <main className="wrapper">
                 <Switch>
@@ -101,7 +108,6 @@ class Main extends Component {
                         {/* user reviews goes here */}
                     </Route>
                 </Switch>
-
             </main>
         );
     }

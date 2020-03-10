@@ -35,7 +35,14 @@ class ProductInfo extends Component {
             })}
         </div>
       </div>
-      <Route path="/products/:productID/review" exact render={() => <ReviewParent user={this.props.user} activeID={this.props.activeID} isWriting={this.props.isWriting} toggleReadReview={this.props.toggleReadReview} />} />
+      <Route path="/products/:productID/review" 
+      exact render={() => 
+        <ReviewParent 
+          user={this.props.user} 
+          activeID={this.props.activeID} 
+          isWriting={this.props.isWriting} 
+          toggleReadReview={this.props.toggleReadReview} 
+          />} />
       </Fragment>
     );
   }
