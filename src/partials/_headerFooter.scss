@@ -11,7 +11,7 @@ header {
 
     h1 {
         color: $whiteColor;
-        @include fluid-type (3.5rem, 8.5rem, 320px, 1280px);
+        @include fluid-type (3.5rem, 6rem, 320px, 1280px);
         cursor: url('./../assets/mouse.png'),
         auto;
     }
@@ -20,13 +20,10 @@ header {
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 50%;
 
         p {
             margin-bottom: 10px;
-        }
-
-        button:not(:first-child) {
-            margin-left: 15px;
         }
     }
 
@@ -41,25 +38,38 @@ header {
         background: linear-gradient(90deg, rgba(123, 224, 173, 1) 0%, rgba(174, 229, 216, 1) 35%, rgba(231, 229, 229, 1) 100%);
     }
 
-    button {
+    button,
+    .linkStyle {
         background: $whiteColor;
+        font-family: $bodyFont;
         border: none;
         padding: 10px 15px;
         border-radius: 25px;
         transition: all .3s;
-        @include fluid-type (1.25rem, 1.6rem, 360px, 1280px);
+        @include fluid-type (1rem, 1.6rem, 320px, 1280px);
         letter-spacing: 1px;
-        width: 25%;
-        min-width: 200px;
+        width: calc(100% / 3 - 15px);
+        text-align: center;
 
         &:focus,
         &:hover {
             box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
         }
+
+        &:not(:last-child) {
+            margin-right: 15px;
+        }
     }
 
     .toggleMenu {
         font-size: 2.5rem;
+    }
+
+    .buttonContainer {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+        width: 100%;
     }
 }
 
@@ -87,6 +97,12 @@ footer {
     }
 }
 
+@media (max-width: 860px) {
+    header .userDetails {
+        width: 60%;
+    }
+}
+
 @media (max-width: 720px) {
     header {
         nav {
@@ -95,8 +111,12 @@ footer {
             height: 20vh;
         }
 
-        .userDetails p {
-            margin-top: 15px;
+        .userDetails {
+            width: 90%;
+
+            p {
+                margin-top: 15px;
+            }
         }
     }
 
@@ -109,9 +129,8 @@ footer {
     }
 }
 
-@media (max-width: 370px) {
+@media (max-width: 480px) {
     header {
-
         nav {
             height: 15vh;
         }
@@ -145,9 +164,16 @@ footer {
         margin-bottom: 5px;
     }
 
-    .buttonContainer {
-        display: flex;
-        justify-content: space-between;
+    header .buttonContainer {
         margin: 10px 0;
+
+        button,
+        .linkStyle {
+            width: calc(100% / 3 - 5px);
+
+            &:not(:last-child) {
+                margin-right: 5px;
+            }
+        }
     }
 }

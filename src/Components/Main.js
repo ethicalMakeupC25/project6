@@ -1,23 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Search from './Search';
 import Results from './Results';
-import Coverflow from "react-coverflow";
-// import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Carousel from './Carousel';
+import { Route, Link, Switch, Redirect } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import FilterResults from './FilterResults';
-import Sorting from './Sorting'
+import Sorting from './Sorting';
+import Wishlist from './Wishlist';
+import UserReviews from './UserReviews';
+
+const customHistory = createBrowserHistory();
+
 class Main extends Component {
     constructor() {
         super();
 
         this.state = {
-            isSearched: false,
             searchInput: '',
             filteredResults: [],
             originalResults: [],
             sortBy: {
                 value: 'brand',
                 ascending: true
-            }
+            },
+            isSearched: false
         }
     }
 
@@ -148,6 +154,8 @@ class Main extends Component {
         this.setState({
             filteredResults: sortedArray,
             originalResults: filteredArray
+        }, () => {
+            customHistory.push('/project6/products');
         });
     }
 
@@ -251,6 +259,41 @@ class Main extends Component {
                 />
 
                 </Coverflow>
+                <Switch>
+                    <Route path="/project6/" exact>
+                        {
+                            this.state.isSearched
+                            ?
+                            <Redirect to="/project6/products" />
+                            :
+                            <Fragment>
+                                <Search
+                                    veganProducts={this.props.veganProducts}
+                                    handleSearchInput={this.handleSearchInput}
+                                />
+                                <Carousel veganProducts={this.props.veganProducts}/>
+                            </Fragment>
+                        }
+                    </Route>
+                    <Route path="/project6/products">
+                        <Search
+                            veganProducts={this.props.veganProducts}
+                            handleSearchInput={this.handleSearchInput}
+                        />
+                        <FilterResults updaterefinedItems={this.newResults} />
+                        <Sorting 
+                            filteredResults={this.state.filteredResults}
+                            sortUpdate={this.updateSorting}
+                        />
+                        <Results filteredResults={this.state.filteredResults} />
+                    </Route>
+                    <Route path="/project6/wishlist">
+                        <Wishlist />
+                    </Route>
+                    <Route path="/project6/reviews">
+                        <UserReviews />
+                    </Route>
+                </Switch>
             </main>
         );
     }
