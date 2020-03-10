@@ -16,8 +16,18 @@ class Sorting extends Component {
             if (e.target.value === "brand") {
                 let sortingArray = [...this.props.filteredResults]
                 sortingArray.sort((a, b) => {
-                    let textA = a.brand.toUpperCase();
-                    let textB = b.brand.toUpperCase();
+                    let textA;
+                    if (!a.brand) {
+                        return 1
+                    } else {
+                        textA = a.brand.toUpperCase();
+                    }
+                    let textB;
+                    if (!b.brand) {
+                        return -1
+                    } else {
+                        textB = b.brand.toUpperCase();
+                    }
                     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
                 })
                 this.props.sortUpdate(sortingArray)
@@ -26,7 +36,7 @@ class Sorting extends Component {
                 let sortingArray = [...this.props.filteredResults]
                 sortingArray.sort((a, b) => {
                     let textA = a.rating;
-                    
+
                     let textB = b.rating;
 
                     return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
@@ -37,7 +47,7 @@ class Sorting extends Component {
                 let sortingArray = [...this.props.filteredResults]
                 sortingArray.sort((a, b) => {
                     let textA = a.rating;
-                    
+
                     let textB = b.rating;
 
                     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
@@ -47,7 +57,7 @@ class Sorting extends Component {
             if (e.target.value === "priceH") {
                 let sortingArray = [...this.props.filteredResults]
                 sortingArray.sort((a, b) => {
-                    let textA = parseFloat(a.price) ;
+                    let textA = parseFloat(a.price);
                     let textB = parseFloat(b.price);
                     return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
                 })
@@ -56,7 +66,7 @@ class Sorting extends Component {
             if (e.target.value === "priceL") {
                 let sortingArray = [...this.props.filteredResults]
                 sortingArray.sort((a, b) => {
-                    let textA = parseFloat(a.price) ;
+                    let textA = parseFloat(a.price);
                     let textB = parseFloat(b.price);
                     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
                 })
@@ -67,8 +77,8 @@ class Sorting extends Component {
 
     render() {
         return (
-            <div>
-                <label htmlFor="sorting">Sort By:</label>
+            <div className='sortContainer'>
+                <label htmlFor="sorting">Sort By : </label>
 
                 <select id="sorting" onChange={this.sortingHandle}>
                     <option value="">Choose one</option>

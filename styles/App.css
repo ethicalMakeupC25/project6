@@ -282,6 +282,55 @@ img {
   display: block;
 }
 
+button {
+  border-radius: 25px;
+  width: 100%;
+  height: 5rem;
+  padding: 2%;
+  background: #7be0ad;
+  background: -webkit-gradient(linear, left top, right top, from(#7be0ad), color-stop(35%, #aee5d8), to(#e7e5e5));
+  background: linear-gradient(90deg, #7be0ad 0%, #aee5d8 35%, #e7e5e5 100%);
+  font-size: calc(1.5rem + 0.5 * ((100vw - 360px) / 920));
+  text-align: center;
+}
+
+@media screen and (max-width: 360px) {
+  button {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  button {
+    font-size: 2rem;
+  }
+}
+
+a, button, input, textarea {
+  cursor: url("./../assets/mouse.png"), auto;
+}
+
+.coverflow__coverflow__53z9A {
+  background: #F8F8F8;
+  display: block;
+}
+
+.coverflow__coverflow__53z9A img {
+  cursor: url("./../assets/mouse.png"), auto;
+}
+
+.coverflow__container__1P-xE {
+  display: block;
+  margin: 2%;
+}
+
+@media screen and (min-width: 320px) and (max-width: 600px) {
+  .coverflow__container__1P-xE {
+    position: absolute;
+    left: -9999;
+  }
+}
+
 header {
   background: #7be0ad;
   background: -webkit-gradient(linear, left top, right top, from(#7be0ad), color-stop(35%, #aee5d8), to(#e7e5e5));
@@ -304,6 +353,7 @@ header nav {
 header h1 {
   color: #F8F8F8;
   font-size: calc(3.5rem + 5 * ((100vw - 320px) / 960));
+  cursor: url("./../assets/mouse.png"), auto;
 }
 
 @media screen and (max-width: 320px) {
@@ -360,6 +410,8 @@ header button {
   transition: all .3s;
   font-size: calc(1.25rem + 0.35 * ((100vw - 360px) / 920));
   letter-spacing: 1px;
+  width: 25%;
+  min-width: 200px;
 }
 
 @media screen and (max-width: 360px) {
@@ -491,6 +543,7 @@ footer a:hover, footer a:focus {
 
 .star {
   color: gray;
+  cursor: url("./../assets/mouse.png"), auto;
 }
 
 .userSpan {
@@ -513,8 +566,12 @@ footer a:hover, footer a:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 5%;
+  padding: 5%;
   border-bottom: 3px solid #7BE0AD;
+}
+
+.reviewPanel p {
+  width: 90%;
 }
 
 .reviewDisplay {
@@ -585,32 +642,7 @@ form.reviewForm .radioSection input {
 }
 
 form.reviewForm button {
-  border-radius: 25px;
-  width: 100%;
-  height: 5rem;
   margin-bottom: 5rem;
-  background: #7be0ad;
-  background: -webkit-gradient(linear, left top, right top, from(#7be0ad), color-stop(35%, #aee5d8), to(#e7e5e5));
-  background: linear-gradient(90deg, #7be0ad 0%, #aee5d8 35%, #e7e5e5 100%);
-  font-size: calc(2rem + 1 * ((100vw - 360px) / 920));
-}
-
-@media screen and (max-width: 360px) {
-  form.reviewForm button {
-    font-size: 2rem;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  form.reviewForm button {
-    font-size: 3rem;
-  }
-}
-
-.readReview {
-  height: 500px;
-  background: #dbdada;
-  border-top: 3px solid #7BE0AD;
 }
 
 .searchBar form {
@@ -742,6 +774,24 @@ form.reviewForm button {
   padding: 5px 15px;
 }
 
+.results .add {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  width: auto;
+  height: auto;
+  font-size: 2rem;
+  color: rgba(0, 0, 0, 0.6);
+  -webkit-transition: color ease-in 0.2s;
+  transition: color ease-in 0.2s;
+}
+
+.results .add:hover, .results .add:focus {
+  color: #000;
+}
+
 .productImage {
   -webkit-box-shadow: 20px 15px 0px 0px #E7E5E5;
           box-shadow: 20px 15px 0px 0px #E7E5E5;
@@ -749,7 +799,6 @@ form.reviewForm button {
   height: 100%;
   position: relative;
   max-width: 25rem;
-  margin: auto;
 }
 
 .productImage img {
@@ -825,17 +874,29 @@ form.reviewForm button {
 
 .mainGrid {
   grid-column: 1 / -1;
-  max-height: 300px;
+}
+
+.scrollOn {
   overflow-y: auto;
+  max-height: 300px;
 }
 
 .reviewButtons {
+  grid-column: -3/span 2;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+}
+
+.reviewButtons button {
+  border: none;
+  background: #AEE5D8;
+  padding: 10px 0;
+  margin: 0 0.5rem;
+  text-transform: capitalize;
 }
 
 .hide {
@@ -855,6 +916,9 @@ form.reviewForm button {
     -ms-grid-column: 2;
         grid-column-start: 2;
     min-width: 270px;
+  }
+  .productImage {
+    margin: auto;
   }
   .selected .productInfo {
     grid-column: 1 / -1;
@@ -926,4 +990,28 @@ form.reviewForm button {
 .filterOptions .filterContainer div input:checked, .filterOptions .filterContainer div label:checked {
   -webkit-box-shadow: 4px 4px 4px #7BE0AD;
           box-shadow: 4px 4px 4px #7BE0AD;
+}
+
+.sortContainer {
+  text-align: center;
+  margin: 5% auto;
+}
+
+.sortContainer label {
+  font-family: "Montserrat";
+  color: #6b6262;
+}
+
+.sortContainer select {
+  border-radius: 4px;
+  color: #6b6262;
+  border: 1px solid #7BE0AD;
+}
+
+.sortContainer select option {
+  font-size: calc(1rem + 0.5vw);
+}
+
+.sortContainer select optgroup {
+  color: #000;
 }
