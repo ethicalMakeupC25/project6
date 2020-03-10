@@ -46,7 +46,7 @@ header {
         padding: 10px 15px;
         border-radius: 25px;
         transition: all .3s;
-        @include fluid-type (1.25rem, 1.6rem, 360px, 1280px);
+        @include fluid-type (1rem, 1.6rem, 320px, 1280px);
         letter-spacing: 1px;
         width: calc(100% / 3 - 15px);
         text-align: center;
@@ -111,8 +111,12 @@ footer {
             height: 20vh;
         }
 
-        .userDetails p {
-            margin-top: 15px;
+        .userDetails {
+            width: 90%;
+
+            p {
+                margin-top: 15px;
+            }
         }
     }
 
@@ -125,9 +129,8 @@ footer {
     }
 }
 
-@media (max-width: 370px) {
+@media (max-width: 480px) {
     header {
-
         nav {
             height: 15vh;
         }
@@ -161,7 +164,16 @@ footer {
         margin-bottom: 5px;
     }
 
-    .buttonContainer {
+    header .buttonContainer {
         margin: 10px 0;
+
+        button,
+        .linkStyle {
+            width: calc(100% / 3 - 5px);
+
+            &:not(:last-child) {
+                margin-right: 5px;
+            }
+        }
     }
 }
