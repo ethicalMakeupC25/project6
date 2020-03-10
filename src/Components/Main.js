@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Search from './Search';
 import Results from './Results';
 import Carousel from './Carousel';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Link, Switch, Redirect } from 'react-router-dom';
 import FilterResults from './FilterResults';
 
 class Main extends Component {
@@ -12,13 +12,15 @@ class Main extends Component {
         this.state = {
             searchInput: '',
             filteredResults: [],
-            originalResults: []
+            originalResults: [],
+            isSearched: false
         }
     }
 
     handleSearchInput = (input) => {
         this.setState({
             searchInput: input,
+            isSearched: true
         }, this.filterResults)
     }
 
@@ -68,12 +70,20 @@ class Main extends Component {
         return (
             <main className="wrapper">
                 <Switch>
-                    <Route path="/">
-                        <Search
-                            veganProducts={this.props.veganProducts}
-                            handleSearchInput={this.handleSearchInput}
-                        />
-                        <Carousel veganProducts={this.props.veganProducts}/>
+                    <Route path="/" exact>
+                        {
+                            this.state.isSearched
+                            ?
+                            <Redirect to="/products" />
+                            :
+                            <Fragment>
+                                <Search
+                                    veganProducts={this.props.veganProducts}
+                                    handleSearchInput={this.handleSearchInput}
+                                />
+                                <Carousel veganProducts={this.props.veganProducts}/>
+                            </Fragment>
+                        }
                     </Route>
                     <Route path="/products">
                         <Search
