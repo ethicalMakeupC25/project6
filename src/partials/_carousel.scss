@@ -1,0 +1,18 @@
+.coverflow__coverflow__53z9A {
+    background: $whiteColor;
+    display: block;
+}
+
+.coverflow__container__1P-xE {
+    display: block;
+}
+
+@media screen and (min-width: 320px) and (max-width:600px) {
+    .coverflow__coverflow__53z9A {
+        display: none;
+    }
+
+    .coverflow__container__1P-xE {
+        display: none;
+    }
+}
