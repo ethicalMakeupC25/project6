@@ -66,9 +66,19 @@ class Header extends Component {
                                             this.state.isUp
                                                 ?
                                                 <div className="buttonContainer">
-                                                    <button>wishlist</button>
-                                                    <button>your reviews</button>
-                                                    <button onClick={this.props.logout}>log out</button>
+                                                    <NavLink
+                                                        exact
+                                                        to="/project6/"
+                                                        className="linkStyle"
+                                                        activeStyle={{display: "none"}}
+                                                        isActive={(_, { pathname }) => {
+                                                            const regex = /\/project6\/products.*$/gmi;
+                                                            return pathname === '/project6' || pathname === '/project6/' ? true : regex.test(pathname);
+                                                        }}
+                                                    >search</NavLink>
+                                                    <NavLink to="/project6/wishlist" className="linkStyle" activeStyle={{display: "none"}}>wishlist</NavLink>
+                                                    <NavLink to="/project6/reviews" className="linkStyle" activeStyle={{display: "none"}}>your reviews</NavLink>
+                                                    <button className="navButton" onClick={this.props.logout}>log out</button>
                                                 </div>
                                                 :
                                                 null
