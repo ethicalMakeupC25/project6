@@ -1,0 +1,17 @@
+.coverflow__coverflow__53z9A {
+    background: $whiteColor;
+    display: block;
+}
+
+.coverflow__container__1P-xE {
+    display: block;
+    margin: 2%;
+}
+
+@media screen and (min-width: 320px) and (max-width:600px) {
+
+    .coverflow__container__1P-xE {
+        position: absolute;
+        left: -9999;
+    }
+}

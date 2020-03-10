@@ -3,6 +3,7 @@ import React, { Component, Fragment } from "react";
 import ReviewForm from "./ReviewForm";
 import firebase from "./../firebase";
 import ReviewReadPanel from "./ReviewReadPanel";
+import Swal from "sweetalert2";
 
 
 class ReviewParent extends Component {
@@ -71,26 +72,44 @@ class ReviewParent extends Component {
 
     // 🧠 on submit, push user input into firebase
     handleFormSubmit = e => {
-        e.preventDefault();
-        const dbRef = firebase.database().ref(`products/${this.props.activeID}/`);
-        const dbRefUser = firebase.database().ref(`users/${this.state.uID}/`);
-        dbRef.push({
-            userName: this.state.userName,
-            userReview: this.state.userReview,
-            userRepurchase: this.state.userRepurchase,
-            userID: "00000",
-            uniqueKey: this.state.uniqueKey
-        })
-        // console.log('dbRef',dbRef));
+        e.preventDefault();    
+        if (!this.state.userName ||
+            !this.state.userReview ||
+            !this.state.userRepurchase) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text:
+                        "You've missed something! Please fill everything in the form!"
+                });
+            } else {
+                const dbRef = firebase.database().ref(`products/${this.props.activeID}/`);
+                const dbRefUser = firebase.database().ref(`users/${this.state.uID}/`);
+                dbRef.push({
+                    userName: this.state.userName,
+                    userReview: this.state.userReview,
+                    userRepurchase: this.state.userRepurchase,
+                    userID: "00000",
+                    uniqueKey: this.state.uniqueKey
+                })
+                dbRefUser.push({
+                    userName: this.state.userName,
+                    userReview: this.state.userReview,
+                    userRepurchase: this.state.userRepurchase,
+                    userID: "00000",
+                    uniqueKey: this.state.uniqueKey
+                })
+                // console.log('dbRef',dbRef));
+        
+                // return input to empty.
+                // eslint-disable-next-line
+                this.setState({
+                    userName: "",
+                    userReview: "",
+                    userRepurchase: ''
+                })
+            }
 
-        // return input to empty.
-        // eslint-disable-next-line
-        this.setState({
-            userName: "",
-            userReview: "",
-            userRepurchase: ''
-        }
-        )
     };
 
     setRead = () => {
