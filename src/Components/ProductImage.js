@@ -29,7 +29,6 @@ class ProductImage extends Component {
           <img onClick={(e) => this.props.setActiveID(e, this.props.product.id)} src={this.props.product.api_featured_image} alt={this.props.product.name} />
         </Link>
         <ProductText product={this.props.product} />
-        {/* <Link className="reviewLink" onClick={(e) => this.props.setActiveID(e, this.props.product.id)} to={`/products/${this.props.product.id}/review`}>Reviews</Link> */}
         <ReviewLink activateOnlyWhenExact={true} setActiveID={this.props.setActiveID} product={this.props.product} to={`/products/${this.props.product.id}/review`} label="Reviews"/>
       </div>
     );
