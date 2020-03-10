@@ -77,9 +77,9 @@ class Main extends Component {
         return (
             <main className="wrapper">
                 <Search veganProducts={this.props.veganProducts} handleSearchInput={this.handleSearchInput} />
-                <Sorting filteredResults={this.state.filteredResults} sortUpdate = {this.updateSorting}/>
                 {this.state.isSearched ? <Results filteredResults={this.state.filteredResults} /> : null}
                 <FilterResults updaterefinedItems={this.newResults} />
+                <Sorting filteredResults={this.state.filteredResults} sortUpdate = {this.updateSorting}/>
                 {this.state.isSearched ? (
                 <Results filteredResults={this.state.filteredResults} />
                 ) : null}
