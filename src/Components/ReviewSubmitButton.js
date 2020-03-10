@@ -6,9 +6,10 @@ class ReviewSubmitButton extends Component{
     constructor({ratingProps}){
         super({ratingProps});
         this.state = {
-            currentRating: ratingProps,
+            userRating: ratingProps,
             readReview: true
         }
+        console.log(ratingProps)
     }
 
     componentDidMount() {
@@ -26,7 +27,7 @@ class ReviewSubmitButton extends Component{
     
     
     render() {
-        const dbRef = firebase.database().ref()
+        const dbRef = firebase.database().ref(`${this.state.uID}`);
         dbRef.on("value", response => {
         const dataFromDb = response.val();
         // see the information and parse the way we want it.
@@ -40,21 +41,23 @@ class ReviewSubmitButton extends Component{
             review: dataFromDb[key]
             };
             newState.push(reviewInfo);
+            console.log("reviewInfo(from button)", reviewInfo);
 
             // this.setState({
-            //     currentRating:
+            //     userRating: 
             // })
-            // console.log("reviewInfo(from button)", reviewInfo);
         }
-        // dbRef = firebase.database().ref().key(`${reviewInfo.key}`);
-        });
+    });
 
-            
-        return (
-            <button 
+    
+    return (
+        <button 
                 className="submitButton" 
                 type="submit" 
-                onClick={()=>{dbRef.push({userRating: this.state.currentRating})}}>
+                onClick={()=>{
+                    dbRef.push({userRating: this.state.currentRating})
+                    }}
+                >
                 Submit
             </button>
         );

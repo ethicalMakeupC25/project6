@@ -12,6 +12,8 @@ header {
     h1 {
         color: $whiteColor;
         @include fluid-type (3.5rem, 8.5rem, 320px, 1280px);
+        cursor: url('./../assets/mouse.png'),
+        auto;
     }
 
     .userDetails {
@@ -47,6 +49,8 @@ header {
         transition: all .3s;
         @include fluid-type (1.25rem, 1.6rem, 360px, 1280px);
         letter-spacing: 1px;
+        width: 25%;
+        min-width: 200px;
 
         &:focus,
         &:hover {
