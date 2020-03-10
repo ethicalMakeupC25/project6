@@ -1,6 +1,11 @@
 .coverflow__coverflow__53z9A {
     background: $whiteColor;
     display: block;
+
+    img {
+        cursor: url('./../assets/mouse.png'),
+        auto;
+    }
 }
 
 .coverflow__container__1P-xE {
