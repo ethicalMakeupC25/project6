@@ -35,7 +35,7 @@ class ProductInfo extends Component {
             })}
         </div>
       </div>
-      <Route path="/products/:productID/review" 
+      <Route path="/project6/products/:productID/review" 
       exact render={() => 
         <ReviewParent 
           user={this.props.user} 
