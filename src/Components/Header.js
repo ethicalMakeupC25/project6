@@ -17,11 +17,18 @@ class Header extends Component {
         })
     }
 
+    
+    
     render() {
+        const refreshPage = () => {
+            window.location.reload(false);
+        }
         return (
             <header>
                 <nav className="wrapper">
-                    <h1>Ethical Makeup</h1>
+                    <h1
+                        onClick={refreshPage}
+                    >Ethical Makeup</h1>
                     {
                         //null is falsy .: if props.user is null, show login
                         //if props.user is truthy, show additional features and logout

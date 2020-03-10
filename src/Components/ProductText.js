@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 class ProductText extends Component {
   constructor() {
     super();
 
     this.state = {}
+  }
+
+  addToWishlist = () => {
+    console.log(`adding ${this.props.product.name} ID:${this.props.product.id} to the wishlist`);
   }
 
   render() {
@@ -18,6 +24,7 @@ class ProductText extends Component {
           }</p>
           <p>Rating: {!this.props.product.rating ? "Not Rated" : `${this.props.product.rating}/5`}</p>
         </div>
+        <button className="add" onClick={this.addToWishlist}><FontAwesomeIcon icon={faPlusCircle} /></button>
       </div>
     );
   }

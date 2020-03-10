@@ -20,6 +20,26 @@
 
     padding: 5px 15px;
   }
+
+  .add {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    background: none;
+    border: none;
+    width: auto;
+    height: auto;
+
+    font-size: 2rem;
+    color: rgba($blackColor, 0.6);
+
+    transition: color ease-in 0.2s;
+
+    &:hover, &:focus {
+      color: $blackColor;
+    }
+  }
 }
 
 .productImage {
@@ -28,7 +48,6 @@
   height: 100%;
   position: relative;
   max-width: 25rem;
-  margin: auto;
 
   img {
     display: block;
@@ -100,13 +119,27 @@
 
 .mainGrid {
   grid-column: 1 / -1;
-  max-height: 300px;
+}
+
+.scrollOn {
   overflow-y: auto;
+  max-height: 300px;
 }
 
 .reviewButtons {
+  grid-column: -3/span 2;
   display: flex;
   justify-content: flex-end;
+
+  button {
+    border: none;
+    background: $accent2;
+
+    padding: 10px 0;
+    margin: 0 0.5rem;
+
+    text-transform: capitalize;
+  }
 }
 
 .hide {
@@ -125,6 +158,10 @@
       grid-column-start: 2;
       min-width: 270px;
     }
+  }
+
+  .productImage {
+    margin: auto;
   }
 
   .selected .productInfo {

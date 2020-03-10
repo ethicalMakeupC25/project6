@@ -33,7 +33,7 @@ class App extends Component {
     //api call for data, stored in state veganArray
     //state isLoading set to false to unmount preloader and mount webpage components
     axios({
-      url: 'http://makeup-api.herokuapp.com/api/v1/products.json',
+      url: 'https://makeup-api.herokuapp.com/api/v1/products.json',
       method: 'GET',
       responseType: 'json',
       params: {

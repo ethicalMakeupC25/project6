@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Search from './Search';
 import Results from './Results';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Coverflow from "react-coverflow";
+// import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import FilterResults from './FilterResults';
 import Sorting from './Sorting'
 class Main extends Component {
@@ -23,9 +24,10 @@ class Main extends Component {
         }, this.filterResults)
     }
 
-    // componentDidMount() {
-    //     console.log(this.props.veganProducts)
-    // }
+    componentDidMount() {
+        console.log('arrayWithProducts', this.props.veganProducts)
+        console.log('original',this.state.originalResults)
+    }
 
     filterResults = () => {
         const filteredArray = this.props.veganProducts.filter(product => {
@@ -60,6 +62,7 @@ class Main extends Component {
                 filteredResults: this.state.originalResults
             })
         }
+        console.log(this.state.originalResults)
     }
 
     updateSorting = (sortArray) => {
@@ -77,8 +80,69 @@ class Main extends Component {
                 <FilterResults updaterefinedItems={this.newResults}  />
                 <Sorting filteredResults={this.state.filteredResults} sortUpdate = {this.updateSorting}/>
                 {this.state.isSearched ? <Results filteredResults={this.state.filteredResults} /> : null}
+                <Search
+                veganProducts={this.props.veganProducts}
+                handleSearchInput={this.handleSearchInput}
+                />
+                <FilterResults updaterefinedItems={this.newResults} />
+                {this.state.isSearched ? (
+                <Results filteredResults={this.state.filteredResults} />
+                ) : null}
+
+                <Coverflow
+                width="960"
+                height="450"
+                displayQuantityOfSide={2}
+                navigation={false}
+                enableScroll={true}
+                clickable={true}
+                active={0}
+                >
+                <div
+                    onClick={() => {}}
+                    onKeyDown={() => {}}
+                    role="menuitem"
+                    tabIndex="0"
+                >
+                    {/* suggest, forEach loop to render each image in a component that holds the below image tags and their attributes. */}
+                    <img
+                    src={this.props.veganProducts.image_link}
+                    alt={this.props.veganProducts.name}
+                    style={{
+                        display: "block",
+                        width: "100%"
+                    }}
+                    />
+                </div>
+                <img
+                    src="https://s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/989/original/open-uri20171224-4-1gh72x0?1514082779"
+                    alt="title or description"
+                    data-action="http://andyyou.github.io/react-coverflow/"
+                />
+                <img
+                    src="https://s3.amazonaws.com/donovanbailey/products/api_featured_images/000/001/048/original/open-uri20180708-4-13okqci?1531093614"
+                    alt="title or description"
+                    data-action="http://andyyou.github.io/react-coverflow/"
+                />
+                <img
+                    src="https://s3.amazonaws.com/donovanbailey/products/api_featured_images/000/001/042/original/open-uri20180706-4-1e74943?1530916234"
+                    alt="title or description"
+                    data-action="http://andyyou.github.io/react-coverflow/"
+                />
+                <img
+                    src="https://s3.amazonaws.com/donovanbailey/products/api_featured_images/000/001/035/original/open-uri20180630-4-n6wb0y?1530390383"
+                    alt="title or description"
+                    data-action="http://andyyou.github.io/react-coverflow/"
+                />
+                <img
+                    src="https://s3.amazonaws.com/donovanbailey/products/api_featured_images/000/001/021/original/open-uri20180630-4-10sgmvz?1530390373"
+                    alt="title or description"
+                    data-action="http://andyyou.github.io/react-coverflow/"
+                />
+
+                </Coverflow>
             </main>
-        )
+        );
     }
 }
 
