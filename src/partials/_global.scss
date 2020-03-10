@@ -18,6 +18,11 @@ body {
     background: $whiteColor;
 }
 
+a {
+    color: $blackColor;
+    text-decoration: none;
+}
+
 main {
     min-height: 80vh;
 }
@@ -42,7 +47,7 @@ img {
     display: block;
 }
 
-button {
+button:not(.navButton) {
         border-radius: 25px;
         width: 100%;
         height: 5rem;
@@ -56,4 +61,8 @@ button {
 a, button, input, textarea {
     cursor: url('./../assets/mouse.png'),
     auto;
+}
+
+.hide {
+    display: none;
 }

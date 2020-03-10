@@ -3,8 +3,14 @@ import Search from './Search';
 import Results from './Results';
 import Carousel from './Carousel';
 import { Route, Link, Switch, Redirect } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import FilterResults from './FilterResults';
-import Sorting from './Sorting'
+import Sorting from './Sorting';
+import Wishlist from './Wishlist';
+import UserReviews from './UserReviews';
+
+const customHistory = createBrowserHistory();
+
 class Main extends Component {
     constructor() {
         super();
@@ -36,6 +42,8 @@ class Main extends Component {
         this.setState({
             filteredResults: filteredArray,
             originalResults: filteredArray
+        }, () => {
+            customHistory.push('/project6/products');
         });
     }
 
@@ -67,7 +75,7 @@ class Main extends Component {
 
     updateSorting = (sortArray) => {
         this.setState({
-            filteredResults : sortArray
+            filteredResults: sortArray
         })
     }
 
@@ -98,14 +106,17 @@ class Main extends Component {
                             handleSearchInput={this.handleSearchInput}
                         />
                         <FilterResults updaterefinedItems={this.newResults} />
-                        <Sorting filteredResults={this.state.filteredResults} sortUpdate = {this.updateSorting}/>
+                        <Sorting 
+                            filteredResults={this.state.filteredResults}
+                            sortUpdate={this.updateSorting}
+                        />
                         <Results filteredResults={this.state.filteredResults} />
                     </Route>
                     <Route path="/project6/wishlist">
-                        {/* wishlist component goes here */}
+                        <Wishlist />
                     </Route>
-                    <Route path="/reviews">
-                        {/* user reviews goes here */}
+                    <Route path="/project6/reviews">
+                        <UserReviews />
                     </Route>
                 </Switch>
             </main>
