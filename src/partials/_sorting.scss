@@ -1,0 +1,19 @@
+.sortContainer {
+  text-align: center;
+  margin: 5% auto;
+  label {
+    font-family: $bodyFont;
+    color: $darkerGray;
+  }
+  select {
+    border-radius: 4px;
+    color: $darkerGray;
+    border: 1px solid $accent1;
+    option{
+        font-size: calc(1rem + 0.5vw);
+    }
+    optgroup {
+      color: $blackColor;
+    }
+  }
+}

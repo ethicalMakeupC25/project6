@@ -77,8 +77,8 @@ class Sorting extends Component {
 
     render() {
         return (
-            <div>
-                <label htmlFor="sorting">Sort By:</label>
+            <div className='sortContainer'>
+                <label htmlFor="sorting">Sort By : </label>
 
                 <select id="sorting" onChange={this.sortingHandle}>
                     <option value="">Choose one</option>
