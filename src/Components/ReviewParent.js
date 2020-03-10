@@ -13,6 +13,7 @@ class ReviewParent extends Component {
         reviews: [],
         userImg: "", //need to figure out how to keep an image url in the database. and find image storage
         userName: "",
+        userRating: 0,
         userReview: "",
         userID: "",
         userRepurchase: '',
@@ -87,6 +88,7 @@ class ReviewParent extends Component {
                 const dbRefUser = firebase.database().ref(`users/${this.state.uID}/`);
                 dbRef.push({
                     userName: this.state.userName,
+                    userRating:this.state.userRating,
                     userReview: this.state.userReview,
                     userRepurchase: this.state.userRepurchase,
                     userID: "00000",
@@ -94,6 +96,7 @@ class ReviewParent extends Component {
                 })
                 dbRefUser.push({
                     userName: this.state.userName,
+                    userRating: this.state.userRating,
                     userReview: this.state.userReview,
                     userRepurchase: this.state.userRepurchase,
                     userID: "00000",
@@ -107,7 +110,9 @@ class ReviewParent extends Component {
                     userName: "",
                     userReview: "",
                     userRepurchase: ''
-                })
+                }, 
+                this.setRead
+                )
             }
 
     };
@@ -123,6 +128,12 @@ class ReviewParent extends Component {
             this.props.toggleReadReview();
         }
     }
+
+    getStarRating = (currentRating) => {
+        this.setState({
+            userRating: currentRating
+            })
+        } 
     
     render(){
         return (
@@ -142,17 +153,20 @@ class ReviewParent extends Component {
                             :
                             <p>Oops, no reviews exist of this product yet! Why not leave your own review if you've tried this product before?</p>
                         }
-                    </div> : 
+                </div> : 
                     <ReviewForm
                         handleFormSubmit={this.handleFormSubmit}
                         handleChangeTxtArea={this.handleChangeTxtArea}
                         handleChange={this.handleChange}
                         radioChange={this.radioChange}
-                        userInputProp={this.state.userInput}
+                        userNameProp={this.state.userName}
                         userReviewProp={this.state.userReview}
                         userStarProp={this.onStarClick}
+                        userRatingProp={this.userRating}
+                        starRatingFunc = {this.getStarRating}
                     />
-                    }
+                }
+                {console.log('this.state.userRating', this.state.userRating)}
                 </div>
             </Fragment>
         );
