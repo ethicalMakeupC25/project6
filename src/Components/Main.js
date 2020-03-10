@@ -77,11 +77,11 @@ class Main extends Component {
         return (
             <main className="wrapper">
                 <Switch>
-                    <Route path="/" exact>
+                    <Route path="/project6/" exact>
                         {
                             this.state.isSearched
                             ?
-                            <Redirect to="/products" />
+                            <Redirect to="/project6/products" />
                             :
                             <Fragment>
                                 <Search
@@ -92,16 +92,16 @@ class Main extends Component {
                             </Fragment>
                         }
                     </Route>
-                    <Route path="/products">
+                    <Route path="/project6/products">
                         <Search
                             veganProducts={this.props.veganProducts}
                             handleSearchInput={this.handleSearchInput}
                         />
                         <FilterResults updaterefinedItems={this.newResults} />
-                        {/* sorting component here */}
+                        <Sorting filteredResults={this.state.filteredResults} sortUpdate = {this.updateSorting}/>
                         <Results filteredResults={this.state.filteredResults} />
                     </Route>
-                    <Route path="/wishlist">
+                    <Route path="/project6/wishlist">
                         {/* wishlist component goes here */}
                     </Route>
                     <Route path="/reviews">
