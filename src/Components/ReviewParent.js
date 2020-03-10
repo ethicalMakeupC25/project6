@@ -81,6 +81,13 @@ class ReviewParent extends Component {
             userID: "00000",
             uniqueKey: this.state.uniqueKey
         })
+        dbRefUser.push({
+            userName: this.state.userName,
+            userReview: this.state.userReview,
+            userRepurchase: this.state.userRepurchase,
+            userID: "00000",
+            uniqueKey: this.state.uniqueKey
+        })
         // console.log('dbRef',dbRef));
 
         // return input to empty.
