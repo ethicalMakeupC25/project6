@@ -56,7 +56,7 @@ class ReviewSubmitButton extends Component{
                 className="submitButton" 
                 type="submit" 
                 onClick={()=>{
-                    dbRef.push({userRating: this.state.currentRating})
+                    // dbRef.push({userRating: this.state.currentRating})
                     }}>
                 Submit
             </button>
