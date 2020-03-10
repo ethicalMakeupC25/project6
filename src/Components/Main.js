@@ -4,7 +4,7 @@ import Results from './Results';
 import Coverflow from "react-coverflow";
 // import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import FilterResults from './FilterResults';
-
+import Sorting from './Sorting'
 class Main extends Component {
     constructor() {
         super();
@@ -13,7 +13,7 @@ class Main extends Component {
             isSearched: false,
             searchInput: '',
             filteredResults: [],
-            originalResults: []
+            originalResults: [],
         }
     }
 
@@ -47,7 +47,7 @@ class Main extends Component {
                 return eachProduct.tag_list.forEach((eachTag) => {
                     refinedCategory.forEach((choice) => {
                         if (choice === eachTag) {
-                            if (!filterRefinedArray.includes(eachProduct)){
+                            if (!filterRefinedArray.includes(eachProduct)) {
                                 filterRefinedArray.push(eachProduct)
                             }
                         };
@@ -65,15 +65,21 @@ class Main extends Component {
         console.log(this.state.originalResults)
     }
 
+    updateSorting = (sortArray) => {
+        this.setState({
+            filteredResults : sortArray
+        })
+    }
 
     render() {
+        console.log(this.state.filteredResults);
+        
         return (
             <main className="wrapper">
-                <Search
-                veganProducts={this.props.veganProducts}
-                handleSearchInput={this.handleSearchInput}
-                />
+                <Search veganProducts={this.props.veganProducts} handleSearchInput={this.handleSearchInput} />
+                {this.state.isSearched ? <Results filteredResults={this.state.filteredResults} /> : null}
                 <FilterResults updaterefinedItems={this.newResults} />
+                <Sorting filteredResults={this.state.filteredResults} sortUpdate = {this.updateSorting}/>
                 {this.state.isSearched ? (
                 <Results filteredResults={this.state.filteredResults} />
                 ) : null}
