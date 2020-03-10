@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReviewSubmitButton from './ReviewSubmitButton';
 
 
 // star rating component from https://scotch.io/tutorials/build-a-star-rating-component-for-react
@@ -14,7 +13,6 @@ class StarRating extends Component {
 
     componentDidMount() {
         this.setRating();
-
     }
 
     hoverHandler = ev => {
@@ -37,21 +35,18 @@ class StarRating extends Component {
         let rating = ev.target.dataset.value;
         this.setState({ 
             currentRating: rating 
+        }, () => {
+            this.props.starRatingFuncProp(this.state.currentRating)
         }); // set state so the rating stays highlighted
         if (this.props.onClick) {
         this.props.onClick(rating); // emit the event up to the parent
-        // const dbRef = firebase.database().ref();
-        // dbRef.push.child().setValue({
-        //     userRating: this.state.currentRating,
-        // })
-        }
-
-        console.log(rating)
-        // console.log('dbRef2',dbRef));
-    };
+        };
+    }
     
+
     render() {
         console.log("userRating", this.state.currentRating);
+
         return (
         <div
             className="rating"
@@ -73,7 +68,7 @@ class StarRating extends Component {
                 </span>
             );
             })}
-            <ReviewSubmitButton ratingProps={this.state.currentRating} />
+            
         </div>
         );
     }
