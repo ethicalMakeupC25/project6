@@ -22,7 +22,13 @@ class Results extends Component {
       <section className="results">
         {this.props.filteredResults.map(product => {
           return (
-            <ResultItem key={product.id} setActiveID={this.setActiveID} activeID={this.state.activeID} product={product} user={this.props.user}/>
+            <ResultItem 
+              key={product.id} 
+              setActiveID={this.setActiveID} 
+              activeID={this.state.activeID} 
+              product={product} 
+              user={this.props.user}
+              userCheck={this.props.userCheckProps}/>
           );
         })}
       </section>

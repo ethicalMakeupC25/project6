@@ -81,22 +81,23 @@ class App extends Component {
           {/* helmet allows for injected title, meta tags */}
           <Helmet />
           {/* determine component view based on isLoading state */}
-          {
-            this.state.isLoading
-              ?
-              <Preloader />
-              :
-              <div className="outerWrapper">
-                <Header
-                  login={this.login}
-                  logout={this.logout}
-                  user={auth.currentUser} />
-                <Main
-                  veganProducts={this.state.veganArray}
-                  user={auth.currentUser} />
-                <Footer />
-              </div>
-          }
+          {this.state.isLoading ? (
+            <Preloader />
+          ) : (
+            <div className="outerWrapper">
+              <Header
+                login={this.login}
+                logout={this.logout}
+                user={auth.currentUser}
+              />
+              <Main
+                veganProducts={this.state.veganArray}
+                user={auth.currentUser}
+                userCheck={auth.onAuthStateChanged}
+              />
+              <Footer />
+            </div>
+          )}
         </Fragment>
       </Router>
     );

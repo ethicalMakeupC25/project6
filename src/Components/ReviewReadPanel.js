@@ -2,31 +2,34 @@
 import React, { Fragment } from "react";
 
 const ReviewReadPanel = ({review}) => {
+    console.log(review)
+    // console.log(this.props.user.photoURL)
     return (
-        <div className="reviewPanel" key={review.uniqueKey}>
+        <div className="reviewPanel">
+
             <div className="userDetails">
-                <span>Date of Review:{review.reviewDate}</span>
+                <span>Review Date: {review.review.reviewDate}</span>
                 <div className="userImg">
-                    <img src={review.userImg} alt={review.userName}/>
+                    <img src={review.review.userImg} alt={review.review.userName}/>
                 </div>
             </div>
 
             <div className="review">
                 <p>
-                <span className="userSpan">{review.userName}</span>
-                {review.userReview}
+                <span className="userSpan">{review.review.userName}</span>
+                {review.review.userReview}
                 <span className="userSpan">Would you buy this again:</span>
-                {review.userRepurchase}
+                {review.review.userRepurchase}
                 <span className="userSpan">User Rated this product: </span>
                 {
                     // error handling for user rating.
-                    review.userRating ?
+                    review.review.userRating ?
                     <Fragment>
-                        {review.userRating}/5
+                        {review.review.userRating}/5
                     </Fragment>
                     :
                     <Fragment>
-                        <span>This product has no user provided ratings yet! Would you like to rate this product?</span>
+                        User did not provide rating out of 5.
                     </Fragment>
                 }
                 </p>
