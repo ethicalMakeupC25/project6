@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 
 const ReviewReadPanel = ({ review }) => {
     return (
-        <div className="reviewPanel" key={review.key}>
+        <div className="reviewPanel">
             <p>
             <span className="userSpan">{review.review.userName}</span>
             {review.review.userReview}
@@ -18,7 +18,7 @@ const ReviewReadPanel = ({ review }) => {
                 </Fragment>
                 :
                 <Fragment>
-                    <p>User did not provide rating out of 5.</p>
+                    User did not provide rating out of 5.
                 </Fragment>
             }
             </p>

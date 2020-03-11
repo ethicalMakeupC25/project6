@@ -9,16 +9,16 @@ class ReviewParent extends Component {
         super();
         //setting initial state
         this.state = {
-        //empty reviews array to take in database info
-        reviews: [],
-        //handlers for user review form
-        userName: "",
-        userRating: 0,
-        userReview: "",
-        userRepurchase: "",
-        //for assigning userID on mount
-        userID: "",
-        isReviewing: false
+            //empty reviews array to take in database info
+            reviews: [],
+            //handlers for user review form
+            userName: "",
+            userRating: 0,
+            userReview: "",
+            userRepurchase: "",
+            //for assigning userID on mount
+            userID: "",
+            isReviewing: false
         };
     }
 
@@ -40,6 +40,7 @@ class ReviewParent extends Component {
         dbRef.on("value", response => {
             const dataFromDb = response.val();
             const newState = [];
+            //loop through dataFromDb and push reviews into array as well as the matching key to be used for React DOM
             for (let key in dataFromDb) {
                 newState.push({ review: dataFromDb[key], key })
             }
@@ -47,7 +48,7 @@ class ReviewParent extends Component {
             // call this.setState to update the component state using the local array newState.
             this.setState({
                     reviews: newState
-            }, () => {console.log(this.state.reviews)});
+            });
         })
     }
 
@@ -84,7 +85,7 @@ class ReviewParent extends Component {
                 });
             } else {
                 const dbRef = firebase.database().ref(`products/${this.props.activeID}/`);
-                const dbRefUser = firebase.database().ref(`users/${this.state.uID}/reviews/`);
+                const dbRefUser = firebase.database().ref(`users/${this.props.user.uid}/reviews/`);
                 //double push to save review to products and to users
                 //firebase database is structured to allow ease of referencing information for 3 different pulls: 1. all reviews by product 2. all reviews by user and 3. all wishlist items by user
                 dbRef.push({
@@ -95,7 +96,7 @@ class ReviewParent extends Component {
                     userID: this.state.userID
                 })
                 dbRefUser.push({
-                    userName: this.props.user.displayName,
+                    userName: this.state.userName,
                     userRating: this.state.userRating,
                     userReview: this.state.userReview,
                     userRepurchase: this.state.userRepurchase,
@@ -142,7 +143,7 @@ class ReviewParent extends Component {
                         { this.state.reviews.length !== 0
                             ?
                             this.state.reviews.map(reviewList => {
-                                return <ReviewReadPanel review={reviewList}/>
+                                return <ReviewReadPanel review={reviewList} key={reviewList.key}/>
                             })
                             :
                             <p>Oops, no reviews exist of this product yet! Why not leave your own review if you've tried this product before?</p>
