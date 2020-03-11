@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Search from './Search';
 import Results from './Results';
 import Carousel from './Carousel';
-import { Route, Link, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import FilterResults from './FilterResults';
 import Sorting from './Sorting';
@@ -34,10 +34,6 @@ class Main extends Component {
         }, this.filterResults)
     }
 
-    // componentDidMount() {
-    //     console.log('arrayWithProducts', this.props.veganProducts)
-    //     console.log('original',this.state.originalResults)
-    // }
 
     sortArray = (arrayToSort) => {
         // Only sort arrays with content
@@ -83,66 +79,6 @@ class Main extends Component {
 
             return sortingArray;
 
-            // OLD SORT LOGIC
-            // if (this.state.sortBy === "brand") {
-            //     let sortingArray = [...this.props.filteredResults]
-            //     sortingArray.sort((a, b) => {
-            //         let textA;
-            //         if (!a.brand) {
-            //             return 1
-            //         } else {
-            //             textA = a.brand.toUpperCase();
-            //         }
-            //         let textB;
-            //         if (!b.brand) {
-            //             return -1
-            //         } else {
-            //             textB = b.brand.toUpperCase();
-            //         }
-            //         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-            //     })
-            //     this.props.sortUpdate(sortingArray)
-            // }
-            // if (e.target.value === "originalRatingD") {
-            //     let sortingArray = [...this.props.filteredResults]
-            //     sortingArray.sort((a, b) => {
-            //         let textA = a.rating;
-
-            //         let textB = b.rating;
-
-            //         return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
-            //     })
-            //     this.props.sortUpdate(sortingArray)
-            // }
-            // if (e.target.value === "originalRatingA") {
-            //     let sortingArray = [...this.props.filteredResults]
-            //     sortingArray.sort((a, b) => {
-            //         let textA = a.rating;
-
-            //         let textB = b.rating;
-
-            //         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-            //     })
-            //     this.props.sortUpdate(sortingArray)
-            // }
-            // if (e.target.value === "priceH") {
-            //     let sortingArray = [...this.props.filteredResults]
-            //     sortingArray.sort((a, b) => {
-            //         let textA = parseFloat(a.price);
-            //         let textB = parseFloat(b.price);
-            //         return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
-            //     })
-            //     this.props.sortUpdate(sortingArray)
-            // }
-            // if (e.target.value === "priceL") {
-            //     let sortingArray = [...this.props.filteredResults]
-            //     sortingArray.sort((a, b) => {
-            //         let textA = parseFloat(a.price);
-            //         let textB = parseFloat(b.price);
-            //         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-            //     })
-            //     this.props.sortUpdate(sortingArray)
-            // }
         }
     }
 
@@ -190,7 +126,6 @@ class Main extends Component {
                 filteredResults: this.state.originalResults
             })
         }
-        // console.log(this.state.originalResults)
     }
 
     updateSortBy = (option) => {
@@ -236,14 +171,32 @@ class Main extends Component {
                             handleSearchInput={this.handleSearchInput}
                         />
                         <FilterResults updaterefinedItems={this.newResults} />
-                        <Sorting filteredResults={this.state.filteredResults} updateSortBy = {this.updateSortBy}/>
-                        <Results filteredResults={this.state.filteredResults} />
+                        <Sorting
+                            filteredResults={this.state.filteredResults}
+                            updateSortBy= {this.updateSortBy}
+                        />
+                        <Results filteredResults={this.state.filteredResults} user={this.props.user} />
                     </Route>
-                    <Route path="/project6/wishlist">
-                        <Wishlist />
+                    <Route exact path="/project6/wishlist">
+                        {
+                            this.props.user
+                                ?
+                                <Wishlist />
+                                :
+                                <Redirect to="/project6/" />
+                        }
                     </Route>
-                    <Route path="/project6/reviews">
-                        <UserReviews />
+                    <Route exact path="/project6/reviews">
+                        {
+                            this.props.user
+                                ?
+                                <UserReviews
+                                    user={this.props.user}
+                                    veganProducts={this.props.veganProducts}
+                                />
+                                :
+                                <Redirect to="/project6/" />
+                        }
                     </Route>
                 </Switch>
             </main>

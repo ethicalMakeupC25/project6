@@ -1,29 +1,29 @@
-// a couple of functions from the React library
 import React, { Component, Fragment } from "react";
-import ReviewForm from "./ReviewForm";
 import firebase from "./../firebase";
-import ReviewReadPanel from "./ReviewReadPanel";
 import Swal from "sweetalert2";
-
+import ReviewReadPanel from "./ReviewReadPanel";
+import ReviewForm from "./ReviewForm";
 
 class ReviewParent extends Component {
     constructor() {
         super();
+        //setting initial state
         this.state = {
-        reviews: [],
-        userImg: "", //need to figure out how to keep an image url in the database. and find image storage
-        userName: "",
-        userRating: 0,
-        userReview: "",
-        userID: "",
-        userRepurchase: '',
-        uniqueKey: '',
-        isReviewing: false
+            //empty reviews array to take in database info
+            reviews: [],
+            //handlers for user review form
+            userName: "",
+            userRating: 0,
+            userReview: "",
+            userRepurchase: "",
+            //for assigning userID on mount
+            userID: "",
+            isReviewing: false
         };
     }
 
     componentDidMount() {
-        // error handling for guest / anonymous users
+        //error handling for anonymous users, assigns userID on mount which will be used for form submission to firebase
         if (this.props.user) {
             this.setState({
                 userID: this.props.user.uid
@@ -34,44 +34,44 @@ class ReviewParent extends Component {
             })
         }
 
-        // create a variable that holds a reference to  database
+        //create a variable that holds a reference to database
         const dbRef = firebase.database().ref(`products/${this.props.activeID}/`);
-    
-        // 🧠 event listener that takes a callback function used to get data from the database and call it response.
+        //event listener that takes a callback function used to get data from the database and called response
         dbRef.on("value", response => {
             const dataFromDb = response.val();
             const newState = [];
+            //loop through dataFromDb and push reviews into array as well as the matching key to be used for React DOM
             for (let key in dataFromDb) {
-                newState.push(dataFromDb[key])
+                newState.push({ review: dataFromDb[key], key })
             }
             // see the information and parse the way we want it.
             // call this.setState to update the component state using the local array newState.
             this.setState({
                     reviews: newState
             });
-        }
-        )}
+        })
+    }
 
-    // 🧮 function to handle inputs for review form:
+    //functions to handle inputs for review form:
     handleChange = e => {
         this.setState({
-        userName: e.target.value
+            userName: e.target.value
         })
-    };
+    }
 
     handleChangeTxtArea = e => {
         this.setState({
-        userReview: e.target.value
+            userReview: e.target.value
         })
-    };
+    }
 
     radioChange = (changeEvent) => {
         this.setState({
             userRepurchase: changeEvent.target.value
-        });
+        })
     }
 
-    // 🧠 on submit, push user input into firebase
+    //on submit, push user input into firebase
     handleFormSubmit = e => {
         e.preventDefault();    
         if (!this.state.userName ||
@@ -85,44 +85,41 @@ class ReviewParent extends Component {
                 });
             } else {
                 const dbRef = firebase.database().ref(`products/${this.props.activeID}/`);
-                const dbRefUser = firebase.database().ref(`users/${this.state.uID}/`);
+                const dbRefUser = firebase.database().ref(`users/${this.props.user.uid}/reviews/`);
+                //double push to save review to products and to users
+                //firebase database is structured to allow ease of referencing information for 3 different pulls: 1. all reviews by product 2. all reviews by user and 3. all wishlist items by user
                 dbRef.push({
                     userName: this.state.userName,
                     userRating:this.state.userRating,
                     userReview: this.state.userReview,
                     userRepurchase: this.state.userRepurchase,
-                    userID: "00000",
-                    uniqueKey: this.state.uniqueKey
+                    userID: this.state.userID
                 })
                 dbRefUser.push({
-                    userName: this.props.user.displayName,
+                    userName: this.state.userName,
                     userRating: this.state.userRating,
                     userReview: this.state.userReview,
                     userRepurchase: this.state.userRepurchase,
-                    userID: this.props.user.uid,
-                    uniqueKey: this.state.uniqueKey
+                    userID: this.state.userID,
+                    productID: this.props.activeID
                 })
-        
                 // return input to empty.
-                // eslint-disable-next-line
                 this.setState({
                     userName: "",
                     userReview: "",
-                    userRepurchase: ''
-                }, 
-                this.setRead
-                )
+                    userRepurchase: ""
+                }, this.setRead)
             }
         };
 
     setRead = () => {
-        if(this.props.isWriting) {
+        if (this.props.isWriting) {
             this.props.toggleReadReview();
         }
     }
 
     setWrite = () => {
-        if(!this.props.isWriting) {
+        if (!this.props.isWriting) {
             this.props.toggleReadReview();
         }
     }
@@ -130,8 +127,8 @@ class ReviewParent extends Component {
     getStarRating = (currentRating) => {
         this.setState({
             userRating: currentRating
-            })
-        } 
+        })
+    } 
     
     render(){
         return (
@@ -141,17 +138,18 @@ class ReviewParent extends Component {
                     <button onClick={this.setRead}>reviews</button>
                 </div>
                 <div className={`mainGrid wrapper noOverflowX ${!this.props.isWriting && "scrollOn"}`} >
-                    {!this.props.isWriting ? 
+                { 
+                    !this.props.isWriting ? 
                     <div className="reviews">
                         { this.state.reviews.length !== 0
                             ?
                             this.state.reviews.map(reviewList => {
-                                return <ReviewReadPanel review={reviewList}/>
+                                return <ReviewReadPanel review={reviewList} key={reviewList.key}/>
                             })
                             :
                             <p>Oops, no reviews exist of this product yet! Why not leave your own review if you've tried this product before?</p>
                         }
-                </div> : 
+                    </div> : 
                     <ReviewForm
                         handleFormSubmit={this.handleFormSubmit}
                         handleChangeTxtArea={this.handleChangeTxtArea}

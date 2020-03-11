@@ -12,8 +12,9 @@ const Preloader = () => {
                     <div className="plane"></div>
                 </div>
 
-                <div id="bottom" className="mask">
-                    <div className="plane"></div>
+                <div id="bottom" className ="mask">
+
+      <div className="plane"></div>
                 </div>
 
                 <p>LOADING...</p>
