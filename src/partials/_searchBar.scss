@@ -12,6 +12,10 @@
 
 /* react-autosuggest components have their own default class names and need to be targeted as such, so these classes will be formatted differently from the rest of the content*/
 
+.highlight {
+    font-weight: 700;
+}
+
 .react-autosuggest__container {
     width: 100%;
     position: relative;
