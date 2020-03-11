@@ -125,7 +125,6 @@ class Main extends Component {
                 filteredResults: this.state.originalResults
             })
         }
-        // console.log(this.state.originalResults)
     }
 
     updateSortBy = (option) => {
