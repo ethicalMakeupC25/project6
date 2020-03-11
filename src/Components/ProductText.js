@@ -15,8 +15,8 @@ class ProductText extends Component {
     this.props.addToWishlist(this.props.product);
   }
 
-  handleRemove = (e, id) => {
-    this.props.removeFromWishlist(id);
+  handleRemove = () => {
+    this.props.removeFromWishlist(this.props.product.id);
   }
 
   render() {
@@ -30,11 +30,13 @@ class ProductText extends Component {
           }</p>
           <p>Rating: {!this.props.product.rating ? "Not yet rated" : `${this.props.product.rating}/5`}</p>
         </div>
+        
+        {/* display add or remove buttons based on route */}
         <Route path="/project6/products" >
           <button className="add" onClick={this.handleClick}><FontAwesomeIcon icon={faPlusCircle} /></button>
         </Route>
         <Route path="/project6/wishlist" >
-          <button className="remove" onClick={(e) => {this.handleRemove(e, this.props.product.id)}}><FontAwesomeIcon icon={faMinusCircle} /></button>
+          <button className="remove" onClick={this.handleRemove}><FontAwesomeIcon icon={faMinusCircle} /></button>
         </Route>
       </div>
     );
