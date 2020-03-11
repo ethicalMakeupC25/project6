@@ -20,8 +20,12 @@ class ResultItem extends Component {
     return (
       <Fragment>
         <div className={`result ${this.props.activeID === this.props.product.id && "selected"}`}>
-          <ProductImage product={this.props.product} setActiveID={this.props.setActiveID}/>
-          {this.props.activeID === this.props.product.id && <ProductInfo isWriting={this.state.isWriting} toggleReadReview={this.toggleReadReview} product={this.props.product} activeID={this.props.activeID} user={this.props.user} />}
+          <ProductImage 
+          product={this.props.product} 
+          setActiveID={this.props.setActiveID} 
+          addToWishlist={this.props.addToWishlist}
+          />
+          {this.props.activeID === this.props.product.id && <ProductInfo isWriting={this.state.isWriting} toggleReadReview={this.toggleReadReview} product={this.props.product} activeID={this.props.activeID} user={this.props.user}/>}
         </div>
       </Fragment>
     );

@@ -78,7 +78,6 @@ class Main extends Component {
             });
 
             return sortingArray;
-
         }
     }
 
@@ -163,13 +162,6 @@ class Main extends Component {
     render() {        
         return (
             <main className="wrapper">
-                {/* <Search veganProducts={this.props.veganProducts} handleSearchInput={this.handleSearchInput} />
-                <FilterResults updaterefinedItems={this.newResults} />
-                <Sorting filteredResults={this.state.filteredResults} updateSortBy = {this.updateSortBy}/>
-                {this.state.isSearched ? (
-                <Results filteredResults={this.state.filteredResults} />
-                ) : null} */}
-
                 <Switch>
                     <Route path="/project6/" exact>
                         {
@@ -202,7 +194,7 @@ class Main extends Component {
                         {
                             this.props.user
                                 ?
-                                <Wishlist />
+                                <Wishlist user={this.props.user} veganProducts={this.props.veganProducts}/>
                                 :
                                 <Redirect to="/project6/" />
                         }
