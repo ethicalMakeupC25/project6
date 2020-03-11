@@ -25,7 +25,7 @@ class ResultItem extends Component {
           setActiveID={this.props.setActiveID} 
           addToWishlist={this.props.addToWishlist}
           />
-          {this.props.activeID === this.props.product.id && <ProductInfo isWriting={this.state.isWriting} toggleReadReview={this.toggleReadReview} product={this.props.product} activeID={this.props.activeID}/>}
+          {this.props.activeID === this.props.product.id && <ProductInfo isWriting={this.state.isWriting} toggleReadReview={this.toggleReadReview} product={this.props.product} activeID={this.props.activeID} user={this.props.user}/>}
         </div>
       </Fragment>
     );

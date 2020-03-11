@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Search from './Search';
 import Results from './Results';
 import Carousel from './Carousel';
-import { Route, Link, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import FilterResults from './FilterResults';
 import Sorting from './Sorting';
@@ -32,11 +32,6 @@ class Main extends Component {
             searchInput: input,
             isSearched: true
         }, this.filterResults)
-    }
-
-    componentDidMount() {
-        console.log('arrayWithProducts', this.props.veganProducts)
-        console.log('original',this.state.originalResults)
     }
 
     sortArray = (arrayToSort) => {
@@ -129,7 +124,6 @@ class Main extends Component {
                 filteredResults: this.state.originalResults
             })
         }
-        // console.log(this.state.originalResults)
     }
 
     updateSortBy = (option) => {
@@ -169,14 +163,17 @@ class Main extends Component {
                             handleSearchInput={this.handleSearchInput}
                         />
                         <FilterResults updaterefinedItems={this.newResults} />
-                        <Sorting filteredResults={this.state.filteredResults} updateSortBy = {this.updateSortBy}/>
+                        <Sorting
+                            filteredResults={this.state.filteredResults}
+                            updateSortBy= {this.updateSortBy}
+                        />
                         <Results filteredResults={this.state.filteredResults} user={this.props.user} />
                     </Route>
                     <Route path="/project6/wishlist">
                         <Wishlist user={this.props.user} veganProducts={this.props.veganProducts} />
                     </Route>
                     <Route path="/project6/reviews">
-                        <UserReviews />
+                        <UserReviews user={this.props.user} />
                     </Route>
                 </Switch>
             </main>
