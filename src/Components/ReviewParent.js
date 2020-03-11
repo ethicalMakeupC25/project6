@@ -100,7 +100,8 @@ class ReviewParent extends Component {
                     userRating: this.state.userRating,
                     userReview: this.state.userReview,
                     userRepurchase: this.state.userRepurchase,
-                    userID: this.state.userID
+                    userID: this.state.userID,
+                    productID: this.props.activeID
                 })
                 // return input to empty.
                 this.setState({
