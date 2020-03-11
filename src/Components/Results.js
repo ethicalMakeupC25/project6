@@ -29,14 +29,14 @@ class Results extends Component {
     return itemAlreadyOnList;
   }
 
-  addToWishlist = (productID) => {
+  addToWishlist = (product) => {
     if(!this.props.user) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Please log in to make a wishlist!'
       })
-    } else if(this.checkForProduct(productID)) {
+    } else if(this.checkForProduct(product.id)) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -44,7 +44,12 @@ class Results extends Component {
       })
     } else {
       const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist`);
-      dbRefUserWish.push(productID);
+      dbRefUserWish.push(product.id);
+      Swal.fire({
+        icon: 'success',
+        title: 'Added to Wishlist!',
+        text: `${product.name} was added to your wishlist.`
+      })
     }
   }
 

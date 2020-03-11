@@ -10,7 +10,7 @@ class ProductText extends Component {
   }
 
   handleClick = () => {
-    this.props.addToWishlist(this.props.product.id);
+    this.props.addToWishlist(this.props.product);
   }
 
   render() {
