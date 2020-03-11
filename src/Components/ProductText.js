@@ -9,8 +9,8 @@ class ProductText extends Component {
     this.state = {}
   }
 
-  addToWishlist = () => {
-    console.log(`adding ${this.props.product.name} ID:${this.props.product.id} to the wishlist`);
+  handleClick = () => {
+    this.props.addToWishlist(this.props.product.id);
   }
 
   render() {
@@ -24,7 +24,7 @@ class ProductText extends Component {
           }</p>
           <p>Rating: {!this.props.product.rating ? "Not Rated" : `${this.props.product.rating}/5`}</p>
         </div>
-        <button className="add" onClick={this.addToWishlist}><FontAwesomeIcon icon={faPlusCircle} /></button>
+        <button className="add" onClick={this.handleClick}><FontAwesomeIcon icon={faPlusCircle} /></button>
       </div>
     );
   }

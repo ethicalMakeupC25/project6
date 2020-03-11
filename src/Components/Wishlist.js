@@ -3,7 +3,11 @@ import firebase from '../firebase'
 
 class Wishlist extends Component {
     componentDidMount() {
-        const dbRefUser = firebase.database().ref(`users/${this.state.uID}/`);
+        const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist`);
+
+        dbRefUserWish.on('value', response => {
+            console.log(response)
+        })
     }
 
     render() {
