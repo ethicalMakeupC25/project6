@@ -55,7 +55,7 @@ class App extends Component {
 
   //this function initializes the popup from google to sign in and sets the user state to user's details
   login = () => {
-    auth.signInWithPopup(provider) 
+    auth.signInWithPopup(provider)
       .then((result) => {
         this.setState({
           user: result.user

@@ -34,10 +34,10 @@ class Main extends Component {
         }, this.filterResults)
     }
 
-    componentDidMount() {
-        console.log('arrayWithProducts', this.props.veganProducts)
-        console.log('original',this.state.originalResults)
-    }
+    // componentDidMount() {
+    //     console.log('arrayWithProducts', this.props.veganProducts)
+    //     console.log('original',this.state.originalResults)
+    // }
 
     sortArray = (arrayToSort) => {
         // Only sort arrays with content
@@ -204,8 +204,7 @@ class Main extends Component {
         });
     }
 
-    render() {
-        
+    render() {        
         return (
             <main className="wrapper">
                 {/* <Search veganProducts={this.props.veganProducts} handleSearchInput={this.handleSearchInput} />
@@ -227,7 +226,7 @@ class Main extends Component {
                                     veganProducts={this.props.veganProducts}
                                     handleSearchInput={this.handleSearchInput}
                                 />
-                                <Carousel veganProducts={this.props.veganProducts}/>
+                                <Carousel allItemsArray={this.props.veganProducts}/>
                             </Fragment>
                         }
                     </Route>
