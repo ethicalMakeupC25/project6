@@ -28,8 +28,10 @@ class Main extends Component {
     }
 
     handleSearchInput = (input) => {
+        const validateInput = input.toLowerCase();
+
         this.setState({
-            searchInput: input,
+            searchInput: validateInput,
             isSearched: true
         }, this.filterResults)
     }
@@ -87,7 +89,10 @@ class Main extends Component {
         let filteredArray = [];
         //assign filtered veganProducts return to filteredArray
         filteredArray = this.props.veganProducts.filter(product => {
-            return product.product_type === this.state.searchInput || product.name === this.state.searchInput || product.brand === this.state.searchInput;
+            const productType = product.product_type ? product.product_type.toLowerCase() : "";
+            const productName = product.name ? product.name.toLowerCase() : "";
+            const productBrand = product.brand ? product.brand.toLowerCase() : "";
+            return productType.includes(this.state.searchInput) || productName.includes(this.state.searchInput) || productBrand.includes(this.state.searchInput);
         });
 
         //create empty sortedArray
