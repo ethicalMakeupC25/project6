@@ -7,16 +7,7 @@ class ReviewSubmitButton extends Component{
         this.state = {
             readReview: true
         }
-        // console.log('ratingProps',ratingProps)
     
-
-    // GoToReviewPanel = () => {
-    //     this.setState({
-    //         ...this.state,
-    //         readReview: false,
-    //         GoToReviews: true
-    //     })
-    // }
 }
     render(){
         return (

@@ -48,7 +48,7 @@ class ReviewParent extends Component {
             // call this.setState to update the component state using the local array newState.
             this.setState({
                     reviews: newState
-            }, () => {console.log(this.state.reviews)});
+            });
         }
         )}
 
@@ -95,14 +95,13 @@ class ReviewParent extends Component {
                     uniqueKey: this.state.uniqueKey
                 })
                 dbRefUser.push({
-                    userName: this.state.userName,
+                    userName: this.props.user.displayName,
                     userRating: this.state.userRating,
                     userReview: this.state.userReview,
                     userRepurchase: this.state.userRepurchase,
-                    userID: "00000",
+                    userID: this.props.user.uid,
                     uniqueKey: this.state.uniqueKey
                 })
-                // console.log('dbRef',dbRef));
         
                 // return input to empty.
                 // eslint-disable-next-line
@@ -114,8 +113,7 @@ class ReviewParent extends Component {
                 this.setRead
                 )
             }
-
-    };
+        };
 
     setRead = () => {
         if(this.props.isWriting) {
@@ -166,7 +164,6 @@ class ReviewParent extends Component {
                         starRatingFunc = {this.getStarRating}
                     />
                 }
-                {console.log('this.state.userRating', this.state.userRating)}
                 </div>
             </Fragment>
         );

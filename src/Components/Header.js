@@ -36,6 +36,7 @@ class Header extends Component {
                         this.props.user
                         ?
                             <Fragment>
+                                {console.log(this.props.user)}
                                 <div className="userDetails">
                                     {/* if no displayname exists, show email */}
                                     <p>Hi {this.props.user.displayName || this.props.user.email}!</p>

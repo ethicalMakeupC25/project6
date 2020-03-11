@@ -33,8 +33,13 @@ form.reviewForm {
         input {
             width: 5%;
             height: fit-content;
+            height: auto;
         }
         
+    }
+
+    input[type="radio"] {
+        -webkit-appearance: radio;
     }
 
     button {
