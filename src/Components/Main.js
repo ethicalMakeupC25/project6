@@ -34,6 +34,7 @@ class Main extends Component {
         }, this.filterResults)
     }
 
+
     sortArray = (arrayToSort) => {
         // Only sort arrays with content
         if (arrayToSort.length !== 0) {
@@ -138,8 +139,7 @@ class Main extends Component {
         });
     }
 
-    render() {
-        
+    render() {        
         return (
             <main className="wrapper">
                 {/* <Search veganProducts={this.props.veganProducts} handleSearchInput={this.handleSearchInput} />
@@ -161,7 +161,7 @@ class Main extends Component {
                                     veganProducts={this.props.veganProducts}
                                     handleSearchInput={this.handleSearchInput}
                                 />
-                                <Carousel veganProducts={this.props.veganProducts}/>
+                                <Carousel allItemsArray={this.props.veganProducts}/>
                             </Fragment>
                         }
                     </Route>
@@ -184,11 +184,26 @@ class Main extends Component {
                             userCheckProps = {this.props.userCheck}/>
 
                     </Route>
-                    <Route path="/project6/wishlist">
-                        <Wishlist />
+                    <Route exact path="/project6/wishlist">
+                        {
+                            this.props.user
+                                ?
+                                <Wishlist />
+                                :
+                                <Redirect to="/project6/" />
+                        }
                     </Route>
-                    <Route path="/project6/reviews">
-                        <UserReviews user={this.props.user} />
+                    <Route exact path="/project6/reviews">
+                        {
+                            this.props.user
+                                ?
+                                <UserReviews
+                                    user={this.props.user}
+                                    veganProducts={this.props.veganProducts}
+                                />
+                                :
+                                <Redirect to="/project6/" />
+                        }
                     </Route>
                 </Switch>
             </main>
