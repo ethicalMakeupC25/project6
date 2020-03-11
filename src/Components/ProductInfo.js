@@ -77,7 +77,6 @@ class ProductInfo extends Component {
               activeID={this.props.activeID}
               isWriting={this.props.isWriting}
               toggleReadReview={this.props.toggleReadReview}
-              userCheck={this.props.userCheck}
             />
           )}
         />

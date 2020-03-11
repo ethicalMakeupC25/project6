@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
+import { BrowserRouter as Router, Route, Link, useRouteMatch } from 'react-router-dom';
 
 class ProductText extends Component {
   constructor() {
@@ -11,6 +13,10 @@ class ProductText extends Component {
 
   handleClick = () => {
     this.props.addToWishlist(this.props.product);
+  }
+
+  handleRemove = (e, id) => {
+    this.props.removeFromWishlist(id);
   }
 
   render() {
@@ -24,7 +30,12 @@ class ProductText extends Component {
           }</p>
           <p>Rating: {!this.props.product.rating ? "Not yet rated" : `${this.props.product.rating}/5`}</p>
         </div>
-        <button className="add" onClick={this.handleClick}><FontAwesomeIcon icon={faPlusCircle} /></button>
+        <Route path="/project6/products" >
+          <button className="add" onClick={this.handleClick}><FontAwesomeIcon icon={faPlusCircle} /></button>
+        </Route>
+        <Route path="/project6/wishlist" >
+          <button className="remove" onClick={(e) => {this.handleRemove(e, this.props.product.id)}}><FontAwesomeIcon icon={faMinusCircle} /></button>
+        </Route>
       </div>
     );
   }

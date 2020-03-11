@@ -60,7 +60,8 @@ class ReviewParent extends Component {
     //functions to handle inputs for review form:
     handleChange = e => {
         this.setState({
-            userName: e.target.value
+            userName: e.target.value,
+            
         })
     }
 
@@ -96,6 +97,7 @@ class ReviewParent extends Component {
                 dbRef.push({
                     userName: this.state.userName,
                     userImg:this.state.userImg, 
+                    reviewDate: this.state.reviewDate,
                     userRating:this.state.userRating,
                     userReview: this.state.userReview,
                     userRepurchase: this.state.userRepurchase,
@@ -103,6 +105,7 @@ class ReviewParent extends Component {
                 })
                 dbRefUser.push({
                     userName: this.state.userName,
+                    reviewDate: this.state.reviewDate,
                     userImg: this.state.userImg,
                     userRating: this.state.userRating,
                     userReview: this.state.userReview,
@@ -143,9 +146,12 @@ class ReviewParent extends Component {
         });
     }
 
+    componentWillUnmount() {
+        const dbRef = firebase.database().ref(`products/${this.props.activeID}/`);
+        dbRef.off();
+    }
 
     render(){
-        // console.log(this.props.user.photoURL)
 
         return (
             <Fragment>

@@ -16,7 +16,9 @@ class UserReviews extends Component {
     }
     
     componentDidMount() {
+        //reference to firebase pointing to user branch/reviews
         const dbRefUser = firebase.database().ref(`users/${this.props.user.uid}/reviews/`);
+        //listener on database
         dbRefUser.on("value", response => {
             const dataFromDB = response.val();
             const newState = [];
@@ -27,8 +29,8 @@ class UserReviews extends Component {
                 newState.push({ review: dataFromDB[key], key });
                 productIDs.push(dataFromDB[key].productID);
             }
-            //pull product info of products reviewed from veganProducts
-            if (productIDs.length !== 0) {
+            //pull product info of products reviewed from veganProducts only if there's products reviewed by comparing the two
+            if (productIDs.length > 0) {
                 this.props.veganProducts.map(product => {
                     return productIDs.forEach(id => {
                         if (id === product.id) {
@@ -37,24 +39,33 @@ class UserReviews extends Component {
                     })
                 })
             }
-            //update state for reviews array
+            //update state for reviews array and products reviewed
             this.setState({
                 reviews: newState,
                 products: reviewedProducts
-            }, () => {console.log(this.state.reviews, this.state.products)})
+            })
         });
+    }
+
+    componentWillUnmount() {
+        //turn off database listener on unmount
+        const dbRefUser = firebase.database().ref(`users/${this.props.user.uid}/reviews/`);
+        dbRefUser.off();
     }
 
     render() {
         return (
             <section className="userReviews">
                 {
+                    //error handle for no reviews as a result
                     this.state.reviews.length !== 0
                         ?
+                        //map through all reviews to render HTML to DOM
                         this.state.reviews.map(review => {
                             return (
                                 <div key={review.key}>
                                     <div className="productImage">
+                                        {/* use .indexOf since both state arrays were pushed in the same sequence to grab correct variables */}
                                         <img src={this.state.products[this.state.reviews.indexOf(review)].api_featured_image} alt={this.state.products[this.state.reviews.indexOf(review)].name} />
                                         <div className="productTextContainer">
                                             <div className="productText">

@@ -10,12 +10,11 @@ const ReviewForm = props => (
         <form className="reviewForm" action="submit" onSubmit={e => props.handleFormSubmit(e)}>
 
             <Clock
-                format={'dddd, MMMM Mo, YYYY, h:mm:ss A'}
+                format={'dddd, MMMM Do, YYYY, h:mm:ss A'}
                 ticking={true}
                 timezone={'America/Toronto'}
-                onChange={date => console.log(date.output)}
+                onChange={date => {props.dateProp(date.output)}}
                 />
-                {/* {this.props.dateProp(date.output)} */}
 
             <label 
                 className="visuallyHidden" 

@@ -52,7 +52,6 @@ class StarRating extends Component {
         }); // set state so the rating stays highlighted
     } 
     this.setRating();
-    console.log(this.state.currentRating)
     }
 
 
