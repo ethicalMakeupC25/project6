@@ -20,6 +20,8 @@ class Wishlist extends Component {
             if(response.val()){
                 const productIDs = Object.values(response.val());
                 const productArray = [];
+
+                // grabs the items the user saved and filters it out from the list of products
                 productIDs.forEach(id => {
                     this.props.veganProducts.filter(product => {
                         if (product.id === id) {
@@ -32,6 +34,11 @@ class Wishlist extends Component {
                 this.setState({ userWishlist: productArray });
             }
         })
+    }
+
+    componentWillUnmount() {
+        const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist`);
+        dbRefUserWish.off();
     }
 
     render() {

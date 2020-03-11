@@ -27,6 +27,8 @@ class ResultItem extends Component {
           setActiveID={this.props.setActiveID}
           addToWishlist={this.props.addToWishlist}
           removeFromWishlist={this.props.removeFromWishlist}/>
+          
+          {/* Display detailed info for active product */}
           {this.props.activeID === this.props.product.id && 
           <ProductInfo 
           isWriting={this.state.isWriting} 

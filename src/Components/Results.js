@@ -18,6 +18,8 @@ class Results extends Component {
     this.setState({activeID: id});
   }
 
+  // loop through the wishlist and if there's a match with the given ID
+  // return true
   checkForProduct = (productID) => {
     let itemAlreadyOnList = false;
     this.state.wishlist.filter(product => {
@@ -30,19 +32,25 @@ class Results extends Component {
   }
 
   addToWishlist = (product) => {
+    // User can only add to a wishlist if they're logged in
     if(!this.props.user) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Please log in to make a wishlist!'
       })
-    } else if(this.checkForProduct(product.id)) {
+    } 
+    // User can only add items that aren't on the wishlist
+    else if(this.checkForProduct(product.id)) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'This product is already on your wishlist!'
       })
-    } else {
+    } 
+    
+    // Now that we know the user exists and there's no dupes, add it to the list.
+    else {
 
       const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist`);
       dbRefUserWish.push(product.id);
@@ -55,16 +63,20 @@ class Results extends Component {
     }
   }
 
+  // find the given ID from the wishlist and remove that item
   removeFromWishlist = (id) => {
-    const keyToDelete = this.state.wishlist.filter(product => {
+    const filteredProduct = this.state.wishlist.filter(product => {
       return product.productID === id
     })
 
-    const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist/${keyToDelete[0].key}`);
+    const keyToDelete = filteredProduct[0].key;
+
+    const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist/${keyToDelete}`);
     dbRefUserWish.remove();
   }
 
   componentDidMount() {
+    // set a wishlist if user is logged in
     if(this.props.user) {
       const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist`);
       dbRefUserWish.on('value', response => {
@@ -82,13 +94,16 @@ class Results extends Component {
   }
 
   componentWillUnmount() {
-    const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist`);
-    dbRefUserWish.off();
+    if(this.props.user) {
+      const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist`);
+      dbRefUserWish.off();
+    }
   }
 
   render() {
     return (
       <section className="results">
+        {/* Displays items if the filtered results array isn't empty */}
         {
           this.props.filteredResults.length > 0
             ?
