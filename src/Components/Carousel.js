@@ -11,7 +11,7 @@ class Carousel extends Component {
     }
 
     componentDidMount() {
-        const veganArrayCopy = [...this.props.allItemsArray]        
+        const veganArrayCopy = [...this.props.allItemsArray]
         const randomFive = []
 
         for (let i = 0; i < 5; i++) {
@@ -27,8 +27,6 @@ class Carousel extends Component {
 
 
     render() {
-        console.log(this.state.randomVeganArray);
-
         return (
             <Coverflow
                 width={960}
