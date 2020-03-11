@@ -72,7 +72,6 @@ class Results extends Component {
 
   render() {
     return (
-     
       <section className="results">
         {
           this.props.filteredResults.length > 0
