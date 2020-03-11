@@ -152,7 +152,6 @@ class ReviewParent extends Component {
     }
 
     render(){
-        // console.log(this.props.user.photoURL)
 
         return (
             <Fragment>

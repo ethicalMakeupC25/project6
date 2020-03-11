@@ -2,8 +2,6 @@
 import React, { Fragment } from "react";
 
 const ReviewReadPanel = ({review}) => {
-    console.log(review)
-    // console.log(this.props.user.photoURL)
     return (
         <div className="reviewPanel">
 
