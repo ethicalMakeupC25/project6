@@ -14,7 +14,6 @@ const ReviewForm = props => (
                 ticking={true}
                 timezone={'America/Toronto'}
                 onChange={date => {props.dateProp(date.output)}}
-                    // console.log(date.output)}
                 />
 
             <label 
