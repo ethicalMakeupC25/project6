@@ -21,11 +21,11 @@ class ProductInfo extends Component {
         <p>{this.props.product.description.length > this.state.maxLength ?
           <Fragment>
             {`${this.props.product.description.substring(0, this.state.maxLength)}... `}
-            <span className="infoLink"><a href={this.props.product.product_link} target="_blank">Product Page</a></span>
+            <span className="infoLink"><a href={this.props.product.product_link} target="_blank" rel="noopener noreferrer">Product Page</a></span>
           </Fragment>
           : <Fragment>
             {this.props.product.description}
-            <span className="infoLink"><a href={this.props.product.product_link} target="_blank">Product Page</a></span>
+            <span className="infoLink"><a href={this.props.product.product_link} target="_blank" rel="noopener noreferrer">Product Page</a></span>
           </Fragment>}</p>
         <h3>Colors:</h3>
         <div className="productColors">

@@ -46,8 +46,6 @@ class StarRating extends Component {
     
 
     render() {
-        console.log("userRating", this.state.currentRating);
-
         return (
         <div
             className="rating"

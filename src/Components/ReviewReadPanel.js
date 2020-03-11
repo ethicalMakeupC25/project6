@@ -2,8 +2,6 @@
 import React, { Fragment } from "react";
 
 const ReviewReadPanel = ({review}) => {
-    console.log(review)
-
     return (
         <div className="reviewPanel" key={review.uniqueKey}>
             <p>

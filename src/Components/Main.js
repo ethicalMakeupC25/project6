@@ -34,11 +34,6 @@ class Main extends Component {
         }, this.filterResults)
     }
 
-    componentDidMount() {
-        console.log('arrayWithProducts', this.props.veganProducts)
-        console.log('original',this.state.originalResults)
-    }
-
     sortArray = (arrayToSort) => {
         // Only sort arrays with content
         if (arrayToSort.length !== 0) {
