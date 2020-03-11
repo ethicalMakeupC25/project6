@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
+import firebase from '../firebase'
 
-const Wishlist = () => {
-    return (
-        <section className="wishList">
-            <p>hi</p>
-        </section>
-    )
+class Wishlist extends Component {
+    componentDidMount() {
+        const dbRefUser = firebase.database().ref(`users/${this.state.uID}/`);
+    }
+
+    render() {
+        return (
+            <section className="wishList">
+                <ul>
+                    
+                </ul>
+            </section>
+        )
+    }
 }
 
 export default Wishlist;

@@ -82,67 +82,6 @@ class Main extends Component {
             });
 
             return sortingArray;
-
-            // OLD SORT LOGIC
-            // if (this.state.sortBy === "brand") {
-            //     let sortingArray = [...this.props.filteredResults]
-            //     sortingArray.sort((a, b) => {
-            //         let textA;
-            //         if (!a.brand) {
-            //             return 1
-            //         } else {
-            //             textA = a.brand.toUpperCase();
-            //         }
-            //         let textB;
-            //         if (!b.brand) {
-            //             return -1
-            //         } else {
-            //             textB = b.brand.toUpperCase();
-            //         }
-            //         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-            //     })
-            //     this.props.sortUpdate(sortingArray)
-            // }
-            // if (e.target.value === "originalRatingD") {
-            //     let sortingArray = [...this.props.filteredResults]
-            //     sortingArray.sort((a, b) => {
-            //         let textA = a.rating;
-
-            //         let textB = b.rating;
-
-            //         return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
-            //     })
-            //     this.props.sortUpdate(sortingArray)
-            // }
-            // if (e.target.value === "originalRatingA") {
-            //     let sortingArray = [...this.props.filteredResults]
-            //     sortingArray.sort((a, b) => {
-            //         let textA = a.rating;
-
-            //         let textB = b.rating;
-
-            //         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-            //     })
-            //     this.props.sortUpdate(sortingArray)
-            // }
-            // if (e.target.value === "priceH") {
-            //     let sortingArray = [...this.props.filteredResults]
-            //     sortingArray.sort((a, b) => {
-            //         let textA = parseFloat(a.price);
-            //         let textB = parseFloat(b.price);
-            //         return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
-            //     })
-            //     this.props.sortUpdate(sortingArray)
-            // }
-            // if (e.target.value === "priceL") {
-            //     let sortingArray = [...this.props.filteredResults]
-            //     sortingArray.sort((a, b) => {
-            //         let textA = parseFloat(a.price);
-            //         let textB = parseFloat(b.price);
-            //         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-            //     })
-            //     this.props.sortUpdate(sortingArray)
-            // }
         }
     }
 
@@ -208,13 +147,6 @@ class Main extends Component {
         
         return (
             <main className="wrapper">
-                {/* <Search veganProducts={this.props.veganProducts} handleSearchInput={this.handleSearchInput} />
-                <FilterResults updaterefinedItems={this.newResults} />
-                <Sorting filteredResults={this.state.filteredResults} updateSortBy = {this.updateSortBy}/>
-                {this.state.isSearched ? (
-                <Results filteredResults={this.state.filteredResults} />
-                ) : null} */}
-
                 <Switch>
                     <Route path="/project6/" exact>
                         {
@@ -238,10 +170,10 @@ class Main extends Component {
                         />
                         <FilterResults updaterefinedItems={this.newResults} />
                         <Sorting filteredResults={this.state.filteredResults} updateSortBy = {this.updateSortBy}/>
-                        <Results filteredResults={this.state.filteredResults} />
+                        <Results filteredResults={this.state.filteredResults} user={this.props.user} />
                     </Route>
                     <Route path="/project6/wishlist">
-                        <Wishlist />
+                        <Wishlist user={this.props.user} veganProducts={this.props.veganProducts} />
                     </Route>
                     <Route path="/project6/reviews">
                         <UserReviews />
