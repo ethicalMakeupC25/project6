@@ -60,6 +60,11 @@ class Results extends Component {
     });
   }
 
+  componentWillUnmount() {
+    const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist`);
+    dbRefUserWish.off();
+  }
+
   render() {
     return (
       <section className="results">
