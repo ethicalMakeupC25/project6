@@ -199,7 +199,7 @@ class Main extends Component {
                         <Results 
                             filteredResults={this.state.filteredResults} 
                             user={this.props.user} 
-                            userCheckProps = {this.props.userCheck}/>
+                            />
 
                     </Route>
                     <Route exact path="/project6/wishlist">
