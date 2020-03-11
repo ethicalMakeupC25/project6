@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
+import firebase from '../firebase';
 
-const UserReviews = () => {
-    return (
-        <section className="userReviews">
-            <p>hi</p>
-        </section>
-    )
+class UserReviews extends Component {
+    componentDidMount() {
+        const dbRefUser = firebase.database().ref(`users/${this.state.uID}/reviews/`);
+
+        
+    }
+
+    render() {
+        return (
+            <section className="userReviews">
+                <p>hi</p>
+            </section>
+        )
+    }
 }
 
 export default UserReviews;

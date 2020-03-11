@@ -1,29 +1,29 @@
-// a couple of functions from the React library
 import React, { Component, Fragment } from "react";
-import ReviewForm from "./ReviewForm";
 import firebase from "./../firebase";
-import ReviewReadPanel from "./ReviewReadPanel";
 import Swal from "sweetalert2";
-
+import ReviewReadPanel from "./ReviewReadPanel";
+import ReviewForm from "./ReviewForm";
 
 class ReviewParent extends Component {
     constructor() {
         super();
+        //setting initial state
         this.state = {
+        //empty reviews array to take in database info
         reviews: [],
-        userImg: "", //need to figure out how to keep an image url in the database. and find image storage
+        //handlers for user review form
         userName: "",
         userRating: 0,
         userReview: "",
+        userRepurchase: "",
+        //for assigning userID on mount
         userID: "",
-        userRepurchase: '',
-        uniqueKey: '',
         isReviewing: false
         };
     }
 
     componentDidMount() {
-        // error handling for guest / anonymous users
+        //error handling for anonymous users, assigns userID on mount which will be used for form submission to firebase
         if (this.props.user) {
             this.setState({
                 userID: this.props.user.uid
@@ -34,15 +34,14 @@ class ReviewParent extends Component {
             })
         }
 
-        // create a variable that holds a reference to  database
+        //create a variable that holds a reference to database
         const dbRef = firebase.database().ref(`products/${this.props.activeID}/`);
-    
-        // 🧠 event listener that takes a callback function used to get data from the database and call it response.
+        //🧠 event listener that takes a callback function used to get data from the database and called response
         dbRef.on("value", response => {
             const dataFromDb = response.val();
             const newState = [];
             for (let key in dataFromDb) {
-                newState.push(dataFromDb[key])
+                newState.push({ review: dataFromDb[key], key })
             }
             // see the information and parse the way we want it.
             // call this.setState to update the component state using the local array newState.
@@ -85,22 +84,20 @@ class ReviewParent extends Component {
                 });
             } else {
                 const dbRef = firebase.database().ref(`products/${this.props.activeID}/`);
-                const dbRefUser = firebase.database().ref(`users/${this.state.uID}/`);
+                const dbRefUser = firebase.database().ref(`users/${this.state.uID}/reviews/`);
                 dbRef.push({
                     userName: this.state.userName,
                     userRating:this.state.userRating,
                     userReview: this.state.userReview,
                     userRepurchase: this.state.userRepurchase,
-                    userID: "00000",
-                    uniqueKey: this.state.uniqueKey
+                    userID: this.state.uID
                 })
                 dbRefUser.push({
                     userName: this.props.user.displayName,
                     userRating: this.state.userRating,
                     userReview: this.state.userReview,
                     userRepurchase: this.state.userRepurchase,
-                    userID: this.props.user.uid,
-                    uniqueKey: this.state.uniqueKey
+                    userID: this.state.uID
                 })
         
                 // return input to empty.
