@@ -19,6 +19,10 @@ class Main extends Component {
             searchInput: '',
             filteredResults: [],
             originalResults: [],
+            sortBy: {
+                value: 'brand',
+                ascending: true
+            },
             isSearched: false
         }
     }
@@ -35,12 +39,120 @@ class Main extends Component {
         console.log('original',this.state.originalResults)
     }
 
+    sortArray = (arrayToSort) => {
+        // Only sort arrays with content
+        if (arrayToSort.length !== 0) {
+            // spread the passed array so we can work with it
+            let sortingArray = [...arrayToSort];
+
+            sortingArray.sort((productA, productB) => {
+                // sortBy is an object that contains the values of the the user's choice
+                let productAValue = productA[this.state.sortBy.value];
+                let productBValue = productB[this.state.sortBy.value];
+                let returnValue;
+
+                // return value determines sorting order
+                if(this.state.sortBy.ascending) {
+                    returnValue = 1;
+                } else {
+                    returnValue = -1;
+                }
+
+                // The next 2 if conditions determine what we should do with the values
+                // if value is null then return
+                // if it's not a number when parsed, turn it to uppercase
+                // if it's a number parse it to a float
+                if (!productAValue) {
+                    return -returnValue;
+                } else if(isNaN(parseInt(productAValue))) {
+                    productAValue = productAValue.toUpperCase();
+                } else {
+                    productAValue = parseFloat(productAValue);
+                }
+
+                if (!productBValue) {
+                    return returnValue;
+                } else if(isNaN(parseInt(productBValue))) {
+                    productBValue = productBValue.toUpperCase();
+                } else {
+                    productBValue = parseFloat(productBValue);
+                }
+
+                return (productAValue < productBValue) ? -returnValue : (productAValue > productBValue) ? returnValue : 0;
+            });
+
+            return sortingArray;
+
+            // OLD SORT LOGIC
+            // if (this.state.sortBy === "brand") {
+            //     let sortingArray = [...this.props.filteredResults]
+            //     sortingArray.sort((a, b) => {
+            //         let textA;
+            //         if (!a.brand) {
+            //             return 1
+            //         } else {
+            //             textA = a.brand.toUpperCase();
+            //         }
+            //         let textB;
+            //         if (!b.brand) {
+            //             return -1
+            //         } else {
+            //             textB = b.brand.toUpperCase();
+            //         }
+            //         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+            //     })
+            //     this.props.sortUpdate(sortingArray)
+            // }
+            // if (e.target.value === "originalRatingD") {
+            //     let sortingArray = [...this.props.filteredResults]
+            //     sortingArray.sort((a, b) => {
+            //         let textA = a.rating;
+
+            //         let textB = b.rating;
+
+            //         return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
+            //     })
+            //     this.props.sortUpdate(sortingArray)
+            // }
+            // if (e.target.value === "originalRatingA") {
+            //     let sortingArray = [...this.props.filteredResults]
+            //     sortingArray.sort((a, b) => {
+            //         let textA = a.rating;
+
+            //         let textB = b.rating;
+
+            //         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+            //     })
+            //     this.props.sortUpdate(sortingArray)
+            // }
+            // if (e.target.value === "priceH") {
+            //     let sortingArray = [...this.props.filteredResults]
+            //     sortingArray.sort((a, b) => {
+            //         let textA = parseFloat(a.price);
+            //         let textB = parseFloat(b.price);
+            //         return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
+            //     })
+            //     this.props.sortUpdate(sortingArray)
+            // }
+            // if (e.target.value === "priceL") {
+            //     let sortingArray = [...this.props.filteredResults]
+            //     sortingArray.sort((a, b) => {
+            //         let textA = parseFloat(a.price);
+            //         let textB = parseFloat(b.price);
+            //         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+            //     })
+            //     this.props.sortUpdate(sortingArray)
+            // }
+        }
+    }
+
     filterResults = () => {
         const filteredArray = this.props.veganProducts.filter(product => {
             return product.product_type === this.state.searchInput || product.name === this.state.searchInput || product.brand === this.state.searchInput;
         });
+        const sortedArray = this.sortArray(filteredArray);
         this.setState({
-            filteredResults: filteredArray,
+            filteredResults: sortedArray,
             originalResults: filteredArray
         }, () => {
             customHistory.push('/project6/products');
@@ -62,28 +174,47 @@ class Main extends Component {
                     })
                 })
             })
-            this.setState({
-                filteredResults: filterRefinedArray
-            })
+            const sortedRefinedArray = this.sortArray(filterRefinedArray);
+            if(sortedRefinedArray){
+                this.setState({
+                    filteredResults: sortedRefinedArray
+                })
+            } else {
+                this.setState({
+                    filteredResults: filterRefinedArray
+                })
+            }
+            
         } else {
             this.setState({
                 filteredResults: this.state.originalResults
             })
         }
-        console.log(this.state.originalResults)
+        // console.log(this.state.originalResults)
     }
 
-    updateSorting = (sortArray) => {
+    updateSortBy = (option) => {
         this.setState({
-            filteredResults: sortArray
-        })
+            sortBy: option
+        }, () => {
+            const sortedArray = this.sortArray(this.state.filteredResults);
+            this.setState({
+                filteredResults: sortedArray
+            });
+        });
     }
 
     render() {
-        console.log(this.state.filteredResults);
         
         return (
             <main className="wrapper">
+                {/* <Search veganProducts={this.props.veganProducts} handleSearchInput={this.handleSearchInput} />
+                <FilterResults updaterefinedItems={this.newResults} />
+                <Sorting filteredResults={this.state.filteredResults} updateSortBy = {this.updateSortBy}/>
+                {this.state.isSearched ? (
+                <Results filteredResults={this.state.filteredResults} />
+                ) : null} */}
+
                 <Switch>
                     <Route path="/project6/" exact>
                         {
@@ -106,10 +237,7 @@ class Main extends Component {
                             handleSearchInput={this.handleSearchInput}
                         />
                         <FilterResults updaterefinedItems={this.newResults} />
-                        <Sorting 
-                            filteredResults={this.state.filteredResults}
-                            sortUpdate={this.updateSorting}
-                        />
+                        <Sorting filteredResults={this.state.filteredResults} updateSortBy = {this.updateSortBy}/>
                         <Results filteredResults={this.state.filteredResults} />
                     </Route>
                     <Route path="/project6/wishlist">
