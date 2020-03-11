@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ResultItem from './ResultItem';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+// React-router-dom required, even though not used in code.
+
 
 class Results extends Component {
   constructor() {

@@ -5,18 +5,18 @@ const Preloader = () => {
         <div className="preloader">
             <div id="global">
 
-                <div id="top" class="mask">
-                    <div class="plane"></div>
+                <div id="top" className="mask">
+                    <div className="plane"></div>
                 </div>
-                <div id="middle" class="mask">
-                    <div class="plane"></div>
-                </div>
-
-                <div id="bottom" class="mask">
-                    <div class="plane"></div>
+                <div id="middle" className="mask">
+                    <div className="plane"></div>
                 </div>
 
-                <p><i>LOADING...</i></p>
+                <div id="bottom" className ="mask">
+                    <div className="plane"></div>
+                </div>
+
+                <p>LOADING...</p>
 
             </div>
         </div>
