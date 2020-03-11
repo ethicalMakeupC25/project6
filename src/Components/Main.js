@@ -83,16 +83,37 @@ class Main extends Component {
     }
 
     filterResults = () => {
-        const filteredArray = this.props.veganProducts.filter(product => {
+        //called from handleSearchInput() after searchInput state has been updated
+        //create an empty filteredArray
+        let filteredArray = [];
+        //assign filtered veganProducts return to filteredArray
+        filteredArray = this.props.veganProducts.filter(product => {
             return product.product_type === this.state.searchInput || product.name === this.state.searchInput || product.brand === this.state.searchInput;
         });
-        const sortedArray = this.sortArray(filteredArray);
-        this.setState({
-            filteredResults: sortedArray,
-            originalResults: filteredArray
-        }, () => {
-            customHistory.push('/project6/products');
-        });
+
+        //create empty sortedArray
+        let sortedArray = [];
+        //only sort if there's something there
+        if (filteredArray.length > 0) {
+            sortedArray = this.sortArray(filteredArray);
+        }
+
+        //if sorted, set the new results to state, if not sorted reset empty arrays to state to trigger a render
+        if (sortedArray.length > 0) {
+            this.setState({
+                filteredResults: sortedArray,
+                originalResults: sortedArray
+            }, () => {
+                customHistory.push('/project6/products');
+            });
+        } else {
+            this.setState({
+                filteredResults: filteredArray,
+                originalResults: filteredArray
+            }, () => {
+                customHistory.push('/project6/products');
+            });
+        }
     }
 
     //When any choice from the from filtering gets checked it triggers the function and pass on the props to as an arguments and populate the array by checking if something from filter selection gets clicked populate filteredResult array with new array else show the original array.
