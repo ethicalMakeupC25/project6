@@ -1,0 +1,22 @@
+.userReviews {
+    margin-bottom: 50px;
+}
+
+.userReviews > div {
+    display: flex;
+    align-items: center;
+
+    .productImage {
+        width: 25%;
+        min-width: 250px;
+        height: 250px;
+    }
+
+    .productText {
+        width: 100%;
+    }
+
+    .reviewPanel {
+        width: 75%;
+    }
+}

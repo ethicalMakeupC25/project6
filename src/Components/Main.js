@@ -169,11 +169,26 @@ class Main extends Component {
                         />
                         <Results filteredResults={this.state.filteredResults} user={this.props.user} />
                     </Route>
-                    <Route path="/project6/wishlist">
-                        <Wishlist user={this.props.user} veganProducts={this.props.veganProducts} />
+                    <Route exact path="/project6/wishlist">
+                        {
+                            this.props.user
+                                ?
+                                <Wishlist user={this.props.user} veganProducts={this.props.veganProducts}/>
+                                :
+                                <Redirect to="/project6/" />
+                        }
                     </Route>
-                    <Route path="/project6/reviews">
-                        <UserReviews user={this.props.user} />
+                    <Route exact path="/project6/reviews">
+                        {
+                            this.props.user
+                                ?
+                                <UserReviews
+                                    user={this.props.user}
+                                    veganProducts={this.props.veganProducts}
+                                />
+                                :
+                                <Redirect to="/project6/" />
+                        }
                     </Route>
                 </Switch>
             </main>
