@@ -34,7 +34,7 @@ class ResultItem extends Component {
           product={this.props.product} 
           activeID={this.props.activeID} 
           user={this.props.user}
-          userCheck={this.props.userCheck}/>}
+          />}
         </div>
       </Fragment>
     );
