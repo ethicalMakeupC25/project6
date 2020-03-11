@@ -22,9 +22,7 @@ class ResultItem extends Component {
         <div className={`result ${this.props.activeID === this.props.product.id && "selected"}`} key={this.props.product.id}>
 
           <ProductImage product={this.props.product} setActiveID={this.props.setActiveID}/>
-
-          {this.props.activeID === this.props.product.id && <ProductInfo isWriting={this.state.isWriting} toggleReadReview={this.toggleReadReview} product={this.props.product} activeID={this.props.activeID}/>}
-          
+          {this.props.activeID === this.props.product.id && <ProductInfo isWriting={this.state.isWriting} toggleReadReview={this.toggleReadReview} product={this.props.product} activeID={this.props.activeID} user={this.props.user} />}
         </div>
       </Fragment>
     );

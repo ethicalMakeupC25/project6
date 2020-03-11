@@ -171,14 +171,17 @@ class Main extends Component {
                             handleSearchInput={this.handleSearchInput}
                         />
                         <FilterResults updaterefinedItems={this.newResults} />
-                        <Sorting filteredResults={this.state.filteredResults} updateSortBy = {this.updateSortBy}/>
-                        <Results filteredResults={this.state.filteredResults} />
+                        <Sorting
+                            filteredResults={this.state.filteredResults}
+                            updateSortBy= {this.updateSortBy}
+                        />
+                        <Results filteredResults={this.state.filteredResults} user={this.props.user} />
                     </Route>
                     <Route path="/project6/wishlist">
                         <Wishlist />
                     </Route>
                     <Route path="/project6/reviews">
-                        <UserReviews />
+                        <UserReviews user={this.props.user} />
                     </Route>
                 </Switch>
             </main>
