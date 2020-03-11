@@ -8,7 +8,7 @@ const ReviewReadPanel = ({review}) => {
         <div className="reviewPanel">
 
             <div className="userDetails">
-                <span>Review Date: {review.review.reviewDate}</span>
+                <span className="userSpan">Review Date: </span>{review.review.reviewDate}
                 <div className="userImg">
                     <img src={review.review.userImg} alt={review.review.userName}/>
                 </div>
