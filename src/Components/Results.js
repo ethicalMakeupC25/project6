@@ -43,8 +43,10 @@ class Results extends Component {
         text: 'This product is already on your wishlist!'
       })
     } else {
+
       const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist`);
       dbRefUserWish.push(product.id);
+
       Swal.fire({
         icon: 'success',
         title: 'Added to Wishlist!',
@@ -53,13 +55,27 @@ class Results extends Component {
     }
   }
 
+  removeFromWishlist = (id) => {
+    const keyToDelete = this.state.wishlist.filter(product => {
+      return product.productID === id
+    })
+
+    const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist/${keyToDelete[0].key}`);
+    dbRefUserWish.remove();
+  }
+
   componentDidMount() {
     if(this.props.user) {
       const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist`);
       dbRefUserWish.on('value', response => {
-        console.log(response.val())
-        if(response.val()) {
-          this.setState({wishlist: Object.values(response.val())});
+        const newState = [];
+        const dbData = response.val();
+        if(dbData) {
+          for(let key in dbData) {
+            newState.push({productID: dbData[key], key});
+          }
+
+          this.setState({wishlist: newState});
         }
       });
     }
@@ -75,7 +91,7 @@ class Results extends Component {
       <section className="results">
         {this.props.filteredResults.map(product => {
           return (
-            <ResultItem key={product.id} setActiveID={this.setActiveID} activeID={this.state.activeID} product={product} user={this.props.user} addToWishlist={this.addToWishlist}/>
+            <ResultItem key={product.id} setActiveID={this.setActiveID} activeID={this.state.activeID} product={product} user={this.props.user} addToWishlist={this.addToWishlist} removeFromWishlist={this.removeFromWishlist}/>
           );
         })}
       </section>
