@@ -21,7 +21,7 @@ class Results extends Component {
   checkForProduct = (productID) => {
     let itemAlreadyOnList = false;
     this.state.wishlist.filter(product => {
-      if(product === productID){
+      if(product.productID === productID){
         itemAlreadyOnList = true;
         return true;
       }

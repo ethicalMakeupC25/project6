@@ -23,17 +23,18 @@ class ResultItem extends Component {
       <Fragment>
 
         <div className={`result ${this.props.activeID === this.props.product.id && "selected"}`} >
-          <ProductImage product={this.props.product} setActiveID={this.props.setActiveID}/>
+          <ProductImage product={this.props.product} 
+          setActiveID={this.props.setActiveID}
+          addToWishlist={this.props.addToWishlist}
+          removeFromWishlist={this.props.removeFromWishlist}/>
           {this.props.activeID === this.props.product.id && 
           <ProductInfo 
           isWriting={this.state.isWriting} 
           toggleReadReview={this.toggleReadReview} 
           product={this.props.product} 
-          setActiveID={this.props.setActiveID} 
-          addToWishlist={this.props.addToWishlist}
-          removeFromWishlist={this.props.removeFromWishlist}
-          userCheck={this.props.userCheck}
-          />}
+          activeID={this.props.activeID} 
+          user={this.props.user}
+          userCheck={this.props.userCheck}/>}
         </div>
       </Fragment>
     );
