@@ -2,11 +2,20 @@
 import React from "react";
 import StarRating from './StarRating';
 import ReviewSubmitButton from "./ReviewSubmitButton";
+import Clock from "react-live-clock";
 
 
 const ReviewForm = props => (
     <div className="reviewInput wrapper">
         <form className="reviewForm" action="submit" onSubmit={e => props.handleFormSubmit(e)}>
+
+            <Clock
+                format={'dddd, MMMM Mo, YYYY, h:mm:ss A'}
+                ticking={true}
+                timezone={'America/Toronto'}
+                onChange={date => console.log(date.output)}
+                />
+                {/* {this.props.dateProp(date.output)} */}
 
             <label 
                 className="visuallyHidden" 

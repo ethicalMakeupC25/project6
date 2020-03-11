@@ -72,13 +72,20 @@ class Results extends Component {
 
   render() {
     return (
+     
       <section className="results">
         {
           this.props.filteredResults.length > 0
             ?
             this.props.filteredResults.map(product => {
               return (
-                <ResultItem key={product.id} setActiveID={this.setActiveID} activeID={this.state.activeID} product={product} user={this.props.user} addToWishlist={this.addToWishlist}/>
+                <ResultItem 
+                    key={product.id} 
+                    setActiveID={this.setActiveID} 
+                    activeID={this.state.activeID} 
+                    product={product} 
+                    user={this.props.user} 
+                    addToWishlist={this.addToWishlist}/>
               );
             })
             :

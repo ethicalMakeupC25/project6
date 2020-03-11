@@ -18,7 +18,10 @@ class ReviewParent extends Component {
             userRepurchase: "",
             //for assigning userID on mount
             userID: "",
-            isReviewing: false
+            isReviewing: false,
+            userImg: "", 
+            reviewDate: '',
+
         };
     }
 
@@ -26,11 +29,13 @@ class ReviewParent extends Component {
         //error handling for anonymous users, assigns userID on mount which will be used for form submission to firebase
         if (this.props.user) {
             this.setState({
-                userID: this.props.user.uid
+                userID: this.props.user.uid,
+                userImg: this.props.user.photoURL
             })
         } else {
             this.setState({
-                userID: '00000'
+                userID: '00000',
+                userImg: "https://i.ibb.co/rQsjc9y/images.png"
             })
         }
 
@@ -85,11 +90,12 @@ class ReviewParent extends Component {
                 });
             } else {
                 const dbRef = firebase.database().ref(`products/${this.props.activeID}/`);
-                const dbRefUser = firebase.database().ref(`users/${this.props.user.uid}/reviews/`);
+                const dbRefUser = firebase.database().ref(`users/${this.state.userID}/reviews/`);
                 //double push to save review to products and to users
                 //firebase database is structured to allow ease of referencing information for 3 different pulls: 1. all reviews by product 2. all reviews by user and 3. all wishlist items by user
                 dbRef.push({
                     userName: this.state.userName,
+                    userImg:this.state.userImg, 
                     userRating:this.state.userRating,
                     userReview: this.state.userReview,
                     userRepurchase: this.state.userRepurchase,
@@ -97,6 +103,7 @@ class ReviewParent extends Component {
                 })
                 dbRefUser.push({
                     userName: this.state.userName,
+                    userImg: this.state.userImg,
                     userRating: this.state.userRating,
                     userReview: this.state.userReview,
                     userRepurchase: this.state.userRepurchase,
@@ -130,7 +137,16 @@ class ReviewParent extends Component {
         })
     } 
     
+    getUserInputDateTime = (currentDateTime) => {
+        this.setState({
+            reviewDate: currentDateTime
+        });
+    }
+
+
     render(){
+        // console.log(this.props.user.photoURL)
+
         return (
             <Fragment>
                 <div className="reviewButtons">
@@ -144,7 +160,7 @@ class ReviewParent extends Component {
                         { this.state.reviews.length !== 0
                             ?
                             this.state.reviews.map(reviewList => {
-                                return <ReviewReadPanel review={reviewList} key={reviewList.key}/>
+                                return <ReviewReadPanel review={reviewList} key={reviewList.key} user={this.props.user}/>
                             })
                             :
                             <p>Oops, no reviews exist of this product yet! Why not leave your own review if you've tried this product before?</p>
@@ -160,6 +176,7 @@ class ReviewParent extends Component {
                         userStarProp={this.onStarClick}
                         userRatingProp={this.userRating}
                         starRatingFunc = {this.getStarRating}
+                        dateProp = {this.getUserInputDateTime}
                     />
                 }
                 </div>

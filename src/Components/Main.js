@@ -188,12 +188,19 @@ class Main extends Component {
                             veganProducts={this.props.veganProducts}
                             handleSearchInput={this.handleSearchInput}
                         />
+
                         <FilterResults updaterefinedItems={this.newResults} />
+
                         <Sorting
                             filteredResults={this.state.filteredResults}
                             updateSortBy= {this.updateSortBy}
                         />
-                        <Results filteredResults={this.state.filteredResults} user={this.props.user} />
+
+                        <Results 
+                            filteredResults={this.state.filteredResults} 
+                            user={this.props.user} 
+                            userCheckProps = {this.props.userCheck}/>
+
                     </Route>
                     <Route exact path="/project6/wishlist">
                         {
