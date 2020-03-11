@@ -11,14 +11,15 @@ class ReviewParent extends Component {
         super();
         this.state = {
         reviews: [],
-        userImg: "", //need to figure out how to keep an image url in the database. and find image storage
+        userImg: './../assets/images.png', 
         userName: "",
         userRating: 0,
         userReview: "",
         userID: "",
         userRepurchase: '',
         uniqueKey: '',
-        isReviewing: false
+        isReviewing: false,
+        reviewDate: '',
         };
     }
 
@@ -88,20 +89,24 @@ class ReviewParent extends Component {
                 const dbRefUser = firebase.database().ref(`users/${this.state.uID}/`);
                 dbRef.push({
                     userName: this.state.userName,
+                    userImg: './../assets/images.png', 
                     userRating:this.state.userRating,
                     userReview: this.state.userReview,
                     userRepurchase: this.state.userRepurchase,
                     userID: "00000",
-                    uniqueKey: this.state.uniqueKey
+                    uniqueKey: this.state.uniqueKey,
+                    reviewDate: ''
                 })
-                dbRefUser.push({
-                    userName: this.props.user.displayName,
-                    userRating: this.state.userRating,
-                    userReview: this.state.userReview,
-                    userRepurchase: this.state.userRepurchase,
-                    userID: this.props.user.uid,
-                    uniqueKey: this.state.uniqueKey
-                })
+                // dbRefUser.push({
+                //     userName: this.props.user.displayName,
+                //     userImg: './../assets/images.png', 
+                //     userRating: this.state.userRating,
+                //     userReview: this.state.userReview,
+                //     userRepurchase: this.state.userRepurchase,
+                //     userID: this.props.user.uid,
+                //     uniqueKey: this.state.uniqueKey,
+                //     reviewDate: ''
+                // })
         
                 // return input to empty.
                 // eslint-disable-next-line
@@ -133,6 +138,14 @@ class ReviewParent extends Component {
             })
         } 
     
+    getUserInputDateTime = (currentDateTime) => {
+        this.setState({
+            reviewDate: currentDateTime
+        });
+    }
+
+
+
     render(){
         return (
             <Fragment>
@@ -162,6 +175,7 @@ class ReviewParent extends Component {
                         userStarProp={this.onStarClick}
                         userRatingProp={this.userRating}
                         starRatingFunc = {this.getStarRating}
+                        dateProp = {this.getUserInputDateTime}
                     />
                 }
                 </div>
