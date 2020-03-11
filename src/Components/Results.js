@@ -54,10 +54,12 @@ class Results extends Component {
   }
 
   componentDidMount() {
-    const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist`);
-    dbRefUserWish.on('value', response => {
-      this.setState({wishlist: Object.values(response.val())});
-    });
+    if(this.props.user) {
+      const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist`);
+      dbRefUserWish.on('value', response => {
+        this.setState({wishlist: Object.values(response.val())});
+      });
+    }
   }
 
   componentWillUnmount() {
