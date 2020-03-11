@@ -9,9 +9,13 @@ class Search extends Component {
     constructor() {
         super();
 
+        //initialize state
         this.state = {
+            //to handle value of user search input
             value: '',
+            //to handle all suggestions produced by autosuggest
             suggestions: [],
+            //to handle all suggestions produced by original veganProducts array
             suggestionsOptions: []
         }
     }
@@ -26,7 +30,6 @@ class Search extends Component {
             }
             if (dataObject.product_type) {
                 suggestions.push(dataObject.product_type)
-                // NOTE TO SELF: NEED TO WASH _ TO SPACES
             }
             if (dataObject.name) {
                 suggestions.push(dataObject.name)
@@ -49,14 +52,18 @@ class Search extends Component {
 
     //this function teaches autosuggest how to calculate suggestions for any given input value
     getSuggestions = (value) => {
+        //pass value into escapeRegexCharacters function to remove characters, also trim white space, and set to lowercase
         const escapedValue = this.escapeRegexCharacters(value.trim().toLowerCase());
 
+        //if there's no user input, return empty array
         if (escapedValue === '') {
             return [];
         }
 
+        //create regex based on processed input
         const regex = new RegExp('\\b' + escapedValue, 'i');
 
+        //return filtered suggestionsOptions array by applying a regex test
         return this.state.suggestionsOptions.filter(suggestion => regex.test(this.getSuggestionValue(suggestion)));
     }
 
@@ -74,7 +81,8 @@ class Search extends Component {
         return (
             <span className={'suggestion-content '}>
                 <span className="suggestion">
-                    {
+                    {   
+                        //this produces spans around everything that needs to be highlighted
                         parts.map((part, index) => {
                             const className = part.highlight ? 'highlight' : null;
         
@@ -88,6 +96,7 @@ class Search extends Component {
         );
     };
 
+    //handle change on input and save to state
     onChange = (event, { newValue }) => {
         this.setState({
             value: newValue
@@ -108,7 +117,7 @@ class Search extends Component {
         });
     };
 
-    //when searchbar suggestion is clicked on instead of submitted via enter
+    //when searchbar suggestion is clicked on instead of submitted via enter, acts as handle change and calls submit handler
     onSuggestionSelected = (e, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) => {
         e.preventDefault();
         this.setState({
@@ -120,7 +129,9 @@ class Search extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         if (this.state.value) {
+            //call parent function and pass value up
             this.props.handleSearchInput(this.state.value);
+            //clear state
             this.setState({
                 value: ''
             })
