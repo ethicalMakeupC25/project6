@@ -21,7 +21,7 @@ class ResultItem extends Component {
   render() {
     return (
       <Fragment>
-        <div className={`result ${this.props.activeID === this.props.product.id && "selected"}`}>
+        <div className={`result ${this.props.activeID === this.props.product.id && "selected"}`} >
           <ProductImage product={this.props.product} setActiveID={this.props.setActiveID}/>
           {this.props.activeID === this.props.product.id && 
           <ProductInfo 

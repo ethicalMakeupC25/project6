@@ -19,7 +19,7 @@ class Results extends Component {
 
   render() {
     return (
-      <section className="results">
+      <section className = "results">
         {this.props.filteredResults.map(product => {
           return (
             <ResultItem 

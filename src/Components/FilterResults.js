@@ -30,6 +30,11 @@ class FilterResults extends Component {
     render() {
         return (
             <div className='filterOptions'>
+                {/* skip link for accessibility to bypass the filter checkboxes */}
+                <a href="#main" class="skip-link">
+                    <div>Skip to main content</div>
+                </a>
+
                 <h4>Filter results</h4>
                 <div className='filterContainer'>
                     <div>
