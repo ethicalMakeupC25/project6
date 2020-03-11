@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ReviewParent from './ReviewParent';
+// Router required, even though they're not technically used in the code itself.
+
 
 class ProductInfo extends Component {
   constructor() {

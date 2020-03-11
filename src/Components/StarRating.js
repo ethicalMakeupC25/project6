@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 
 
-// star rating component from https://scotch.io/tutorials/build-a-star-rating-component-for-react
+// star rating component from https://scotch.io/tutorials/build-a-star-rating-component-for-react; adjusted for use in this project.
 
 class StarRating extends Component {
     constructor(props) {
         super(props);
         this.state = {
         currentRating: this.props.currentRating
+        // this.state.currentRating used to generate value that assigns the visual number of yellow stars, as well as what is sent to state and firebase.
         };
     }
 

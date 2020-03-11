@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, useRouteMatch } from 'react-router-dom';
 import ProductText from './ProductText';
+// Router and Route required for the review buttons, even though they're not technically used in the code itself.
 
 const ReviewLink = (props) => {
   let match = useRouteMatch({
