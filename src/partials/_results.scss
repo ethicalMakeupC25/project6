@@ -1,5 +1,5 @@
 .results {
-  margin-top: 100px;
+  margin: 100px 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 5rem;
@@ -140,10 +140,6 @@
 
     text-transform: capitalize;
   }
-}
-
-.hide {
-  display: none;
 }
 
 @media (max-width: 768px) {
