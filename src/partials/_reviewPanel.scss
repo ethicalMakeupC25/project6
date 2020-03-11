@@ -5,15 +5,32 @@
     margin: 1%;
 }
 
+
 .reviewPanel {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 200px 1fr;
     align-items: center;
     padding: 5%;
     border-bottom: 3px solid $accent1;
 
-    p {
+    .review {
         width: 90%;
+    }
+}
+
+.userDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.userImg {
+    width: 100px;
+    height: 100px;
+
+    img {
+        border-radius: 50%;
     }
 }
 

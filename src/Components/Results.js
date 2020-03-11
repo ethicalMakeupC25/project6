@@ -88,12 +88,26 @@ class Results extends Component {
 
   render() {
     return (
+     
       <section className="results">
-        {this.props.filteredResults.map(product => {
-          return (
-            <ResultItem key={product.id} setActiveID={this.setActiveID} activeID={this.state.activeID} product={product} user={this.props.user} addToWishlist={this.addToWishlist} removeFromWishlist={this.removeFromWishlist}/>
-          );
-        })}
+        {
+          this.props.filteredResults.length > 0
+            ?
+            this.props.filteredResults.map(product => {
+              return (
+                <ResultItem 
+                    key={product.id} 
+                    setActiveID={this.setActiveID} 
+                    activeID={this.state.activeID} 
+                    product={product} 
+                    user={this.props.user} 
+                    addToWishlist={this.addToWishlist}
+                    removeFromWishlist={this.removeFromWishlist}/>
+              );
+            })
+            :
+            <p>No results! Please try again.</p>
+        }
       </section>
     )
   }

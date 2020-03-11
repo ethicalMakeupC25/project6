@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Autosuggest from 'react-autosuggest';
+import AutosuggestHighlightMatch from 'autosuggest-highlight/match';
+import AutosuggestHighlightParse from 'autosuggest-highlight/parse';
 import Swal from 'sweetalert2';
 // all functions below related to suggestions has been adapted from https://www.npmjs.com/package/react-autosuggest and https://codepen.io/moroshko/pen/PZWbzK
 
@@ -39,20 +41,52 @@ class Search extends Component {
         })
     }
 
+    //escape special characters for search
+    escapeRegexCharacters = (str) => {
+        //escaped everything but '.' because of a common search result: 'e.l.f.'
+        return str.replace(/[*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
     //this function teaches autosuggest how to calculate suggestions for any given input value
     getSuggestions = (value) => {
-        const inputValue = value.trim().toLowerCase();
-        const inputLength = inputValue.length;
+        const escapedValue = this.escapeRegexCharacters(value.trim().toLowerCase());
 
-        return inputLength === 0 ? [] : this.state.suggestionsOptions.filter(suggestion => suggestion.toLowerCase().slice(0, inputLength) === inputValue);
+        if (escapedValue === '') {
+            return [];
+        }
+
+        const regex = new RegExp('\\b' + escapedValue, 'i');
+
+        return this.state.suggestionsOptions.filter(suggestion => regex.test(this.getSuggestionValue(suggestion)));
     }
 
     //when suggestion is clicked, autosuggest needs to populate input based on clicked suggestion
     //this function teaches autosuggest how to calculate the input value for every given suggestion
     getSuggestionValue = suggestion => suggestion;
 
-    //render the suggestion
-    renderSuggestion = suggestion => (<span>{suggestion}</span>);
+    //render the list of suggestions
+    renderSuggestion = (suggestion, { query }) => {
+        const suggestionText = suggestion;
+        const matches = AutosuggestHighlightMatch(suggestionText, query);
+        const parts = AutosuggestHighlightParse(suggestionText, matches);
+
+        //render the list and apply class of highlight to parts that match input
+        return (
+            <span className={'suggestion-content '}>
+                <span className="suggestion">
+                    {
+                        parts.map((part, index) => {
+                            const className = part.highlight ? 'highlight' : null;
+        
+                            return (
+                                <span className={className} key={index}>{part.text}</span>
+                            );
+                        })
+                    }
+                </span>
+            </span>
+        );
+    };
 
     onChange = (event, { newValue }) => {
         this.setState({

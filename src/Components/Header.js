@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faListAlt } from '@fortawesome/free-regular-svg-icons';
 import { faChevronCircleDown } from '@fortawesome/free-solid-svg-icons';
@@ -21,15 +21,10 @@ class Header extends Component {
     
     
     render() {
-        const refreshPage = () => {
-            window.location.reload(false);
-        }
         return (
             <header>
                 <nav className="wrapper">
-                    <h1
-                        onClick={refreshPage}
-                    >Ethical Makeup</h1>
+                    <Link to="/project6/"><h1>Ethical Makeup</h1></Link>
                     {
                         //null is falsy .: if props.user is null, show login
                         //if props.user is truthy, show additional features and logout

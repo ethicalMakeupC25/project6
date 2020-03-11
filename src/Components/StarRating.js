@@ -39,11 +39,22 @@ class StarRating extends Component {
         }, () => {
             this.props.starRatingFuncProp(this.state.currentRating)
         }); // set state so the rating stays highlighted
-        if (this.props.onClick) {
-        this.props.onClick(rating); // emit the event up to the parent
-        };
     }
-    
+
+
+    handleKeyPress = (event) => {
+    if(event.key === 'Enter'){
+        let rating = event.target.dataset.value;
+        this.setState({ 
+            currentRating: rating 
+        }, () => {
+            this.props.starRatingFuncProp(this.state.currentRating)
+        }); // set state so the rating stays highlighted
+    } 
+    this.setRating();
+    console.log(this.state.currentRating)
+    }
+
 
     render() {
         return (
@@ -62,6 +73,9 @@ class StarRating extends Component {
                 value={n + 1}
                 onMouseOver={this.hoverHandler}
                 onClick={this.starClickHandler}
+                onKeyDown={ this.handleKeyPress } 
+                tabIndex= { 0 }
+                aria-label="star for user rating"
                 >
                 &#9733;
                 </span>

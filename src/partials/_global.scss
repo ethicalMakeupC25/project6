@@ -63,6 +63,39 @@ a, button, input, textarea {
     auto;
 }
 
+a:focus {
+    outline: 1px dashed red;
+}
+
 .hide {
     display: none;
 }
+
+// Accessibility code for skip-link
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: 1%;
+    top: 5px;
+    z-index: 999;
+    background: white;
+    font-size: 2rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: $blackColor;
+}
+
+.skip-link a {
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 2rem;
+}
+
+.skip-link:focus {
+    left: 5%;
+    top: 10rem;
+}
+
+// ^ End skip code 
