@@ -16,7 +16,7 @@ const Preloader = () => {
                     <div class="plane"></div>
                 </div>
 
-                <p><i>LOADING...</i></p>
+                <p>LOADING...</p>
 
             </div>
         </div>
