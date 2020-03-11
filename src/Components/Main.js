@@ -174,9 +174,17 @@ class Main extends Component {
                     })
                 })
             })
-            this.setState({
-                filteredResults: filterRefinedArray
-            })
+            const sortedRefinedArray = this.sortArray(filterRefinedArray);
+            if(sortedRefinedArray){
+                this.setState({
+                    filteredResults: sortedRefinedArray
+                })
+            } else {
+                this.setState({
+                    filteredResults: filterRefinedArray
+                })
+            }
+            
         } else {
             this.setState({
                 filteredResults: this.state.originalResults
