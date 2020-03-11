@@ -146,6 +146,10 @@ class ReviewParent extends Component {
         });
     }
 
+    componentWillUnmount() {
+        const dbRef = firebase.database().ref(`products/${this.props.activeID}/`);
+        dbRef.off();
+    }
 
     render(){
         // console.log(this.props.user.photoURL)
