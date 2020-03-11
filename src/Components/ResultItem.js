@@ -23,7 +23,10 @@ class ResultItem extends Component {
       <Fragment>
 
         <div className={`result ${this.props.activeID === this.props.product.id && "selected"}`} >
-          <ProductImage product={this.props.product} setActiveID={this.props.setActiveID}/>
+          <ProductImage product={this.props.product} 
+          setActiveID={this.props.setActiveID}
+          addToWishlist={this.props.addToWishlist}
+          removeFromWishlist={this.props.removeFromWishlist}/>
           {this.props.activeID === this.props.product.id && 
           <ProductInfo 
           isWriting={this.state.isWriting} 
@@ -32,7 +35,6 @@ class ResultItem extends Component {
           activeID={this.props.activeID} 
           user={this.props.user}
           />}
-
         </div>
       </Fragment>
     );

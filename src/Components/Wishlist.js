@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import firebase from '../firebase'
-import Results from './Results'
+import firebase from '../firebase';
+import Results from './Results';
+import { withRouter } from 'react-router-dom';
+
+const SomeComponent = withRouter(props => <Wishlist {...props}/>);
 
 class Wishlist extends Component {
     constructor() {
@@ -9,9 +12,10 @@ class Wishlist extends Component {
             userWishlist: []
         }
     }
+
     componentDidMount() {
         const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist`);
-        console.log(this.props.location);
+
         dbRefUserWish.on('value', response => {
             if(response.val()){
                 const productIDs = Object.values(response.val());

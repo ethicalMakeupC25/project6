@@ -34,7 +34,10 @@ class ProductImage extends Component {
           />
         </Link>
 
-        <ProductText product={this.props.product} />
+        <ProductText 
+        product={this.props.product} 
+        addToWishlist={this.props.addToWishlist} 
+        removeFromWishlist={this.props.removeFromWishlist}/>
 
         <ReviewLink
           activateOnlyWhenExact={true}
