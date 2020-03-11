@@ -36,7 +36,7 @@ class ReviewParent extends Component {
 
         //create a variable that holds a reference to database
         const dbRef = firebase.database().ref(`products/${this.props.activeID}/`);
-        //🧠 event listener that takes a callback function used to get data from the database and called response
+        //event listener that takes a callback function used to get data from the database and called response
         dbRef.on("value", response => {
             const dataFromDb = response.val();
             const newState = [];
@@ -47,30 +47,30 @@ class ReviewParent extends Component {
             // call this.setState to update the component state using the local array newState.
             this.setState({
                     reviews: newState
-            });
-        }
-        )}
+            }, () => {console.log(this.state.reviews)});
+        })
+    }
 
-    // 🧮 function to handle inputs for review form:
+    //functions to handle inputs for review form:
     handleChange = e => {
         this.setState({
-        userName: e.target.value
+            userName: e.target.value
         })
-    };
+    }
 
     handleChangeTxtArea = e => {
         this.setState({
-        userReview: e.target.value
+            userReview: e.target.value
         })
-    };
+    }
 
     radioChange = (changeEvent) => {
         this.setState({
             userRepurchase: changeEvent.target.value
-        });
+        })
     }
 
-    // 🧠 on submit, push user input into firebase
+    //on submit, push user input into firebase
     handleFormSubmit = e => {
         e.preventDefault();    
         if (!this.state.userName ||
@@ -85,41 +85,39 @@ class ReviewParent extends Component {
             } else {
                 const dbRef = firebase.database().ref(`products/${this.props.activeID}/`);
                 const dbRefUser = firebase.database().ref(`users/${this.state.uID}/reviews/`);
+                //double push to save review to products and to users
+                //firebase database is structured to allow ease of referencing information for 3 different pulls: 1. all reviews by product 2. all reviews by user and 3. all wishlist items by user
                 dbRef.push({
                     userName: this.state.userName,
                     userRating:this.state.userRating,
                     userReview: this.state.userReview,
                     userRepurchase: this.state.userRepurchase,
-                    userID: this.state.uID
+                    userID: this.state.userID
                 })
                 dbRefUser.push({
                     userName: this.props.user.displayName,
                     userRating: this.state.userRating,
                     userReview: this.state.userReview,
                     userRepurchase: this.state.userRepurchase,
-                    userID: this.state.uID
+                    userID: this.state.userID
                 })
-        
                 // return input to empty.
-                // eslint-disable-next-line
                 this.setState({
                     userName: "",
                     userReview: "",
-                    userRepurchase: ''
-                }, 
-                this.setRead
-                )
+                    userRepurchase: ""
+                }, this.setRead)
             }
         };
 
     setRead = () => {
-        if(this.props.isWriting) {
+        if (this.props.isWriting) {
             this.props.toggleReadReview();
         }
     }
 
     setWrite = () => {
-        if(!this.props.isWriting) {
+        if (!this.props.isWriting) {
             this.props.toggleReadReview();
         }
     }
@@ -127,8 +125,8 @@ class ReviewParent extends Component {
     getStarRating = (currentRating) => {
         this.setState({
             userRating: currentRating
-            })
-        } 
+        })
+    } 
     
     render(){
         return (
@@ -138,7 +136,8 @@ class ReviewParent extends Component {
                     <button onClick={this.setRead}>reviews</button>
                 </div>
                 <div className={`mainGrid wrapper noOverflowX ${!this.props.isWriting && "scrollOn"}`} >
-                    {!this.props.isWriting ? 
+                { 
+                    !this.props.isWriting ? 
                     <div className="reviews">
                         { this.state.reviews.length !== 0
                             ?
@@ -148,7 +147,7 @@ class ReviewParent extends Component {
                             :
                             <p>Oops, no reviews exist of this product yet! Why not leave your own review if you've tried this product before?</p>
                         }
-                </div> : 
+                    </div> : 
                     <ReviewForm
                         handleFormSubmit={this.handleFormSubmit}
                         handleChangeTxtArea={this.handleChangeTxtArea}
