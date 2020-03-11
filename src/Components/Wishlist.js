@@ -11,20 +11,22 @@ class Wishlist extends Component {
     }
     componentDidMount() {
         const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist`);
-
+        console.log(this.props.location);
         dbRefUserWish.on('value', response => {
-            const productIDs = Object.values(response.val());
-            const productArray = [];
-            productIDs.forEach(id => {
-                this.props.veganProducts.filter(product => {
-                    if (product.id === id) {
-                        productArray.push(product);
-                        return true;
-                    }
-                })
-            })
-
-            this.setState({ userWishlist: productArray })
+            if(response.val()){
+                const productIDs = Object.values(response.val());
+                const productArray = [];
+                productIDs.forEach(id => {
+                    this.props.veganProducts.filter(product => {
+                        if (product.id === id) {
+                            productArray.push(product);
+                            return true;
+                        }
+                    });
+                });
+    
+                this.setState({ userWishlist: productArray });
+            }
         })
     }
 

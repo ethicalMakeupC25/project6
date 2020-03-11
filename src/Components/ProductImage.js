@@ -9,8 +9,6 @@ const ReviewLink = (props) => {
     exact: props.activateOnlyWhenExact
   });
 
-  console.log(props.location)
-
   return(
     <div className={match ? "hide" : ""}>
       <Link className="reviewLink" onClick={(e) => props.setActiveID(e, props.product.id)} to={props.to}>{props.label}</Link>

@@ -57,7 +57,10 @@ class Results extends Component {
     if(this.props.user) {
       const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist`);
       dbRefUserWish.on('value', response => {
-        this.setState({wishlist: Object.values(response.val())});
+        console.log(response.val())
+        if(response.val()) {
+          this.setState({wishlist: Object.values(response.val())});
+        }
       });
     }
   }
