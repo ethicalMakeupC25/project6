@@ -79,7 +79,8 @@ class ReviewParent extends Component {
 
     //on submit, push user input into firebase
     handleFormSubmit = e => {
-        e.preventDefault();    
+        e.preventDefault(); 
+        // error handling to prevent the user from leaving any of the review form fields blank   
         if (!this.state.userName ||
             !this.state.userReview ||
             !this.state.userRepurchase) {
@@ -122,6 +123,7 @@ class ReviewParent extends Component {
             }
         };
 
+    // toggle buttongs for the read review and write review once the user clicks on review from the initial list of appended products after the search.
     setRead = () => {
         if (this.props.isWriting) {
             this.props.toggleReadReview();
@@ -134,18 +136,21 @@ class ReviewParent extends Component {
         }
     }
 
+    // function to grab value from the star rating at the bottom of the review form before the submit button.
     getStarRating = (currentRating) => {
         this.setState({
             userRating: currentRating
         })
     } 
     
+    // function to grab current date value from the clock component package. **not essential function, purely aesthetic.
     getUserInputDateTime = (currentDateTime) => {
         this.setState({
             reviewDate: currentDateTime
         });
     }
 
+    // unmounting firease event once this function is done.
     componentWillUnmount() {
         const dbRef = firebase.database().ref(`products/${this.props.activeID}/`);
         dbRef.off();
