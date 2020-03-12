@@ -8,6 +8,7 @@ import FilterResults from './FilterResults';
 import Sorting from './Sorting';
 import Wishlist from './Wishlist';
 import UserReviews from './UserReviews';
+import NoMatch from './NoMatch';
 
 const customHistory = createBrowserHistory();
 
@@ -223,9 +224,7 @@ class Main extends Component {
                                 <Redirect to="/project6/" />
                         }
                     </Route>
-                    <Route>
-                        <Redirect to="/project6/" />
-                    </Route>
+                    <Route path="*" component={NoMatch} />
                 </Switch>
             </main>
         );
