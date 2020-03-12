@@ -7,7 +7,7 @@ class Application extends React.Component {
         return (
         <div className="application">
             <Helmet>
-            <title>• Ethical Makeup •</title>
+            <title>• Ethical Makeup •</title>     
             {/* search metadata */}
             <meta name="description" content="Search for vegan makeup products" />
             <meta name="robots" content="index, nofollow" />

@@ -18,13 +18,11 @@ class Header extends Component {
         })
     }
 
-    
-    
     render() {
         return (
             <header>
                 <nav className="wrapper">
-                    <Link to="/project6/"><h1>Ethical Makeup</h1></Link>
+                    <Link exact to="/project6/"><h1>Ethical Makeup</h1></Link>
                     {
                         //null is falsy .: if props.user is null, show login
                         //if props.user is truthy, show additional features and logout
