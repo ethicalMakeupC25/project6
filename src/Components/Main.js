@@ -223,6 +223,9 @@ class Main extends Component {
                                 <Redirect to="/project6/" />
                         }
                     </Route>
+                    <Route>
+                        <Redirect to="/project6/" />
+                    </Route>
                 </Switch>
             </main>
         );
