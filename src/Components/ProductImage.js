@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link, useRouteMatch } from 'react-route
 import ProductText from './ProductText';
 // Router and Route required for the review buttons, even though they're not technically used in the code itself.
 
+// Custom Link component which hides it if the user has already clicked it
 const ReviewLink = (props) => {
   let match = useRouteMatch({
     path: props.to,
@@ -26,6 +27,7 @@ class ProductImage extends Component {
   render() {
     return (
       <div className="productImage" id="main">
+        {/* Opens detailed product info */}
         <Link to={`/project6/products/${this.props.product.id}`}>
           <img
             onClick={e => this.props.setActiveID(e, this.props.product.id)}
@@ -34,8 +36,13 @@ class ProductImage extends Component {
           />
         </Link>
 
-        <ProductText product={this.props.product} />
+        {/* Text on image */}
+        <ProductText 
+        product={this.props.product} 
+        addToWishlist={this.props.addToWishlist} 
+        removeFromWishlist={this.props.removeFromWishlist}/>
 
+        {/* Link that opens review panels */}
         <ReviewLink
           activateOnlyWhenExact={true}
           setActiveID={this.props.setActiveID}

@@ -2,13 +2,11 @@
 import React, { Fragment } from "react";
 
 const ReviewReadPanel = ({review}) => {
-    console.log(review)
-    // console.log(this.props.user.photoURL)
     return (
         <div className="reviewPanel">
 
-            <div className="userDetails">
-                <span>Review Date: {review.review.reviewDate}</span>
+            <div className="userDetailsReview">
+                <span className="userSpan">Review Date: </span>{review.review.reviewDate}
                 <div className="userImg">
                     <img src={review.review.userImg} alt={review.review.userName}/>
                 </div>

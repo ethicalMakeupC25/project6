@@ -21,7 +21,7 @@
     padding: 5px 15px;
   }
 
-  .add {
+  .add, .remove {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -162,5 +162,9 @@
 
   .selected .productInfo {
     grid-column: 1 / -1;
+  }
+
+  .reviewButtons {
+    grid-column: 1/span 3;
   }
 }

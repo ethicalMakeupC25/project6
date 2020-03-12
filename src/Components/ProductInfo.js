@@ -8,6 +8,7 @@ class ProductInfo extends Component {
   constructor() {
     super();
 
+    // Max  characters a description can hold before trailing off
     this.state = {
       maxLength: 250
     }
@@ -19,6 +20,7 @@ class ProductInfo extends Component {
         <div className="productInfo">
           <h2>{this.props.product.name}</h2>
           <p>
+            {/* Cut off description at the maximum allowed length and add ... */}
             {this.props.product.description.length > this.state.maxLength ? (
               <Fragment>
                 {`${this.props.product.description.substring(
@@ -68,6 +70,7 @@ class ProductInfo extends Component {
             )}
           </div>
         </div>
+        {/* Route that displays when user clicks on Reviews */}
         <Route
           path="/project6/products/:productID/review"
           exact
@@ -77,7 +80,6 @@ class ProductInfo extends Component {
               activeID={this.props.activeID}
               isWriting={this.props.isWriting}
               toggleReadReview={this.props.toggleReadReview}
-              userCheck={this.props.userCheck}
             />
           )}
         />

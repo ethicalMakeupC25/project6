@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import firebase from '../firebase'
-import Results from './Results'
+import firebase from '../firebase';
+import Results from './Results';
+import { withRouter } from 'react-router-dom';
+
+const SomeComponent = withRouter(props => <Wishlist {...props}/>);
 
 class Wishlist extends Component {
     constructor() {
@@ -9,13 +12,16 @@ class Wishlist extends Component {
             userWishlist: []
         }
     }
+
     componentDidMount() {
         const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist`);
-        console.log(this.props.location);
+
         dbRefUserWish.on('value', response => {
             if(response.val()){
                 const productIDs = Object.values(response.val());
                 const productArray = [];
+
+                // grabs the items the user saved and filters it out from the list of products
                 productIDs.forEach(id => {
                     this.props.veganProducts.filter(product => {
                         if (product.id === id) {
@@ -28,6 +34,11 @@ class Wishlist extends Component {
                 this.setState({ userWishlist: productArray });
             }
         })
+    }
+
+    componentWillUnmount() {
+        const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist`);
+        dbRefUserWish.off();
     }
 
     render() {
