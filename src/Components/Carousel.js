@@ -34,7 +34,7 @@ class Carousel extends Component {
                 displayQuantityOfSide={2}
                 enableScroll={true}
                 clickable={true}
-                active={0}
+                active={Math.floor(this.state.randomVeganArray.length/2)}
             >
                 {
                     this.state.randomVeganArray.map((eachItem) => {
