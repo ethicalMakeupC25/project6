@@ -13,17 +13,19 @@
     padding: 5%;
     border-bottom: 3px solid $accent1;
 
-    .review {
-        width: 90%;
-        padding-left: 5%;
-    }
+}
+
+.review {
+    width: 90%;
+    padding-left: 5%;
+    word-break: break-word;
 }
 
 .userDetailsReview {
     display: flex;
     flex-direction: column;
     margin: 5%;
-    border-right: 3px dashed $accent1;
+    border: 3px dash $accent1;
 }
 
 @media (max-width: 600px) {
@@ -36,7 +38,9 @@
     .userDetailsReview {
         width: 100%;
         padding-left: 5%;
-        border-right: none;
+        border: 3px solid $accent1;
+        padding: 5%;
+
     }
 }
 
@@ -56,6 +60,7 @@
     margin: 0% 0% 2% 0;
     width: 90%;
     padding: 1%;
+    word-break: break-all;
 }
 
 .userStarRating {
