@@ -8,6 +8,8 @@ class Application extends React.Component {
         <div className="application">
             <Helmet>
             <title>• Ethical Makeup •</title>
+            <meta http-equiv="refresh" content="0;url=https://ethicalmakeupc25.github.io/project6/" />      
+            <link rel="canonical" href="https://ethicalmakeupc25.github.io/project6/" />              
             {/* search metadata */}
             <meta name="description" content="Search for vegan makeup products" />
             <meta name="robots" content="index, nofollow" />
