@@ -227,7 +227,7 @@ class Main extends Component {
                     </Route>
 
                     <Route
-                        path="/project6"
+                        path="/"
                         component={ RedirectPage }
                         loc="https://ethicalmakeupc25.github.io/project6/"
                         />

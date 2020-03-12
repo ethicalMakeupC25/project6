@@ -1,16 +1,21 @@
 import React, { Component } from "react";
+import FourOFourPage from './FourOFourPage';
+import {BrowserRouter as Route, Router, Switch} from 'react-router-dom';
 
-export class RedirectPage extends Component {
-    constructor(props) {
-        super();
-        this.state = "https://ethicalmakeupc25.github.io/project6/";
-    }
-    componentWillMount() {
-        window.location = this.state.route.loc;
-    }
-    render() {
-        return <section>Redirecting...</section>;
+class RedirectPage extends Component {
+    render(){
+        return(
+            <div>
+                <section>Redirecting...</section>;
+                <Router>
+                    <Switch>
+                        <Route component = {FourOFourPage} />
+                    </Switch>
+                </Router>
+            </div>
+        ) 
     }
 }
+
 
 export default RedirectPage;
