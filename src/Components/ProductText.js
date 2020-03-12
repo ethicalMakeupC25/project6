@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
-import { BrowserRouter as Router, Route, Link, useRouteMatch } from 'react-router-dom';
+import { HashRouter as Router, Route, Link, useRouteMatch } from 'react-router-dom';
 
 class ProductText extends Component {
   constructor() {

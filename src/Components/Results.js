@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ResultItem from './ResultItem';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import firebase from '../firebase';
 import Swal from 'sweetalert2';
 
