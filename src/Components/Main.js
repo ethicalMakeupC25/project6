@@ -3,7 +3,7 @@ import Search from './Search';
 import Results from './Results';
 import Carousel from './Carousel';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { createHashHistory } from 'history';
 import FilterResults from './FilterResults';
 import Sorting from './Sorting';
 import Wishlist from './Wishlist';
@@ -12,7 +12,7 @@ import RedirectPage from './RedirectPage';
 import FourOFourPage from './FourOFourPage';
 
 
-const customHistory = createBrowserHistory();
+const customHistory = createHashHistory();
 
 class Main extends Component {
     constructor() {

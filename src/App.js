@@ -11,7 +11,7 @@ import Footer from './Components/Footer';
 // import axios
 import axios from 'axios';
 // import react-router
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 // CSS for the `App` component
 import "./App.scss";
 
