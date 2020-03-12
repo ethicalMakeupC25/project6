@@ -10,6 +10,7 @@ import Wishlist from './Wishlist';
 import UserReviews from './UserReviews';
 import RedirectPage from './Redirect';
 
+
 const customHistory = createBrowserHistory();
 
 class Main extends Component {
@@ -224,6 +225,7 @@ class Main extends Component {
                                 <Redirect to="/project6/" />
                         }
                     </Route>
+
                     <Route
                         path="/project6"
                         component={ RedirectPage }
