@@ -8,7 +8,7 @@ import FilterResults from './FilterResults';
 import Sorting from './Sorting';
 import Wishlist from './Wishlist';
 import UserReviews from './UserReviews';
-import RedirectPage from './Redirect';
+import RedirectPage from './RedirectPage';
 
 
 const customHistory = createBrowserHistory();
