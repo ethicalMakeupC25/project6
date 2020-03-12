@@ -7,7 +7,7 @@ class FourOFourPage extends Component{
     render(){
         return (
             <div className="App">
-                <Redirect to = "/" />
+                <Redirect to = "/project6/" />
             </div>
         );
     }

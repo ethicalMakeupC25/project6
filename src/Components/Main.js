@@ -9,6 +9,7 @@ import Sorting from './Sorting';
 import Wishlist from './Wishlist';
 import UserReviews from './UserReviews';
 import RedirectPage from './RedirectPage';
+import FourOFourPage from './FourOFourPage';
 
 
 const customHistory = createBrowserHistory();
@@ -227,10 +228,8 @@ class Main extends Component {
                     </Route>
 
                     <Route
-                        path="/"
-                        component={ RedirectPage }
-                        loc="https://ethicalmakeupc25.github.io/project6/"
-                        />
+                        component={ FourOFourPage }
+                    />
                 </Switch>
             </main>
         );
