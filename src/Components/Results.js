@@ -15,13 +15,13 @@ class Results extends Component {
   }
 
   setActiveID = (e, id) => {
-    this.setState({activeID: id});
+    this.setState({ activeID: id });
   }
 
   checkForProduct = (productID) => {
     let itemAlreadyOnList = false;
     this.state.wishlist.filter(product => {
-      if(product === productID){
+      if (product === productID) {
         itemAlreadyOnList = true;
         return true;
       }
@@ -30,13 +30,13 @@ class Results extends Component {
   }
 
   addToWishlist = (product) => {
-    if(!this.props.user) {
+    if (!this.props.user) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Please log in to make a wishlist!'
       })
-    } else if(this.checkForProduct(product.id)) {
+    } else if (this.checkForProduct(product.id)) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -54,12 +54,12 @@ class Results extends Component {
   }
 
   componentDidMount() {
-    if(this.props.user) {
+    if (this.props.user) {
       const dbRefUserWish = firebase.database().ref(`users/${this.props.user.uid}/wishlist`);
       dbRefUserWish.on('value', response => {
         console.log(response.val())
-        if(response.val()) {
-          this.setState({wishlist: Object.values(response.val())});
+        if (response.val()) {
+          this.setState({ wishlist: Object.values(response.val()) });
         }
       });
     }
@@ -72,20 +72,19 @@ class Results extends Component {
 
   render() {
     return (
-     
       <section className="results">
         {
           this.props.filteredResults.length > 0
             ?
             this.props.filteredResults.map(product => {
               return (
-                <ResultItem 
-                    key={product.id} 
-                    setActiveID={this.setActiveID} 
-                    activeID={this.state.activeID} 
-                    product={product} 
-                    user={this.props.user} 
-                    addToWishlist={this.addToWishlist}/>
+                <ResultItem
+                  key={product.id}
+                  setActiveID={this.setActiveID}
+                  activeID={this.state.activeID}
+                  product={product}
+                  user={this.props.user}
+                  addToWishlist={this.addToWishlist} />
               );
             })
             :
