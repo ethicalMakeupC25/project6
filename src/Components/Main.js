@@ -224,7 +224,7 @@ class Main extends Component {
                                 <Redirect to="/project6/" />
                         }
                     </Route>
-                    <Route path="" component={NoMatch} />
+                    <Route component={NoMatch} />
                 </Switch>
             </main>
         );
