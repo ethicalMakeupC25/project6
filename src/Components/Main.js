@@ -3,15 +3,16 @@ import Search from './Search';
 import Results from './Results';
 import Carousel from './Carousel';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { createHashHistory } from 'history';
 import FilterResults from './FilterResults';
 import Sorting from './Sorting';
 import Wishlist from './Wishlist';
 import UserReviews from './UserReviews';
 import RedirectPage from './RedirectPage';
+import FourOFourPage from './FourOFourPage';
 
 
-const customHistory = createBrowserHistory();
+const customHistory = createHashHistory();
 
 class Main extends Component {
     constructor() {
@@ -227,10 +228,8 @@ class Main extends Component {
                     </Route>
 
                     <Route
-                        path="/project6"
-                        component={ RedirectPage }
-                        loc="https://ethicalmakeupc25.github.io/project6/"
-                        />
+                        component={ FourOFourPage }
+                    />
                 </Switch>
             </main>
         );
