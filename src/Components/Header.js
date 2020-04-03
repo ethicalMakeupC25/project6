@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faListAlt } from '@fortawesome/free-regular-svg-icons';
 import { faChevronCircleDown } from '@fortawesome/free-solid-svg-icons';
