@@ -45,7 +45,7 @@ class App extends Component {
         isLoading: false,
       })
     })
-    //authetication history checked for user to allow persisted login status which triggers loggedin components
+    //authentication history checked for user to allow persisted login status which triggers loggedin components
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user });

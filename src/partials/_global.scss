@@ -57,11 +57,6 @@ button:not(.navButton) {
         text-align: center;
     }
 
-a, button, input, textarea {
-    cursor: url('./../assets/mouse.png'),
-    auto;
-}
-
 a:focus {
     outline: 1px dashed red;
 }
